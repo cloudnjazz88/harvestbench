@@ -41,7 +41,6 @@ export const primaryNav: NavItem[] = [
   {
     href: "/container-gardening",
     label: "Container Gardening",
-    shortLabel: "Pots",
   },
   { href: "/soil-compost", label: "Soil & Compost", shortLabel: "Soil" },
   { href: "/watering", label: "Watering" },
