@@ -4,6 +4,7 @@ import {
   potGallonCrops,
   potMaterials,
 } from "@/data/containers";
+import { topicGuides } from "@/data/guidesTopics";
 import type { ContentBlock, FaqItem, RelatedLink } from "@/data/types";
 
 export type GuideType = "guide" | "product";
@@ -20,7 +21,9 @@ export type Guide = {
     | "planting"
     | "crops"
     | "products"
-    | "containers";
+    | "containers"
+    | "seeds"
+    | "pests";
   updated: string;
   intro: string;
   body: ContentBlock[];
@@ -1999,6 +2002,7 @@ export const guides: Guide[] = [
     ],
     products: ["pruning-shears-placeholder"],
   },
+  ...topicGuides,
 ];
 
 export function getGuide(slug: string): Guide | undefined {

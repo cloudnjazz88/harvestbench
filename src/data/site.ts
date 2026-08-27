@@ -43,8 +43,10 @@ export const primaryNav: NavItem[] = [
     label: "Container Gardening",
   },
   { href: "/soil-compost", label: "Soil & Compost", shortLabel: "Soil" },
+  { href: "/seeds", label: "Seeds & Seed Starting", shortLabel: "Seeds" },
   { href: "/watering", label: "Watering" },
   { href: "/garden-tools", label: "Garden Tools", shortLabel: "Tools" },
+  { href: "/pest-problems", label: "Pest & Plant Problems", shortLabel: "Pests" },
   { href: "/guides", label: "Guides" },
 ];
 
@@ -62,8 +64,10 @@ export const footerNav = {
     { href: "/vegetable-gardening", label: "Vegetable gardening" },
     { href: "/container-gardening", label: "Container gardening" },
     { href: "/soil-compost", label: "Soil & compost" },
+    { href: "/seeds", label: "Seeds & seed starting" },
     { href: "/watering", label: "Watering" },
     { href: "/garden-tools", label: "Garden tools" },
+    { href: "/pest-problems", label: "Pest & plant problems" },
     { href: "/guides", label: "Guides" },
   ],
   legal: [

@@ -153,6 +153,37 @@ export default function HomePage() {
               { href: "/guides/best-soaker-hose", label: "Soaker hose criteria" },
             ]}
           />
+          <HubPanel
+            title="Seeds & seed starting"
+            body="Seed starting, germination, and transplanting — when to start indoors and how to harden off."
+            href="/seeds"
+            links={[
+              { href: "/guides/how-to-start-vegetable-seeds-indoors", label: "Start seeds indoors" },
+              { href: "/guides/when-to-transplant-seedlings", label: "When to transplant" },
+              { href: "/calculators/plant-spacing", label: "Plant spacing calculator" },
+            ]}
+          />
+          <HubPanel
+            title="Garden tools"
+            body="Pruners, trellis, garden carts, hoses, and drip gear — buying criteria without fake reviews."
+            href="/garden-tools"
+            links={[
+              { href: "/guides/best-pruning-shears", label: "Pruning shears" },
+              { href: "/guides/best-garden-trellis", label: "Trellis" },
+              { href: "/guides/best-garden-cart", label: "Garden cart" },
+              { href: "/guides/best-garden-hose", label: "Garden hose" },
+            ]}
+          />
+          <HubPanel
+            title="Pest & plant problems"
+            body="Aphids, tomato hornworms, blossom-end rot, and what to try before a yard-wide spray."
+            href="/pest-problems"
+            links={[
+              { href: "/guides/aphids-on-vegetable-plants", label: "Aphids" },
+              { href: "/guides/tomato-hornworms", label: "Tomato hornworms" },
+              { href: "/guides/blossom-end-rot", label: "Blossom-end rot" },
+            ]}
+          />
         </section>
 
         <section className="mt-14">

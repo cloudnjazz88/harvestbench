@@ -223,6 +223,21 @@ export const products: ProductRecommendationRecord[] = [
     affiliate: false,
     status: "placeholder",
   },
+  {
+    id: "garden-cart-placeholder",
+    name: "Garden cart or wheelbarrow (research pending)",
+    category: "Hauling",
+    shortDescription:
+      "Placeholder for a cart or wheelbarrow used to move soil, compost, and mulch.",
+    pros: ["Saves backs when filling beds", "Useful for mulch and debris runs"],
+    cons: ["Cheap trays crack under wet soil weight", "Wide carts may not fit garden gates"],
+    idealUse: "Moving bagged mix, compost, and mulch to raised beds.",
+    priceRange: "To be researched",
+    retailer: "unspecified",
+    externalUrl: "",
+    affiliate: false,
+    status: "placeholder",
+  },
 ];
 
 export function getProduct(id: string): ProductRecommendationRecord | undefined {

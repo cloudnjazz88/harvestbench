@@ -137,6 +137,14 @@ const coreCrops: Crop[] = [
     ],
     relatedGuides: [
       {
+        href: "/guides/blossom-end-rot",
+        label: "Blossom-end rot",
+      },
+      {
+        href: "/guides/tomato-hornworms",
+        label: "Tomato hornworms",
+      },
+      {
         href: "/guides/how-far-apart-to-plant-tomatoes",
         label: "How far apart to plant tomatoes",
       },
