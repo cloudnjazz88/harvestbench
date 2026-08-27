@@ -31,7 +31,7 @@ export function ContactForm() {
       return;
     }
     setError("");
-    const subject = encodeURIComponent(`Harvestbench contact from ${name.trim()}`);
+    const subject = encodeURIComponent(`HarvestBench contact from ${name.trim()}`);
     const body = encodeURIComponent(`${message.trim()}\n\nFrom: ${name.trim()} <${from.trim()}>`);
     window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
   }

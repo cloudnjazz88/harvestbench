@@ -194,13 +194,13 @@ export default function HomePage() {
           <h2 className="font-serif text-2xl font-semibold">Why this site exists</h2>
           <p className="mt-3 max-w-3xl leading-7 text-muted">
             Most gardening articles bury the number you actually need — cubic yards of soil, plants in a 4×8 bed,
-            fertilizer ounces — inside a story. Harvestbench is a utility for food gardens: calculators first, then
+            fertilizer ounces — inside a story. HarvestBench is a utility for food gardens: calculators first, then
             the guides that explain when those numbers break. It is written for US homeowners growing vegetables they
             can harvest, not as a personal blog.
           </p>
           <p className="mt-3">
             <Link href="/about" className="font-medium text-accent hover:underline">
-              About Harvestbench
+              About HarvestBench
             </Link>
           </p>
         </section>

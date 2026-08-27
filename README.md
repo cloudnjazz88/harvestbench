@@ -1,4 +1,4 @@
-# Harvestbench
+# HarvestBench
 
 A US-English resource site for **raised beds, containers, and harvestable vegetables**: interactive calculators, practical guides, and product-recommendation architecture that can later connect to Amazon, Home Depot, and Lowe’s.
 

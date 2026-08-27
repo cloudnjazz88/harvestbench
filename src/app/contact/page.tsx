@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Contact",
-  description: `Contact Harvestbench at ${analytics.contactEmail}.`,
+  description: `Contact HarvestBench at ${analytics.contactEmail}.`,
   path: "/contact",
 });
 

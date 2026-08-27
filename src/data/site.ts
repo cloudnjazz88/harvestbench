@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "Harvestbench",
-  shortName: "Harvestbench",
+  name: "HarvestBench",
+  shortName: "HarvestBench",
   tagline:
     "A practical resource for growing vegetables you can harvest in raised beds, containers, and backyard gardens.",
   description:
