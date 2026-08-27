@@ -22,9 +22,9 @@ export default function PrivacyPage() {
         </p>
         <h2 className="pt-2 font-serif text-2xl font-semibold text-foreground">Information we do not collect by default</h2>
         <p>
-          Calculators run in your browser. We do not require an account. Contact messages are sent
-          through your own email app when a contact address is configured; they are not stored in a
-          database on this site.
+          Calculators run in your browser. We do not require an account. Contact messages go through
+          your own email app to contact@harvestbench.com; they are not stored in a database on this
+          site.
         </p>
         <h2 className="pt-2 font-serif text-2xl font-semibold text-foreground">Analytics</h2>
         <p>
