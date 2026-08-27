@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { getAllPagePaths } from "@/data/routes";
 import { getSiteUrl } from "@/data/site";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
   return getAllPagePaths().map((path) => ({

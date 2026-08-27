@@ -24,10 +24,7 @@ Open [http://localhost:3000](http://localhost:3000).
 Live site: [https://harvestbench.com](https://harvestbench.com)  
 Source: [https://github.com/cloudnjazz88/harvestbench](https://github.com/cloudnjazz88/harvestbench)
 
-Set `NEXT_PUBLIC_SITE_URL=https://harvestbench.com` on the host. Deploy with Vercel (or any Next.js Node host) from the `main` branch. Point the domain at the host:
-
-- `harvestbench.com` → A record `10.0.1.2` (Vercel)
-- `www.harvestbench.com` → CNAME `cname.vercel-dns.com`
+The production build is a static export hosted on Cloudflare Pages (same account as the domain). Set `NEXT_PUBLIC_SITE_URL=https://harvestbench.com` before `npm run build`.
 
 ## Production build
 
