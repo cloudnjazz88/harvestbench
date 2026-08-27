@@ -1,0 +1,35 @@
+import { CardLink, SectionHeading } from "@/components/content/CardLink";
+import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { Container } from "@/components/layout/Container";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Garden Tools",
+  description:
+    "What to look for in hoses, drip kits, soaker lines, trellises, pruners, and raised bed frames — without fake product reviews.",
+  path: "/garden-tools",
+});
+
+export default function GardenToolsPage() {
+  return (
+    <Container className="py-10">
+      <Breadcrumbs items={[{ href: "/garden-tools", label: "Garden Tools" }]} />
+      <SectionHeading
+        title="Garden tools"
+        description="Buying criteria for the tools that actually show up in a raised-bed vegetable garden. Retailer and affiliate links are not live yet; the architecture is ready when they are."
+      />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <CardLink href="/guides/best-raised-garden-beds" title="Raised garden beds" description="Width, depth, and materials that survive a soil fill." />
+        <CardLink href="/guides/best-raised-bed-soil" title="Raised bed soil" description="How to read a bag and question a bulk pile." />
+        <CardLink href="/guides/best-garden-hose" title="Garden hose" description="Length, 5/8-inch diameter, and fittings that do not leak." />
+        <CardLink href="/guides/best-drip-irrigation" title="Drip irrigation" description="Kits, emitters, pressure, and timers for raised beds." />
+        <CardLink href="/guides/best-soaker-hose" title="Soaker hose" description="Low pressure and layout under mulch." />
+        <CardLink href="/guides/best-garden-trellis" title="Garden trellis" description="Height and anchoring for cucumbers and tomatoes." />
+        <CardLink href="/guides/best-pruning-shears" title="Pruning shears" description="Bypass blades for live stems." />
+      </div>
+      <p className="mt-8 text-sm text-muted">
+        Named products, prices, and ratings will only appear after independent research. This site does not invent reviews.
+      </p>
+    </Container>
+  );
+}
