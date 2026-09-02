@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Logo } from "@/components/layout/Logo";
 import { primaryNav } from "@/data/site";
 
@@ -54,6 +54,30 @@ export function Header() {
 function MobileNav() {
   const [open, setOpen] = useState(false);
   const menuId = useId();
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function clearCloseTimer() {
+    if (closeTimer.current === null) return;
+    clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  }
+
+  function openMenu() {
+    clearCloseTimer();
+    setOpen(true);
+  }
+
+  function scheduleClose() {
+    clearCloseTimer();
+    closeTimer.current = setTimeout(() => {
+      setOpen(false);
+      closeTimer.current = null;
+    }, 150);
+  }
+
+  useEffect(() => {
+    return () => clearCloseTimer();
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -72,6 +96,8 @@ function MobileNav() {
           className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border bg-card"
           aria-expanded={open}
           aria-controls={menuId}
+          onMouseEnter={openMenu}
+          onMouseLeave={scheduleClose}
           onClick={() => setOpen((value) => !value)}
         >
           <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
@@ -92,6 +118,8 @@ function MobileNav() {
         <div
           id={menuId}
           className="fixed top-16 right-0 z-50 box-border flex max-h-[calc(100dvh-4rem)] w-[min(24rem,100vw)] max-w-[100vw] translate-x-0 flex-col overflow-y-auto border-b border-l border-border bg-card"
+          onMouseEnter={openMenu}
+          onMouseLeave={() => setOpen(false)}
         >
           <nav aria-label="Mobile" className="min-w-0 px-4 py-3 sm:px-6">
             <ul className="flex min-w-0 flex-col">

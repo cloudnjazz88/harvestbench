@@ -27,6 +27,8 @@ describe("mobile navigation overflow", () => {
     expect(buttonWrapper).toContain("-translate-y-1/2");
     expect(buttonWrapper).toContain("aria-expanded");
     expect(buttonWrapper).toContain("aria-controls");
+    expect(buttonWrapper).toContain("onMouseEnter={openMenu}");
+    expect(buttonWrapper).toContain("onMouseLeave={scheduleClose}");
     expect(buttonWrapper).not.toContain("id={menuId}");
     expect(buttonWrapper).not.toContain('aria-label="Mobile"');
     expect(openPanel).toContain("id={menuId}");
@@ -35,6 +37,8 @@ describe("mobile navigation overflow", () => {
     expect(openPanel).toContain("translate-x-0");
     expect(openPanel).toContain("max-w-[100vw]");
     expect(openPanel).toContain("box-border");
+    expect(openPanel).toContain("onMouseEnter={openMenu}");
+    expect(openPanel).toContain("onMouseLeave");
     expect(openPanel).not.toContain("inset-x-0");
     expect(openPanel).not.toContain("left-full");
     expect(openPanel).not.toContain("left-0");
