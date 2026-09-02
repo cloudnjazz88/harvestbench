@@ -23,3 +23,21 @@ export const sourceUgaBudgetBed: SourceCitation = {
   organization: "University of Georgia Extension",
   url: "https://site.extension.uga.edu/dekalb/2025/08/building-a-raised-bed-on-a-budget/",
 };
+
+export const sourcePsuPottingMedia: SourceCitation = {
+  title: "Potting Media and Plant Propagation",
+  organization: "Penn State Extension",
+  url: "https://extension.psu.edu/potting-media-and-plant-propagation/",
+};
+
+export const sourceUmnContainers: SourceCitation = {
+  title: "Starting your garden and containers off right",
+  organization: "University of Minnesota Extension",
+  url: "https://extension.umn.edu/about/our-stories/news/starting-your-garden-and-containers-off-right",
+};
+
+export const sourceUgaHomeGardenSoil: SourceCitation = {
+  title: "Soil for Home Gardens",
+  organization: "University of Georgia Extension",
+  url: "https://site.extension.uga.edu/lincoln/soil-for-home-gardens/",
+};

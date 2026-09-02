@@ -8,7 +8,10 @@ import { topicGuides } from "@/data/guidesTopics";
 import {
   sourceOsuCompost,
   sourceOsuRaisedBeds,
+  sourcePsuPottingMedia,
   sourceUgaBudgetBed,
+  sourceUgaHomeGardenSoil,
+  sourceUmnContainers,
   sourceUmnRaisedBeds,
 } from "@/data/raisedBedSources";
 import type { ContentBlock, FaqItem, RelatedLink, SourceCitation } from "@/data/types";
@@ -282,7 +285,7 @@ export const guides: Guide[] = [
       },
       {
         type: "p",
-        text: "Do not assume the whole box should be pure compost. A practical raised-bed mixture can be about one-half to two-thirds topsoil and one-third to one-half plant-based compost. Volume is still only half the decision: a 4×8×12-inch bed filled with cheap screened fill dirt will hold plants but drain and feed poorly. See [best soil mix for raised beds](/guides/best-soil-mix-for-raised-beds) for the Backyard and Budget recipes, and the [buying guide for raised bed soil](/guides/best-raised-bed-soil) for what to look for on a bag label.",
+        text: "Do not assume the whole box should be pure compost. A practical raised-bed mixture can be about one-half to two-thirds topsoil and one-third to one-half plant-based compost. Volume is still only half the decision: a 4×8×12-inch bed filled with cheap screened fill dirt will hold plants but drain and feed poorly. See [best soil mix for raised beds](/guides/best-soil-mix-for-raised-beds) for the Balanced and More-topsoil calculator presets, and the [buying guide for raised bed soil](/guides/best-raised-bed-soil) for what to look for on a bag label.",
       },
     ],
     faqs: [
@@ -616,10 +619,10 @@ export const guides: Guide[] = [
     slug: "potting-mix-vs-garden-soil",
     title: "Potting Mix vs Garden Soil",
     description:
-      "Why pots need potting mix, why raised beds usually should not be filled with it, and how to read a bag label.",
+      "Why pots need soilless potting mix, Extension-based DIY starting recipes, and why raised beds use mineral soil plus compost instead.",
     type: "guide",
     category: "containers",
-    updated: "2026-08-27",
+    updated: "2026-09-02",
     intro:
       "Potting mix is for containers. Garden soil and mineral-heavy raised-bed blends belong in open beds. Using the wrong one is a common reason a patio plant stays wet, then collapses.",
     body: [
@@ -637,17 +640,17 @@ export const guides: Guide[] = [
         rows: [
           [
             "Plastic, ceramic, or fabric pots",
-            "Potting mix (peat or coir, bark, perlite or similar)",
-            "Garden soil, topsoil, and straight compost",
+            "Soilless potting mix (commercial bag or DIY soilless blend)",
+            "Garden soil, topsoil, and straight compost alone",
           ],
           [
             "Open-bottom raised bed on soil",
-            "Mineral soil plus compost — see [raised bed mix](/guides/best-soil-mix-for-raised-beds)",
+            "Topsoil plus finished plant-based compost — see [raised bed mix](/guides/best-soil-mix-for-raised-beds)",
             "Filling the whole frame with bagged potting mix (costly and often too light)",
           ],
           [
             "Raised bed on a patio or driveway (closed bottom)",
-            "A lighter bed mix with more compost and bark so it drains",
+            "A draining bed mix with mineral soil and compost — still not ordinary potting soil alone",
             "Native clay dumped into a sealed box",
           ],
         ],
@@ -658,13 +661,13 @@ export const guides: Guide[] = [
       },
       {
         type: "p",
-        text: "Bagged potting mix is mostly organic particles and air. Typical ingredients are peat moss or coconut coir, composted bark, and perlite or pumice. Some bags include a starter fertilizer charge; that runs out in weeks, not all season. The point is drainage and air around roots in a container, not cheap bulk.",
+        text: "Container potting mixes are generally soilless. Commercial bags are built to stay lighter and better drained than native garden soil. Common components include peat, perlite, vermiculite, composted bark, compost, lime, and fertilizer. Some bags include a starter fertilizer charge; that runs out in weeks, not all season. Read the ingredient list — brands differ.",
       },
       {
         type: "ul",
         items: [
           "“Potting mix” or “container mix” is the right aisle for grow bags and patio pots.",
-          "“Garden soil” and “topsoil” are for in-ground or raised beds. In a pot they pack, stay wet, and cut off oxygen.",
+          "“Garden soil” and “topsoil” are for in-ground or open raised beds. In a pot they pack, stay wet, and cut off oxygen.",
           "“Raised bed mix” is a middle ground: more mineral than potting mix, still not a good closed-pot fill.",
           "“Moisture control” mixes hold water longer. That can help plastic on a windy balcony; it can drown plants in a pot with a slow drain.",
         ],
@@ -673,7 +676,26 @@ export const guides: Guide[] = [
         type: "callout",
         tone: "warning",
         title: "Do not mine the yard for pots",
-        text: "Native clay or loam that works in an open bed becomes a brick or a swamp in a 5-gallon pot. If you already filled containers with garden soil, it is kinder to dump them and start over than to keep adding perlite on top.",
+        text: "Native clay or loam that works in an open bed becomes a brick or a swamp in a 5-gallon pot. Garden soil and topsoil are too heavy for ordinary containers and elevated garden boxes. If you already filled pots with yard dirt, it is kinder to dump them and start over than to keep adding amendments on top.",
+      },
+      {
+        type: "h2",
+        text: "DIY potting mix starting recipes",
+      },
+      {
+        type: "p",
+        text: "Bagged soilless mix is fine. If you blend your own, stay soilless. These are the same starting recipes in the [potting mix calculator](/calculators/potting-mix), by volume — not universal formulas:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Equal-parts soilless mix: one-third finished compost, one-third coarse vermiculite, and one-third peat moss (a Penn State Extension documented starting recipe). Coconut coir is sometimes used as a peat substitute; that Extension formula names peat moss.",
+          "Commercial-mix blend: one-half commercial soilless potting mix and one-half finished compost (a University of Georgia Extension suggested starting mixture). Check the bag label — commercial mixes vary.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Homemade mixes can run nutrient-rich or lean. Soil or media testing and plant response matter more than hitting a percentage exactly. Do not invent fertilizer rates from this page — follow product labels.",
       },
       {
         type: "h2",
@@ -681,7 +703,7 @@ export const guides: Guide[] = [
       },
       {
         type: "p",
-        text: "Potting mix is sold in quarts and cubic feet, not gallons of pot. A 5-gallon grow bag is about two-thirds of a cubic foot before you leave a watering rim. Eight-quart bags are for a couple of herb pots; 1.0 and 2.0 cubic-foot bags are the usual vegetable sizes. Use the [potting mix calculator](/calculators/potting-mix) instead of guessing from the pot’s gallon label.",
+        text: "Potting mix is sold in quarts and cubic feet, not gallons of pot. A 5-gallon grow bag is about two-thirds of a cubic foot before you leave a watering rim. Eight-quart bags are for a couple of herb pots; 1.0 and 2.0 cubic-foot bags are the usual vegetable sizes. Use the [potting mix calculator](/calculators/potting-mix) for bag counts and, if you DIY, for ingredient volumes in cubic feet and dry quarts.",
       },
       {
         type: "h2",
@@ -696,17 +718,17 @@ export const guides: Guide[] = [
       {
         question: "Can I mix garden soil into potting mix to save money?",
         answer:
-          "A little compost is fine. A lot of native soil is how pots stop draining. If cost is the issue, use fabric bags (they are cheap) and buy fewer, larger pots rather than stretching mix with dirt.",
+          "No — that is how pots stop draining. Keep garden soil and topsoil for in-ground or open raised beds. For containers, use bagged soilless mix, the Equal-parts soilless mix, or the Commercial-mix blend, and compare local bag prices rather than assuming one option is always cheaper.",
       },
       {
         question: "Is compost the same as potting mix?",
         answer:
-          "No. Finished compost is an ingredient. Straight compost in a pot can stay too wet, shrink, and be too rich for seedlings. Blend it into potting mix; do not fill the pot with compost alone.",
+          "No. Finished compost is an ingredient. Straight compost in a pot can stay too wet, shrink, and be too rich for seedlings. Blend it into a soilless recipe; do not fill the pot with compost alone.",
       },
       {
         question: "Can I fill a raised bed with potting mix?",
         answer:
-          "You can, and some patio beds do, but it is expensive at 4×8 scale and the bed can be too fluffy for tall tomatoes unless you add mineral bulk. Use a raised-bed recipe for frames, and potting mix for pots.",
+          "You can, and some patio beds do, but it is expensive at 4×8 scale and the bed can be too fluffy for tall tomatoes unless you add mineral bulk. Use a raised-bed recipe (Balanced or More-topsoil) for frames, and soilless potting mix for pots.",
       },
     ],
     relatedTools: [
@@ -724,44 +746,57 @@ export const guides: Guide[] = [
       },
       { href: "/guides/best-raised-bed-soil", label: "Buying raised bed soil" },
     ],
+    sources: [sourcePsuPottingMedia, sourceUmnContainers, sourceUgaHomeGardenSoil],
   },
   {
     slug: "best-soil-mix-for-raised-beds",
     title: "Best Soil Mix for Raised Beds",
     description:
-      "Practical raised bed soil recipes using compost, topsoil, and drainage materials — without a single magic blend.",
+      "Practical raised bed soil recipes using topsoil and finished plant-based compost — matching the calculator’s Balanced and More-topsoil presets inside Extension guidance.",
     type: "guide",
     category: "soil",
-    updated: "2026-08-26",
+    updated: "2026-09-02",
     featured: true,
     intro:
-      "A reliable raised-bed mix is mostly mineral soil plus plenty of finished compost, with enough drainage that water does not sit around roots. There is no universal bag that fits every climate and crop.",
+      "A reliable raised-bed mix is mostly mineral soil plus finished plant-based compost. University of Minnesota Extension describes a practical range of about one-half to two-thirds topsoil and one-third to one-half compost. There is no universal bag that fits every climate and crop.",
     body: [
       {
         type: "p",
-        text: "Raised beds fail more often from the wrong mix than from the wrong lumber. Mixes that are 100% potting soil can be too light and expensive at bed scale. Mixes that are 100% native clay can bake into a brick. You want something in between.",
+        text: "Raised beds fail more often from the wrong mix than from the wrong lumber. Mixes that are 100% potting soil can be too light and expensive at bed scale. Mixes that are 100% compost can be too rich, too fluffy, and prone to shrinking as organic matter decomposes. You want mineral bulk plus compost. That is different from [potting mix](/guides/potting-mix-vs-garden-soil), which should stay soilless.",
       },
       {
         type: "h2",
-        text: "A practical default mix",
+        text: "Balanced raised-bed mix",
       },
       {
         type: "p",
-        text: "For a general vegetable bed in much of the US, this is a sane starting point by volume:",
+        text: "For a general vegetable bed, this is one practical point inside the University of Minnesota Extension range, and the default starting recipe in the [raised bed soil calculator](/calculators/raised-bed-soil), by volume:",
       },
       {
         type: "ul",
         items: [
-          "About 50% screened topsoil or high-quality garden soil (mineral bulk, not bagged “fill dirt” full of rocks)",
-          "About 30–40% finished compost from more than one feedstock if you can (yard waste plus manure compost is better than one tired source)",
-          "About 10–20% aeration material if the blend is heavy: coarse horticultural perlite, vermiculite, or pine bark fines — not playground sand dumped into clay",
+          "60% screened topsoil (bulk delivery is often practical for large volumes; bagged garden soil varies and is not identical to native yard soil)",
+          "40% finished plant-based compost",
         ],
       },
       {
-        type: "callout",
-        tone: "info",
-        title: "Mel’s Mix is one recipe, not a requirement",
-        text: "Equal parts compost, peat moss or coconut coir, and vermiculite (often called Mel’s Mix) drains well and is easy to sow into. It is also costly at 4×8 scale and peat is a debated ingredient. Treat it as a proven option, not the only correct soil.",
+        type: "h2",
+        text: "More-topsoil mix",
+      },
+      {
+        type: "p",
+        text: "Another practical point in the same Extension range when you lean harder on bulk topsoil:",
+      },
+      {
+        type: "ul",
+        items: [
+          "About two-thirds screened topsoil",
+          "About one-third finished plant-based compost",
+        ],
+      },
+      {
+        type: "p",
+        text: "Neither preset is a mandatory universal formula. Local topsoil texture and drainage differ. Oregon State University Extension also discusses other mineral blends (for example equal thirds topsoil, sand, and compost, or equal quarters with vermiculite or lava rock). Those examples are editorial context here — not extra calculator presets in this tool.",
       },
       {
         type: "h2",
@@ -773,22 +808,22 @@ export const guides: Guide[] = [
         rows: [
           [
             "New bed on a patio (closed bottom)",
-            "Lighter mix with more compost and bark fines so it drains",
+            "Balanced raised-bed mix and a mix that still drains",
             "Straight native soil in a sealed box stays waterlogged",
           ],
           [
             "Open-bottom bed on decent ground",
-            "More mineral soil; roots can go down",
-            "Still add compost so the top 12 inches are fertile",
+            "Balanced or More-topsoil; roots can go down into loosened native soil",
+            "Still keep compost in the top 12 inches",
           ],
           [
             "Hot, dry climate",
-            "Slightly more compost and mulch on top to hold water",
-            "Very sandy mixes dry out by afternoon",
+            "Mulch on top to hold water; watch sandy topsoil dry out",
+            "Assuming more compost is always better",
           ],
           [
             "Wet, clay native soil below",
-            "Open bottom plus a mix that drains; do not add a rock layer",
+            "Open bottom plus a mineral-heavy fill that drains",
             "A water-tight liner turns the bed into a tub",
           ],
         ],
@@ -800,9 +835,11 @@ export const guides: Guide[] = [
       {
         type: "ul",
         items: [
+          "Filling the entire bed with compost alone",
           "Uncomposted manure that can burn roots and carry weed seeds",
           "Bagged products that are mostly shredded wood dyed brown",
           "Mixing in fresh wood chips throughout the root zone (they can tie up nitrogen as they decompose)",
+          "Filling the whole frame with bagged potting mix (costly and often too light for tall crops)",
           "Assuming “organic” on the bag describes nutrient content. It does not replace compost quality.",
         ],
       },
@@ -812,19 +849,24 @@ export const guides: Guide[] = [
       },
       {
         type: "p",
-        text: "You rarely need to dump the bed and start over. Top-dress ½–1 inch of compost each year, and use the [compost calculator](/calculators/compost) for the volume. If plants stall, a soil test is more useful than adding random fertilizer. See [how to fertilize a raised bed garden](/guides/how-to-fertilize-a-raised-bed-garden).",
+        text: "Newly filled beds may sink as organic material decomposes — top off after watering. You rarely need to dump the bed and start over. Top-dress ½–1 inch of compost each year, and use the [compost calculator](/calculators/compost) for the volume. If plants stall, a soil test is more useful than adding random fertilizer. See [how to fertilize a raised bed garden](/guides/how-to-fertilize-a-raised-bed-garden).",
       },
     ],
     faqs: [
       {
         question: "Can I use only compost?",
         answer:
-          "A bed of 100% compost can be too rich, too fluffy, and prone to shrinking. Blend it with mineral soil for structure.",
+          "No. Oregon State University Extension advises against filling raised beds with compost alone. Blend finished plant-based compost with topsoil or another mineral component — as in the Balanced or More-topsoil recipes.",
       },
       {
         question: "Can I use native soil from my yard?",
         answer:
-          "Yes, if you screen it and mix in compost. Heavy clay benefits from compost and a drainage component. Do not use soil from an area treated with persistent herbicides.",
+          "Yes in open-bottom beds if you screen it and mix in finished plant-based compost. Heavy clay needs patience and good compost quality. Do not use soil from an area treated with persistent herbicides. Native soil belongs in beds, not in ordinary pots.",
+      },
+      {
+        question: "How do I turn bed volume into bag counts?",
+        answer:
+          "Enter the bed size in the [raised bed soil calculator](/calculators/raised-bed-soil), pick Balanced raised-bed mix or More-topsoil mix, and read the ingredient table. It splits cubic feet (and estimated 2 cu ft bags) for each part of the recipe.",
       },
     ],
     relatedTools: [
@@ -846,6 +888,7 @@ export const guides: Guide[] = [
         label: "Potting mix vs garden soil",
       },
     ],
+    sources: [sourceUmnRaisedBeds, sourceOsuCompost],
   },
   {
     slug: "how-to-prepare-a-raised-bed",
@@ -894,7 +937,7 @@ export const guides: Guide[] = [
       },
       {
         type: "p",
-        text: "Add mix in 4–6 inch layers and water each layer. This removes air pockets without compacting the bed into concrete. Use the [soil calculator](/calculators/raised-bed-soil) so you are not short on the last wheelbarrow.",
+        text: "Add mix in 4–6 inch layers and water each layer. This removes air pockets without compacting the bed into concrete. Use the [soil calculator](/calculators/raised-bed-soil) with the Balanced or More-topsoil recipe so you are not short on the last wheelbarrow — see [best soil mix for raised beds](/guides/best-soil-mix-for-raised-beds) for the ratios.",
       },
       {
         type: "h2",

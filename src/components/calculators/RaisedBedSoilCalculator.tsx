@@ -159,7 +159,7 @@ export function RaisedBedSoilCalculator() {
           <span className="font-semibold text-accent">Plan a mix, not just a volume.</span>
           {" "}
           <span className="text-muted">
-            Split this fill into compost, coco peat or peat moss, and perlite — then buy the ingredients.
+            Balanced or More-topsoil mix — screened topsoil plus finished plant-based compost.
           </span>
         </span>
         <span className="shrink-0 font-semibold text-accent">Jump to mix ↓</span>
@@ -436,8 +436,11 @@ export function RaisedBedSoilCalculator() {
         </p>
         <h2 className="mt-1 font-serif text-2xl font-semibold">Optional soil mix</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted">
-          Bagged raised-bed mix works. If you blend your own, split the volume above into compost,
-          coco peat or peat moss, and perlite. These ratios are starting points — not a single correct recipe.
+          Bagged raised-bed mix works. If you blend your own, these presets stay inside University of
+          Minnesota Extension’s practical range of about one-half to two-thirds{" "}
+          <strong className="font-medium text-foreground">screened topsoil</strong> and one-third to
+          one-half <strong className="font-medium text-foreground">finished plant-based compost</strong>
+          . They are starting recipes, not universal prescriptions. Ordinary pots should stay soilless.
           {usingHugel
             ? " With hugelkultur on, the mix is only for the soil layer on top of the wood."
             : ""}

@@ -12,61 +12,48 @@ export type MixRecipe = {
   ingredients: MixIngredient[];
 };
 
+/**
+ * Raised-bed presets inside the University of Minnesota Extension range
+ * (about 1/2–2/3 topsoil and 1/3–1/2 plant-based compost).
+ * These are practical points in that range, not universal prescriptions.
+ */
 export const soilMixRecipes: MixRecipe[] = [
   {
-    id: "backyard",
-    name: "Backyard blend",
+    id: "balanced",
+    name: "Balanced raised-bed mix",
     summary:
-      "A practical mix for most vegetable raised beds: mineral soil for bulk, compost for fertility, coco peat or peat moss for moisture, and perlite for air and drainage.",
-    bestFor: "Open-bottom beds, mixed vegetables, filling a 4×8 without buying all bagged potting mix",
+      "A practical point inside University of Minnesota Extension’s raised-bed range: mostly topsoil with a large share of finished plant-based compost. Starting recipe only — local topsoil texture and drainage differ, and bagged garden soil is not the same as native yard soil.",
+    bestFor: "General vegetable raised beds when you want a compost-rich but still mineral-heavy fill",
     ingredients: [
-      { name: "Screened topsoil or garden soil", fraction: 0.5 },
-      { name: "Finished compost", fraction: 0.3 },
       {
-        name: "Coco peat (coir) or peat moss",
-        fraction: 0.1,
-        note: "Use one or the other, not both at 10% each",
+        name: "Screened topsoil",
+        fraction: 0.6,
+        note: "Bulk topsoil is often practical for large volumes; bagged garden soil varies and is not identical to native soil",
       },
       {
-        name: "Horticultural perlite",
-        fraction: 0.1,
-        note: "Coarse perlite, not craft-store fine dust",
+        name: "Finished plant-based compost",
+        fraction: 0.4,
+        note: "Do not fill the whole bed with compost alone",
       },
     ],
   },
   {
-    id: "soilless-perlite",
-    name: "Soilless mix (perlite)",
+    id: "more-topsoil",
+    name: "More-topsoil mix",
     summary:
-      "Equal parts compost, coco peat, and perlite. A common hardware-store blend: lighter than topsoil, drains well, and cheaper than filling a bed with vermiculite.",
-    bestFor: "Closed-bottom beds, patio planters, hot climates that need extra drainage",
+      "Another practical point in the same University of Minnesota Extension range: two-thirds topsoil and one-third finished plant-based compost. Useful when bulk topsoil is the main material available. Still a starting recipe, not a mandatory formula.",
+    bestFor: "Larger fills leaning on bulk topsoil while keeping a meaningful compost share",
     ingredients: [
-      { name: "Finished compost", fraction: 1 / 3 },
-      { name: "Coco peat (coconut coir)", fraction: 1 / 3 },
-      { name: "Horticultural perlite", fraction: 1 / 3 },
-    ],
-  },
-  {
-    id: "mels-peat",
-    name: "Soilless mix (Mel’s Mix)",
-    summary:
-      "Equal parts compost, peat moss, and vermiculite — the classic square-foot mix. Vermiculite holds more water than perlite. Peat is a harvested bog product; swap coir if you prefer.",
-    bestFor: "Intensive planting if you want a wetter, sponge-like mix",
-    ingredients: [
-      { name: "Finished compost", fraction: 1 / 3 },
-      { name: "Peat moss", fraction: 1 / 3 },
-      { name: "Coarse vermiculite", fraction: 1 / 3 },
-    ],
-  },
-  {
-    id: "simple",
-    name: "Two-part mix",
-    summary:
-      "Topsoil plus compost only. Heavier, cheaper, and no perlite. Fine for open-bottom beds on decent ground; it packs more than a mix with perlite.",
-    bestFor: "Budget fills and bulk delivery when drainage is already good",
-    ingredients: [
-      { name: "Screened topsoil or garden soil", fraction: 0.6 },
-      { name: "Finished compost", fraction: 0.4 },
+      {
+        name: "Screened topsoil",
+        fraction: 2 / 3,
+        note: "Local texture and drainage vary; screen rocks and debris when you can",
+      },
+      {
+        name: "Finished plant-based compost",
+        fraction: 1 / 3,
+        note: "Keep compost as a share of the mix — not the entire fill",
+      },
     ],
   },
 ];
@@ -91,4 +78,8 @@ export function splitSoilMix(cubicFeet: number, recipe: MixRecipe): MixLine[] {
 
 export function getSoilMixRecipe(id: string): MixRecipe {
   return soilMixRecipes.find((recipe) => recipe.id === id) ?? soilMixRecipes[0];
+}
+
+export function recipeFractionsTotal(recipe: MixRecipe): number {
+  return recipe.ingredients.reduce((sum, item) => sum + item.fraction, 0);
 }

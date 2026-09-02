@@ -1,6 +1,9 @@
 import {
   sourceOsuCompost,
+  sourcePsuPottingMedia,
   sourceUgaBudgetBed,
+  sourceUgaHomeGardenSoil,
+  sourceUmnContainers,
   sourceUmnRaisedBeds,
 } from "@/data/raisedBedSources";
 import type { CalculatorId, FaqItem, RelatedLink, SourceCitation } from "@/data/types";
@@ -45,12 +48,12 @@ const calculatorList: CalculatorMeta[] = [
     description:
       "Calculate how much soil a raised bed needs in cubic feet, cubic yards, and bags.",
     intro:
-      "Enter the inside length, width, and filled soil depth — not outside frame dimensions, and not board height if the box is only partly filled. The calculator converts mixed units, multiplies by the number of identical beds, and estimates bag counts (rounded up). Optionally, it splits that volume into compost, coco peat or peat moss, perlite, and other ingredients using common mix ratios. Turn on hugelkultur to replace the bottom with twigs, leaves, or logs — a 12-inch bed can take about 3 inches of packed brush. Open-bottom beds can use loosened native soil as extra rooting depth; closed-bottom planters cannot.",
+      "Enter the inside length, width, and filled soil depth — not outside frame dimensions, and not board height if the box is only partly filled. The calculator converts mixed units, multiplies by the number of identical beds, and estimates bag counts (rounded up). Optionally, it splits that volume into screened topsoil and finished plant-based compost using two practical points inside University of Minnesota Extension’s raised-bed range. Turn on hugelkultur to replace the bottom with twigs, leaves, or logs — a 12-inch bed can take about 3 inches of packed brush. Open-bottom beds can use loosened native soil as extra rooting depth; closed-bottom planters cannot.",
     formula:
-      "Convert every measurement to feet, then volume (cu ft) = inside length × inside width × soil depth × number of beds. Cubic yards = cubic feet ÷ 27. Bags = cubic feet ÷ bag size, rounded up, because a partial bag is not a store unit. Purchased volume can differ from this number because bag fill, settling, compaction, and headspace vary. Frame height is not automatically the fill depth. Mix recipes multiply that total volume by each ingredient’s share (Backyard: 40% topsoil or garden soil, 30% compost, 10% coco peat or peat moss, 10% perlite, 10% vermiculite; Budget: 50% / 35% / 5% / 5% / 5%). Hugelkultur soil volume = full volume × (soil on top ÷ bed depth). Bags saved = bags for a full soil fill minus bags for the soil layer. Dollar savings use the bag price you enter.",
+      "Convert every measurement to feet, then volume (cu ft) = inside length × inside width × soil depth × number of beds. Cubic yards = cubic feet ÷ 27. Bags = cubic feet ÷ bag size, rounded up, because a partial bag is not a store unit. Purchased volume can differ from this number because bag fill, settling, compaction, and headspace vary. Frame height is not automatically the fill depth. Optional mix recipes multiply that total volume by each ingredient’s share (Balanced raised-bed mix: 60% screened topsoil and 40% finished plant-based compost; More-topsoil mix: about 67% topsoil and 33% compost). Both sit inside a documented Extension range and are starting recipes, not universal prescriptions. Hugelkultur soil volume = full volume × (soil on top ÷ bed depth). Bags saved = bags for a full soil fill minus bags for the soil layer. Dollar savings use the bag price you enter.",
     example: {
       title: "Example: one 4×8 bed, 12 inches deep",
-      body: "Inside 4 ft × 8 ft × 1 ft of fill = 32 cubic feet, which is about 1.19 cubic yards (32 ÷ 27) before you round up any bag count. At 1.5 cu ft per bag, that is 22 bags (32 ÷ 1.5, rounded up). Two identical beds would need 64 cubic feet. Using the Backyard blend, that 32 cu ft is about 12.8 cu ft topsoil, 9.6 cu ft compost, and 3.2 cu ft each of coco peat or peat moss, perlite, and vermiculite. With hugelkultur, 3 inches of packed twigs and fallen leaves means 24 cu ft of mix — 16 bags, about $48 less at $8 a bag. The same 4×8 frame 24 inches deep filled only with mix needs 43 bags; 12 inches of wood underneath stays at 22 bags and skips about $168.",
+      body: "Inside 4 ft × 8 ft × 1 ft of fill = 32 cubic feet, which is about 1.19 cubic yards (32 ÷ 27) before you round up any bag count. At 1.5 cu ft per bag, that is 22 bags (32 ÷ 1.5, rounded up). Two identical beds would need 64 cubic feet. Using the Balanced raised-bed mix, that 32 cu ft is about 19.2 cu ft screened topsoil and 12.8 cu ft finished plant-based compost. With hugelkultur, 3 inches of packed twigs and fallen leaves means 24 cu ft of mix — 16 bags, about $48 less at $8 a bag. The same 4×8 frame 24 inches deep filled only with mix needs 43 bags; 12 inches of wood underneath stays at 22 bags and skips about $168.",
     },
     popular: true,
     faqs: [
@@ -72,17 +75,12 @@ const calculatorList: CalculatorMeta[] = [
       {
         question: "What soil mix should I use?",
         answer:
-          "There is no single correct blend. The calculator’s Backyard blend is about 40% screened topsoil or garden soil, 30% compost, 10% coco peat (coir) or peat moss, 10% horticultural perlite, and 10% coarse vermiculite. Budget uses more soil and compost and smaller shares of the amendment bags. Raised beds can include garden soil; pots should stay soilless.",
+          "There is no single correct blend. University of Minnesota Extension describes a practical raised-bed range of about one-half to two-thirds topsoil and one-third to one-half plant-based compost. This calculator offers two points in that range: Balanced raised-bed mix (60% screened topsoil, 40% compost) and More-topsoil mix (two-thirds topsoil, one-third compost). Do not fill the bed with compost alone. Ordinary pots should stay soilless — use the potting mix calculator for containers.",
       },
       {
-        question: "Perlite or vermiculite?",
+        question: "Why only topsoil and compost in the mix presets?",
         answer:
-          "Perlite (sometimes misspelled pearlite) is the white, popcorn-like volcanic glass. It adds air and drainage. Vermiculite holds more water between waterings. The Backyard and Budget recipes use both in modest shares. Do not use playground sand as a substitute.",
-      },
-      {
-        question: "Coco peat or peat moss?",
-        answer:
-          "They fill the same job: hold water and keep the mix light. Coco peat is coconut coir. Peat moss comes from bogs and is a debated ingredient. Use one in that slot. Perlite is separate — it is for air, not a substitute for coir.",
+          "Those two ingredients match the University of Minnesota Extension range this tool uses. Other Extension examples mention sand, vermiculite, or lava rock in some blends, but those are not extra presets here. Local topsoil texture and drainage still matter, and bagged garden soil is not identical to native yard soil.",
       },
       {
         question: "How deep should I fill the bed?",
@@ -182,12 +180,12 @@ const calculatorList: CalculatorMeta[] = [
     description:
       "How many bags of potting mix to fill 1, 3, 5, 7, or 10 gallon pots — plastic, ceramic, or fabric.",
     intro:
-      "Pick the gallon size on the pot or grow bag, how many pots you have, and the bag size at the store. The tool uses US liquid gallons (what most grow bags and buckets mean). Nursery trade gallons can be smaller; measure if the plant looks cramped. Fill with potting mix, not garden soil.",
+      "Pick the gallon size on the pot or grow bag, how many pots you have, and the bag size at the store. The tool uses US liquid gallons (what most grow bags and buckets mean). Nursery trade gallons can be smaller; measure if the plant looks cramped. Fill with soilless potting mix, not garden soil or topsoil. Optionally split that volume into an Extension-based Equal-parts soilless mix or a Commercial-mix blend.",
     formula:
-      "For a labeled gallon pot: cubic feet ≈ gallons × 0.1337, then about 8% off if you leave a watering rim. Bags = cubic feet ÷ bag size, rounded up. Custom round pots use π × radius² × fill height. Tapered pots use a frustum.",
+      "For a labeled gallon pot: cubic feet ≈ gallons × 0.1337, then about 8% off if you leave a watering rim. Bags = cubic feet ÷ bag size, rounded up. Custom round pots use π × radius² × fill height. Tapered pots use a frustum. Optional DIY Equal-parts soilless mix splits the volume into equal thirds of finished compost, coarse vermiculite, and peat moss. Commercial-mix blend uses half commercial soilless potting mix and half finished compost. Both are starting recipes, not universal formulas.",
     example: {
       title: "Example: two 5-gallon grow bags, 1 cu ft bags",
-      body: "One 5-gallon bag is about 0.67 cubic feet. Leaving a rim, call it 0.61 cu ft each. Two bags: 1.23 cu ft, so 2 bags of 1.0 cu ft potting mix (rounded up). A 16-quart bag is about 0.62 cu ft, so you would still need 2 of those.",
+      body: "One 5-gallon bag is about 0.67 cubic feet. Leaving a rim, call it 0.61 cu ft each. Two bags: 1.23 cu ft, so 2 bags of 1.0 cu ft potting mix (rounded up). A 16-quart bag is about 0.62 cu ft, so you would still need 2 of those. Equal-parts soilless mix for 1.23 cu ft is about 0.41 cu ft each of compost, vermiculite, and peat moss.",
     },
     popular: true,
     faqs: [
@@ -199,7 +197,12 @@ const calculatorList: CalculatorMeta[] = [
       {
         question: "Can I use garden soil or raised-bed mix in a pot?",
         answer:
-          "No. Garden soil and mineral-heavy raised-bed mix pack in a closed container, stay wet, and cut off air. Use potting mix (peat or coir, bark, perlite). The potting mix vs garden soil guide on this site explains the difference.",
+          "No. Garden soil and topsoil are too heavy for ordinary pots and elevated garden boxes. They pack, stay wet, and cut off air. Use a soilless potting mix and check the product label. The potting mix vs garden soil guide on this site explains the difference.",
+      },
+      {
+        question: "What DIY mix should I use?",
+        answer:
+          "There is no single correct blend. Equal-parts soilless mix follows a Penn State Extension documented starting recipe of equal parts finished compost, vermiculite, and peat moss. Commercial-mix blend follows a University of Georgia Extension suggested mixture of half commercial soilless mix and half finished compost. Compost and bags vary in fertility — follow labels and watch plants.",
       },
       {
         question: "Does the pot material change how much mix I buy?",
@@ -226,6 +229,7 @@ const calculatorList: CalculatorMeta[] = [
         label: "Potting mix vs garden soil",
       },
     ],
+    sources: [sourcePsuPottingMedia, sourceUmnContainers, sourceUgaHomeGardenSoil],
   },
   {
     id: "mulch",
@@ -283,7 +287,7 @@ const calculatorList: CalculatorMeta[] = [
       "Volume (cu ft) = length (ft) × width (ft) × (depth in inches ÷ 12). Bags = cubic feet ÷ bag size, rounded up.",
     example: {
       title: "Example: 4×8 bed, 1-inch top-dress",
-      body: "4 × 8 × (1 ÷ 12) = 2.67 cubic feet. With 1 cu ft bags, that is 3 bags. If compost is one-third of a 12-inch soil mix in the same bed, you would need about 10.7 cubic feet of compost.",
+      body: "4 × 8 × (1 ÷ 12) = 2.67 cubic feet. With 1 cu ft bags, that is 3 bags. Example only: if you filled that same 4×8×12-inch bed with the Balanced raised-bed mix (40% compost), you would need about 12.8 cubic feet of compost for the mix — separate from a later top-dress. That 40% share is one practical point inside Extension guidance, not a universal compost requirement.",
     },
     faqs: [
       {

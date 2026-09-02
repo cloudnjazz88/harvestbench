@@ -10,6 +10,11 @@ import {
   UnitField,
   fieldError,
 } from "@/components/calculators/fields";
+import {
+  MixRecipePicker,
+  PottingMixBreakdown,
+  PottingMixNotes,
+} from "@/components/calculators/SoilMixBreakdown";
 import { pottingMixBagSizes } from "@/data/calculators";
 import {
   cropHintForGallons,
@@ -18,6 +23,11 @@ import {
   potMaterials,
   type PotMaterialId,
 } from "@/data/containers";
+import {
+  getPottingMixRecipe,
+  pottingMixRecipes,
+  splitSoilMix,
+} from "@/data/pottingMixes";
 import {
   calculatePottingMix,
   parseNumber,
@@ -68,10 +78,12 @@ export function PottingMixCalculator() {
   const [bagSizeId, setBagSizeId] = useState(defaults.bagSizeId);
   const [leaveRim, setLeaveRim] = useState(defaults.leaveRim);
   const [material, setMaterial] = useState<PotMaterialId>(defaults.material);
+  const [mixId, setMixId] = useState(pottingMixRecipes[0].id);
 
   const bag = pottingMixBagSizes.find((item) => item.id === bagSizeId) ?? pottingMixBagSizes[2];
   const materialInfo = getPotMaterial(material);
   const gallonValue = parseNumber(gallons) ?? 0;
+  const mix = getPottingMixRecipe(mixId);
 
   const parsed = {
     sizeMode,
@@ -97,6 +109,10 @@ export function PottingMixCalculator() {
     pots: Number.isInteger(parsed.pots) ? parsed.pots : -1,
   });
   const result = errors.length ? null : calculatePottingMix(parsed);
+  const mixLines = result ? splitSoilMix(result.cubicFeet, mix) : [];
+  const mixSummary = mixLines
+    .map((line) => `${line.name} ${formatNumber(line.cubicFeet)} cu ft`)
+    .join("; ");
 
   function reset() {
     setSizeMode(defaults.sizeMode);
@@ -116,14 +132,29 @@ export function PottingMixCalculator() {
     setBagSizeId(defaults.bagSizeId);
     setLeaveRim(defaults.leaveRim);
     setMaterial(defaults.material);
+    setMixId(pottingMixRecipes[0].id);
   }
 
   const summary = result
-    ? `Potting mix: ${formatNumber(result.cubicFeet)} cu ft (${formatNumber(result.dryQuarts, 1)} dry qt) for ${result.pots} ${plural(result.pots, "pot")}${sizeMode === "gallon" ? ` at ${formatNumber(gallonValue, 1)} gal` : ""}. About ${formatInteger(result.bags)} ${plural(result.bags, "bag")} at ${bag.label}. ${materialInfo.name}. Use potting mix, not garden soil.`
+    ? `Potting mix: ${formatNumber(result.cubicFeet)} cu ft (${formatNumber(result.dryQuarts, 1)} dry qt) for ${result.pots} ${plural(result.pots, "pot")}${sizeMode === "gallon" ? ` at ${formatNumber(gallonValue, 1)} gal` : ""}. About ${formatInteger(result.bags)} ${plural(result.bags, "bag")} at ${bag.label}. ${materialInfo.name}. DIY ${mix.name}: ${mixSummary}. Use potting mix, not garden soil.`
     : "";
 
   return (
     <div className="space-y-5">
+      <a
+        href="#diy-potting-mix"
+        className="flex flex-col gap-2 rounded-xl border border-[color:var(--warning-border)] bg-[color:var(--warning-bg)] px-4 py-3 text-sm no-underline hover:border-cta sm:flex-row sm:items-center sm:justify-between sm:gap-3"
+      >
+        <span>
+          <span className="font-semibold text-foreground">Blend your own potting mix.</span>{" "}
+          <span className="text-muted">
+            Equal-parts soilless mix or Commercial-mix blend — never garden soil or topsoil in
+            ordinary pots.
+          </span>
+        </span>
+        <span className="shrink-0 font-semibold text-cta">Jump to DIY recipe ↓</span>
+      </a>
+
       <CalculatorLayout compact onReset={reset} results={
         result ? (
           <ResultPanel
@@ -146,6 +177,27 @@ export function PottingMixCalculator() {
                   <span className="font-semibold text-white">{materialInfo.name}: </span>
                   {materialInfo.watering}
                 </p>
+                <div className="border-t border-white/15 pt-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-white/70">
+                    {mix.name} · DIY (no garden soil)
+                  </p>
+                  <ul className="mt-2 space-y-1">
+                    {mixLines.map((line) => (
+                      <li key={line.name} className="flex justify-between gap-3">
+                        <span className="text-white/70">{line.name}</span>
+                        <span className="shrink-0 tabular-nums font-medium">
+                          {formatNumber(line.cubicFeet)} cu ft
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href="#diy-potting-mix"
+                    className="mt-3 inline-block text-sm font-semibold text-white underline-offset-2 hover:underline"
+                  >
+                    Change recipe and amounts
+                  </a>
+                </div>
               </div>
             }
           >
@@ -411,6 +463,43 @@ export function PottingMixCalculator() {
           .
         </p>
       </CalculatorLayout>
+
+      <section
+        id="diy-potting-mix"
+        className="scroll-mt-24 rounded-xl border-2 border-[color:var(--warning-border)] bg-[color:var(--warning-bg)] p-4 sm:p-5"
+      >
+        <p className="text-xs font-semibold uppercase tracking-wide text-cta">
+          DIY recipe · soilless only
+        </p>
+        <h2 className="mt-1 font-serif text-2xl font-semibold">Optional potting mix recipe</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted">
+          Bagged soilless potting mix is fine. If you blend your own, stay soilless. Choose an
+          Extension-based starting recipe below — not a universal formula. Raised beds can include
+          screened topsoil; ordinary pots should not.
+        </p>
+        <p className="mt-3 rounded-lg border border-[color:var(--warning-border)] bg-card px-3 py-2 text-sm leading-6 text-foreground">
+          <strong className="font-semibold">No garden soil or topsoil in pots.</strong> Those materials
+          pack hard in a container and stay wet around roots. Use them in open raised beds instead.
+        </p>
+        <div className="mt-4">
+          <MixRecipePicker
+            recipes={pottingMixRecipes}
+            selectedId={mixId}
+            onChange={setMixId}
+            name="potting-mix-recipe"
+          />
+        </div>
+        <p className="mt-3 text-sm text-muted">{mix.summary}</p>
+        <p className="mt-1 text-sm text-muted">Best for: {mix.bestFor}</p>
+        {result ? (
+          <div className="mt-4">
+            <PottingMixBreakdown cubicFeet={result.cubicFeet} recipe={mix} />
+          </div>
+        ) : (
+          <p className="mt-4 text-sm text-muted">Enter pot size above to see ingredient amounts.</p>
+        )}
+        <PottingMixNotes />
+      </section>
     </div>
   );
 }
