@@ -45,9 +45,7 @@ export function Header() {
             );
           })}
         </nav>
-        <div className="absolute right-4 top-1/2 z-10 -translate-y-1/2 sm:right-6 xl:hidden">
-          <MobileNav key={pathname} />
-        </div>
+        <MobileNav key={pathname} />
       </div>
     </header>
   );
@@ -67,39 +65,41 @@ function MobileNav() {
   }, [open]);
 
   return (
-    <div>
-      <button
-        type="button"
-        className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border bg-card"
-        aria-expanded={open}
-        aria-controls={menuId}
-        onClick={() => setOpen((value) => !value)}
-      >
-        <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
-        {open ? (
-          <span aria-hidden="true" className="text-2xl leading-none">
-            ×
-          </span>
-        ) : (
-          <span aria-hidden="true" className="flex flex-col gap-1.5">
-            <span className="block h-0.5 w-5 bg-foreground" />
-            <span className="block h-0.5 w-5 bg-foreground" />
-            <span className="block h-0.5 w-5 bg-foreground" />
-          </span>
-        )}
-      </button>
+    <div className="xl:hidden">
+      <div className="absolute right-4 top-1/2 z-10 -translate-y-1/2 sm:right-6">
+        <button
+          type="button"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border bg-card"
+          aria-expanded={open}
+          aria-controls={menuId}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+          {open ? (
+            <span aria-hidden="true" className="text-2xl leading-none">
+              ×
+            </span>
+          ) : (
+            <span aria-hidden="true" className="flex flex-col gap-1.5">
+              <span className="block h-0.5 w-5 bg-foreground" />
+              <span className="block h-0.5 w-5 bg-foreground" />
+              <span className="block h-0.5 w-5 bg-foreground" />
+            </span>
+          )}
+        </button>
+      </div>
       {open ? (
         <div
           id={menuId}
-          className="fixed inset-x-0 top-16 border-b border-border bg-card"
+          className="fixed top-16 right-0 z-50 box-border flex max-h-[calc(100dvh-4rem)] w-[min(24rem,100vw)] max-w-[100vw] translate-x-0 flex-col overflow-y-auto border-b border-l border-border bg-card"
         >
-          <nav aria-label="Mobile" className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
-            <ul className="flex flex-col">
+          <nav aria-label="Mobile" className="min-w-0 px-4 py-3 sm:px-6">
+            <ul className="flex min-w-0 flex-col">
               {primaryNav.map((item) => (
-                <li key={item.href}>
+                <li key={item.href} className="min-w-0">
                   <Link
                     href={item.href}
-                    className="block rounded-md px-2 py-3 text-base font-medium hover:bg-background"
+                    className="block break-words rounded-md px-2 py-3 text-base font-medium hover:bg-background"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
