@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local clean deploy worktrees must not be linted with the primary tree.
+    ".deploy-*/**",
   ]),
 ]);
 

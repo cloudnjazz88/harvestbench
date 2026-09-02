@@ -48,6 +48,8 @@ function CreditList({ items }: { items: PublicImageCredit[] }) {
             <p className="break-all text-muted">
               Source: <ExternalCreditLink href={item.sourceUrl}>{item.sourceUrl}</ExternalCreditLink>
             </p>
+          ) : item.sourceLabel ? (
+            <p className="text-muted">Source: {item.sourceLabel}</p>
           ) : null}
           <p className="text-muted">
             License:{" "}

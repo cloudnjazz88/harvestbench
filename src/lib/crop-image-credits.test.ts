@@ -5,10 +5,13 @@ import { amazonAssociatesEnabled } from "@/data/affiliates";
 import { cropImages, getCropImage } from "@/data/cropImages";
 import { crops } from "@/data/crops";
 import {
+  GENERATED_SITE_ASSET_LICENSE,
   containsContactEmailText,
   cropCreditRecords,
   displayCreatorName,
+  generatedCropCreditRecords,
   getCropCreditRecord,
+  isGeneratedSiteAssetCredit,
   isReusableImageCredit,
 } from "@/data/imageCreditRecords";
 import {
@@ -31,17 +34,26 @@ function publicFileFromSrc(src: string): string {
 }
 
 describe("crop photo discovery", () => {
-  test("every rendered crop image maps to an existing local JPG", () => {
-    const rendered = crops
-      .map((crop) => getCropImage(crop.slug))
-      .filter((image): image is NonNullable<typeof image> => Boolean(image));
-
-    expect(rendered.length).toBeGreaterThan(0);
-    for (const image of rendered) {
+  test("all 32 crop cards have valid image metadata and existing files", () => {
+    expect(crops).toHaveLength(32);
+    for (const crop of crops) {
+      const image = getCropImage(crop.slug);
+      expect(image, crop.slug).toBeDefined();
+      if (!image) continue;
       expect(image.src.startsWith("/images/crops/")).toBe(true);
-      expect(image.src.endsWith(".jpg")).toBe(true);
+      expect(image.alt.trim().length).toBeGreaterThan(0);
       expect(existsSync(publicFileFromSrc(image.src)), image.src).toBe(true);
     }
+  });
+
+  test("Cucumbers uses the generated site asset with accurate alt text", () => {
+    const image = getCropImage("cucumbers");
+    expect(image).toBeDefined();
+    expect(image?.src).toBe("/images/crops/cucumbers-generated.webp");
+    expect(image?.alt).toBe("Green cucumber growing on the vine beside a yellow blossom");
+    expect(existsSync(publicFileFromSrc("/images/crops/cucumbers-generated.webp"))).toBe(true);
+    expect(image?.license).toBe(GENERATED_SITE_ASSET_LICENSE);
+    expect(image?.commonsUrl).toBe("");
   });
 
   test("every rendered crop image has a corresponding reusable credit record", () => {
@@ -67,29 +79,55 @@ describe("crop photo discovery", () => {
     expect(hub).toContain("{crop.description}");
   });
 
-  test("runtime mapping does not use cucumbers-ko.jpg", () => {
+  test("runtime mapping does not use rejected cucumber candidates", () => {
     expect(Object.values(cropImages).some((image) => image.src.includes("cucumbers-ko.jpg"))).toBe(
       false,
     );
-    expect(getCropImage("cucumbers")).toBeUndefined();
+    expect(Object.values(cropImages).some((image) => image.src.endsWith("/cucumbers.jpg"))).toBe(
+      false,
+    );
     expect(cropCreditRecords.some((record) => record.file === "cucumbers-ko.jpg")).toBe(false);
-  });
-
-  test("cucumber remains a named, linked text card without an image", () => {
-    const cucumber = crops.find((crop) => crop.slug === "cucumbers");
-    expect(cucumber?.name).toBe("Cucumbers");
-    expect(getCropImage("cucumbers")).toBeUndefined();
+    expect(cropCreditRecords.some((record) => record.file === "cucumbers.jpg")).toBe(false);
+    expect(existsSync(publicFileFromSrc("/images/crops/cucumbers.jpg"))).toBe(false);
+    expect(existsSync(publicFileFromSrc("/images/crops/cucumbers-ko.jpg"))).toBe(false);
   });
 });
 
 describe("image credits page", () => {
+  test("generated cucumber credit is truthful and not a fake external license", () => {
+    const cucumber = getRuntimeCropImageCredits().find((item) => item.slug === "cucumbers");
+    expect(cucumber).toBeDefined();
+    expect(cucumber?.creator).toBe("OpenAI image generation for HarvestBench");
+    expect(cucumber?.sourceLabel).toBe("Generated specifically for HarvestBench");
+    expect(cucumber?.sourceUrl).toBeUndefined();
+    expect(cucumber?.license).toBe(GENERATED_SITE_ASSET_LICENSE);
+    expect(cucumber?.licenseUrl).toBeUndefined();
+
+    const record = getCropCreditRecord("cucumbers");
+    expect(record).toBeDefined();
+    if (!record) return;
+    expect(isGeneratedSiteAssetCredit(record)).toBe(true);
+    expect(record.commonsUrl).toBe("");
+    expect(generatedCropCreditRecords.some((entry) => entry.slug === "cucumbers")).toBe(true);
+    expect(cropCreditRecords.some((entry) => entry.slug === "cucumbers")).toBe(false);
+
+    const creditsPage = readSrc("src/app/image-credits/page.tsx");
+    expect(creditsPage).toContain("sourceLabel");
+    expect(creditsPage).toContain("Source: {item.sourceLabel}");
+  });
+
   test("displayed credits do not include contact-email text", () => {
     const displayed = [...getRuntimeCropImageCredits(), ...getRuntimePestImageCredits()];
     expect(displayed.length).toBeGreaterThan(0);
     for (const item of displayed) {
-      const blob = [item.name, item.creator ?? "", item.sourceUrl ?? "", item.license, item.licenseUrl ?? ""].join(
-        " ",
-      );
+      const blob = [
+        item.name,
+        item.creator ?? "",
+        item.sourceUrl ?? "",
+        item.sourceLabel ?? "",
+        item.license,
+        item.licenseUrl ?? "",
+      ].join(" ");
       expect(containsContactEmailText(blob), item.slug).toBe(false);
     }
 

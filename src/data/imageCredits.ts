@@ -17,6 +17,8 @@ export type PublicImageCredit = {
   name: string;
   creator?: string;
   sourceUrl?: string;
+  /** Non-link credit/source text for generated site assets. */
+  sourceLabel?: string;
   license: string;
   licenseUrl?: string;
 };
@@ -26,11 +28,13 @@ function toPublicCredit(
   record: ImageCreditRecord | undefined,
 ): PublicImageCredit | undefined {
   if (!record) return undefined;
+  const sourceUrl = record.commonsUrl.startsWith("https://") ? record.commonsUrl : undefined;
   return {
     slug: record.slug,
     name,
     creator: displayCreatorName(record.artist),
-    sourceUrl: record.commonsUrl.startsWith("https://") ? record.commonsUrl : undefined,
+    sourceUrl,
+    sourceLabel: !sourceUrl && record.sourceNote?.trim() ? record.sourceNote.trim() : undefined,
     license: record.license,
     licenseUrl: licenseUrlFor(record.license),
   };

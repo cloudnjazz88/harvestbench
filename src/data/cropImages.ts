@@ -23,6 +23,13 @@ export const cropImages: Record<string, CropImage> = {
     license: "GFDL 1.2",
     commonsUrl: "https://commons.wikimedia.org/wiki/File:Red_capsicum_and_cross_section.jpg",
   },
+  "cucumbers": {
+    src: "/images/crops/cucumbers-generated.webp",
+    alt: "Green cucumber growing on the vine beside a yellow blossom",
+    credit: "OpenAI image generation for HarvestBench",
+    license: "AI-generated site asset",
+    commonsUrl: "",
+  },
   "lettuce": {
     src: "/images/crops/lettuce.jpg",
     alt: "Butterhead lettuce growing in a garden bed",

@@ -6,8 +6,29 @@ export type ImageCreditRecord = {
   file: string;
   artist: string;
   license: string;
+  /** External source URL for reusable third-party images. Empty for generated site assets. */
   commonsUrl: string;
+  /** Non-URL credit/source note used for generated site assets. */
+  sourceNote?: string;
 };
+
+/** License/status label for HarvestBench-generated site assets. */
+export const GENERATED_SITE_ASSET_LICENSE = "AI-generated site asset";
+
+/**
+ * Local credit records for AI-generated site assets.
+ * Kept out of `_credits.json` so they are not mistaken for Wikimedia/external sources.
+ */
+export const generatedCropCreditRecords: ImageCreditRecord[] = [
+  {
+    slug: "cucumbers",
+    file: "cucumbers-generated.webp",
+    artist: "OpenAI image generation for HarvestBench",
+    license: GENERATED_SITE_ASSET_LICENSE,
+    commonsUrl: "",
+    sourceNote: "Generated specifically for HarvestBench",
+  },
+];
 
 function emailPattern(): RegExp {
   return /\S+@\S+\.\S+|\S+\s*\[\s*at\s*\]\s*\S+(?:\.\S+)?|\S+\s*\(\s*at\s*\)\s*\S+(?:\.\S+)?/gi;
@@ -46,7 +67,14 @@ export const cropCreditRecords = asRecords(cropCreditJson);
 export const pestCreditRecords = asRecords(pestCreditJson);
 
 export function getCropCreditRecord(slug: string): ImageCreditRecord | undefined {
-  return cropCreditRecords.find((record) => record.slug === slug);
+  return (
+    cropCreditRecords.find((record) => record.slug === slug) ??
+    generatedCropCreditRecords.find((record) => record.slug === slug)
+  );
+}
+
+export function isGeneratedSiteAssetCredit(record: ImageCreditRecord): boolean {
+  return record.license.trim() === GENERATED_SITE_ASSET_LICENSE;
 }
 
 export function getPestCreditRecord(slug: string): ImageCreditRecord | undefined {
@@ -66,6 +94,14 @@ export function hasHttpsSource(url: string): boolean {
 }
 
 export function isReusableImageCredit(record: ImageCreditRecord): boolean {
+  if (isGeneratedSiteAssetCredit(record)) {
+    return (
+      Boolean(record.file.trim()) &&
+      Boolean(record.artist.trim()) &&
+      Boolean(record.sourceNote?.trim()) &&
+      !hasHttpsSource(record.commonsUrl)
+    );
+  }
   return (
     Boolean(record.file.trim()) &&
     isReusableLicense(record.license) &&
