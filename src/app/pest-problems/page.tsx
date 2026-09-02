@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CardLink, cardSurfaceClass } from "@/components/content/CardLink";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Container } from "@/components/layout/Container";
+import { IMAGE_CREDITS_LABEL, IMAGE_CREDITS_PATH } from "@/data/imageCredits";
 import { getPests, type Pest } from "@/data/pests";
 import { pageMetadata } from "@/lib/seo";
 
@@ -110,6 +111,12 @@ export default function PestProblemsPage() {
           description="Soft, overfed growth invites aphids."
         />
       </div>
+
+      <p className="mt-10 text-xs leading-5 text-muted">
+        <Link href={IMAGE_CREDITS_PATH} className="font-medium text-accent underline-offset-2 hover:underline">
+          {IMAGE_CREDITS_LABEL}
+        </Link>
+      </p>
     </Container>
   );
 }

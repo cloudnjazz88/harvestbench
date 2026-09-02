@@ -1,0 +1,250 @@
+[
+  {
+    "slug": "tomatoes",
+    "file": "tomatoes.jpg",
+    "artist": "fir0002 , flagstaffotos [at] gmail.com Canon 20D + Sigma 150mm f/2.8",
+    "license": "GFDL 1.2",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Bright_red_tomato_and_cross_section02.jpg",
+    "bytes": 63450
+  },
+  {
+    "slug": "peppers",
+    "file": "peppers.jpg",
+    "artist": "fir0002 , flagstaffotos [at] gmail.com Canon 20D + Sigma 150mm f/2.8",
+    "license": "GFDL 1.2",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Red_capsicum_and_cross_section.jpg",
+    "bytes": 100224
+  },
+  {
+    "slug": "lettuce",
+    "file": "lettuce.jpg",
+    "artist": "Dwight Sipler from Stow, MA, USA",
+    "license": "CC BY 2.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Lettuce_Mini_Heads_(7331119710).jpg",
+    "bytes": 202789
+  },
+  {
+    "slug": "carrots",
+    "file": "carrots.jpg",
+    "artist": "domdomegg",
+    "license": "CC BY 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Carrots_at_Ljubljana_Central_Market.JPG",
+    "bytes": 119081
+  },
+  {
+    "slug": "radishes",
+    "file": "radishes.jpg",
+    "artist": "Unknown",
+    "license": "Public domain",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Raphanus_sativus.jpg",
+    "bytes": 243408
+  },
+  {
+    "slug": "strawberries",
+    "file": "strawberries.jpg",
+    "artist": "Brian Prechtel",
+    "license": "Public domain",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Strawberries.jpg",
+    "bytes": 209637
+  },
+  {
+    "slug": "zucchini",
+    "file": "zucchini.jpg",
+    "artist": "Diego Delso",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Calabac%C3%ADn,_M%C3%BAnich,_Alemania,_2013-03-30,_DD_01.JPG",
+    "bytes": 99402
+  },
+  {
+    "slug": "eggplant",
+    "file": "eggplant.jpg",
+    "artist": "Horst Frank",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Aubergine.jpg",
+    "bytes": 43394
+  },
+  {
+    "slug": "beans",
+    "file": "beans.jpg",
+    "artist": "Lin dafni",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Green_beans.jpg",
+    "bytes": 86897
+  },
+  {
+    "slug": "peas",
+    "file": "peas.jpg",
+    "artist": "Bill Ebbesen",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Peas_in_pods_-_Studio.jpg",
+    "bytes": 196292
+  },
+  {
+    "slug": "okra",
+    "file": "okra.jpg",
+    "artist": "Cheikh cherif",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Gombo-2025.jpg",
+    "bytes": 295465
+  },
+  {
+    "slug": "winter-squash",
+    "file": "winter-squash.jpg",
+    "artist": "Tiia Monto",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Butternut_squash.jpg",
+    "bytes": 94361
+  },
+  {
+    "slug": "corn",
+    "file": "corn.jpg",
+    "artist": "User:Asbestos",
+    "license": "CC BY-SA 2.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Corncobs.jpg",
+    "bytes": 222073
+  },
+  {
+    "slug": "kale",
+    "file": "kale.jpg",
+    "artist": "Rasbak",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Boerenkool.jpg",
+    "bytes": 394335
+  },
+  {
+    "slug": "spinach",
+    "file": "spinach.jpg",
+    "artist": "Nillerdk",
+    "license": "CC BY 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Spinach_leaves.jpg",
+    "bytes": 209946
+  },
+  {
+    "slug": "swiss-chard",
+    "file": "swiss-chard.jpg",
+    "artist": "Grendelkhan",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Rainbow_chard_for_sale_at_the_Campbell_farmers_market.jpg",
+    "bytes": 236078
+  },
+  {
+    "slug": "broccoli",
+    "file": "broccoli.jpg",
+    "artist": "Fir0002",
+    "license": "GFDL 1.2",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Broccoli_and_cross_section_edit.jpg",
+    "bytes": 136491
+  },
+  {
+    "slug": "cabbage",
+    "file": "cabbage.jpg",
+    "artist": "Bill Tarpenning",
+    "license": "Public domain",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Cabbage.jpg",
+    "bytes": 91615
+  },
+  {
+    "slug": "cauliflower",
+    "file": "cauliflower.jpg",
+    "artist": "User Anthony DiPierro on en.wikipedia",
+    "license": "Public domain",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Cauliflower.JPG",
+    "bytes": 8882
+  },
+  {
+    "slug": "arugula",
+    "file": "arugula.jpg",
+    "artist": "Whut",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Eruca_sativa.jpg",
+    "bytes": 195891
+  },
+  {
+    "slug": "collard-greens",
+    "file": "collard-greens.jpg",
+    "artist": "Kevin L. Bardon~enwikibooks at English Wikibooks",
+    "license": "CC BY-SA 2.5",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Collard_greens.jpg",
+    "bytes": 40794
+  },
+  {
+    "slug": "beets",
+    "file": "beets.jpg",
+    "artist": "Evan-Amos",
+    "license": "CC0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Beets-Bundle.jpg",
+    "bytes": 135652
+  },
+  {
+    "slug": "onions",
+    "file": "onions.jpg",
+    "artist": "Donovan Govan.",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Onion.jpg",
+    "bytes": 225570
+  },
+  {
+    "slug": "garlic",
+    "file": "garlic.jpg",
+    "artist": "Donovan Govan.",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Garlic.jpg",
+    "bytes": 132674
+  },
+  {
+    "slug": "potatoes",
+    "file": "potatoes.jpg",
+    "artist": "Scott Bauer, USDA ARS",
+    "license": "Public domain",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Patates.jpg",
+    "bytes": 206851
+  },
+  {
+    "slug": "sweet-potatoes",
+    "file": "sweet-potatoes.jpg",
+    "artist": "Llez",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Ipomoea_batatas_006.JPG",
+    "bytes": 223576
+  },
+  {
+    "slug": "turnips",
+    "file": "turnips.jpg",
+    "artist": "Miya",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Turnip-ja202211-1.jpg",
+    "bytes": 359847
+  },
+  {
+    "slug": "basil",
+    "file": "basil.jpg",
+    "artist": "Castielli",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Basil-Basilico-Ocimum_basilicum-albahaca.jpg",
+    "bytes": 258667
+  },
+  {
+    "slug": "cilantro",
+    "file": "cilantro.jpg",
+    "artist": "HaJunkiyada",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Liat_Portal_for_Foodie_Disorder_-_Cilantro_from_San_Francisco_Farmers_Market.jpg",
+    "bytes": 343657
+  },
+  {
+    "slug": "parsley",
+    "file": "parsley.jpg",
+    "artist": "H. Zell",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Petroselinum_crispum_002.JPG",
+    "bytes": 289240
+  },
+  {
+    "slug": "asparagus",
+    "file": "asparagus.jpg",
+    "artist": "Evan-Amos",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Asparagus-Bundle.jpg",
+    "bytes": 386353
+  }
+]

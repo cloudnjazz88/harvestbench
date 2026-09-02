@@ -1,0 +1,96 @@
+import cropCreditJson from "../../public/images/crops/_credits.json";
+import pestCreditJson from "../../public/images/pests/_credits.json";
+
+export type ImageCreditRecord = {
+  slug: string;
+  file: string;
+  artist: string;
+  license: string;
+  commonsUrl: string;
+};
+
+function emailPattern(): RegExp {
+  return /\S+@\S+\.\S+|\S+\s*\[\s*at\s*\]\s*\S+(?:\.\S+)?|\S+\s*\(\s*at\s*\)\s*\S+(?:\.\S+)?/gi;
+}
+
+const LICENSE_URLS: Record<string, string> = {
+  "gfdl 1.2": "https://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+  "cc by 2.0": "https://creativecommons.org/licenses/by/2.0/",
+  "cc by 2.5": "https://creativecommons.org/licenses/by/2.5/",
+  "cc by 3.0": "https://creativecommons.org/licenses/by/3.0/",
+  "cc by 3.0 us": "https://creativecommons.org/licenses/by/3.0/us/",
+  "cc by 4.0": "https://creativecommons.org/licenses/by/4.0/",
+  "cc by-sa 2.0": "https://creativecommons.org/licenses/by-sa/2.0/",
+  "cc by-sa 2.5": "https://creativecommons.org/licenses/by-sa/2.5/",
+  "cc by-sa 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "cc by-sa 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
+  cc0: "https://creativecommons.org/publicdomain/zero/1.0/",
+};
+
+function asRecords(value: unknown): ImageCreditRecord[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter((item): item is ImageCreditRecord => {
+    if (!item || typeof item !== "object") return false;
+    const record = item as ImageCreditRecord;
+    return (
+      typeof record.slug === "string" &&
+      typeof record.file === "string" &&
+      typeof record.artist === "string" &&
+      typeof record.license === "string" &&
+      typeof record.commonsUrl === "string"
+    );
+  });
+}
+
+export const cropCreditRecords = asRecords(cropCreditJson);
+export const pestCreditRecords = asRecords(pestCreditJson);
+
+export function getCropCreditRecord(slug: string): ImageCreditRecord | undefined {
+  return cropCreditRecords.find((record) => record.slug === slug);
+}
+
+export function getPestCreditRecord(slug: string): ImageCreditRecord | undefined {
+  return pestCreditRecords.find((record) => record.slug === slug);
+}
+
+export function isReusableLicense(license: string): boolean {
+  const value = license.trim().toLowerCase();
+  if (!value || value.includes("all rights reserved")) return false;
+  if (value === "public domain" || value === "cc0") return true;
+  if (value.startsWith("cc by") || value.startsWith("gfdl")) return true;
+  return false;
+}
+
+export function hasHttpsSource(url: string): boolean {
+  return url.startsWith("https://");
+}
+
+export function isReusableImageCredit(record: ImageCreditRecord): boolean {
+  return (
+    Boolean(record.file.trim()) &&
+    isReusableLicense(record.license) &&
+    hasHttpsSource(record.commonsUrl)
+  );
+}
+
+/** Presentation-only: strip contact-email text from a recorded creator string. */
+export function displayCreatorName(artist: string): string | undefined {
+  const pattern = emailPattern();
+  const emailMatch = pattern.exec(artist);
+  const beforeEmail = emailMatch?.index != null ? artist.slice(0, emailMatch.index) : artist;
+  const cleaned = beforeEmail
+    .replace(emailPattern(), "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/[,;|/]+$/g, "")
+    .trim();
+  return cleaned || undefined;
+}
+
+export function containsContactEmailText(value: string): boolean {
+  return emailPattern().test(value);
+}
+
+export function licenseUrlFor(license: string): string | undefined {
+  return LICENSE_URLS[license.trim().toLowerCase()];
+}
