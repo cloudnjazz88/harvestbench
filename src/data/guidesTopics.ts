@@ -413,14 +413,8 @@ export const topicGuides: Guide[] = [
     category: "products",
     updated: "2026-08-27",
     intro:
-      "A cart earns its keep when you haul bags of mix, compost, or mulch. Capacity, wheel type, and whether you can dump cleanly matter more than color.",
+      "A cart earns its keep when you haul bags of mix, compost, or mulch. Capacity, wheel type, and whether you can dump cleanly matter more than color. This page compares carts and wheelbarrows; it does not rank brands.",
     body: [
-      {
-        type: "callout",
-        tone: "info",
-        title: "Recommendations not yet researched",
-        text: "Buying criteria only. No ranked list, prices, or “we tested” claims until a real product is added.",
-      },
       {
         type: "h2",
         text: "What matters",

@@ -13,9 +13,8 @@ export function ContactForm() {
   if (!email) {
     return (
       <p className="rounded-xl border border-border bg-card p-5 text-sm leading-6 text-muted">
-        A public contact email is not configured yet. Set{" "}
-        <code className="text-foreground">NEXT_PUBLIC_CONTACT_EMAIL</code> to enable
-        a mailto form. We do not list a physical address or phone number.
+        Use the email address listed on this page. We do not list a physical
+        address or phone number.
       </p>
     );
   }

@@ -11,17 +11,12 @@ import {
   fieldError,
 } from "@/components/calculators/fields";
 import {
-  AffiliateNotice,
-  ProductRecommendation,
-} from "@/components/products/ProductRecommendation";
-import {
   feedingLevels,
   fertilizerBiases,
   getFeedingLevel,
   getFertilizerChoice,
   getFertilizerSelectGroups,
 } from "@/data/fertilizerProfiles";
-import { getProduct, pageHasAffiliateLinks } from "@/data/products";
 import {
   calculateFertilizer,
   parseNumber,
@@ -44,8 +39,6 @@ export function FertilizerCalculator() {
 
   const choice = getFertilizerChoice(cropId);
   const bias = fertilizerBiases[choice.bias];
-  const product = getProduct(bias.productId);
-  const showAffiliate = product ? pageHasAffiliateLinks([product]) : false;
 
   const feeding = getFeedingLevel(feedingId);
   const parsed = {
@@ -132,7 +125,6 @@ export function FertilizerCalculator() {
   );
 
   return (
-    <div className="space-y-6">
     <CalculatorLayout
       onReset={() => {
         setCropId("mixed");
@@ -252,18 +244,6 @@ export function FertilizerCalculator() {
         </div>
       </details>
     </CalculatorLayout>
-    {product ? (
-      <section className="space-y-3">
-        <h2 className="font-serif text-2xl font-semibold">Matching product type</h2>
-        <p className="text-sm leading-6 text-muted">
-          Placeholder only until a real bag is researched. When affiliate links go
-          live, this slot is the one that will match the crop you picked.
-        </p>
-        <AffiliateNotice enabled={showAffiliate} />
-        <ProductRecommendation product={product} />
-      </section>
-    ) : null}
-    </div>
   );
 }
 

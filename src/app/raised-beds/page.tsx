@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CardLink, SectionHeading } from "@/components/content/CardLink";
+import { CardLink, PublicCardLink, SectionHeading } from "@/components/content/CardLink";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Container } from "@/components/layout/Container";
 import { pageMetadata } from "@/lib/seo";
@@ -40,7 +40,7 @@ export default function RaisedBedsPage() {
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <CardLink href="/guides/how-to-prepare-a-raised-bed" title="How to prepare a raised bed" description="Site, fill, settle, skip the rock layer." />
         <CardLink href="/guides/raised-bed-vs-in-ground-garden" title="Raised bed vs in-ground" description="Cost, watering, and when each layout wins." />
-        <CardLink href="/guides/best-raised-garden-beds" title="Choosing a frame" description="Width, height, and materials — not a ranked kit list." />
+        <PublicCardLink href="/guides/best-raised-garden-beds" title="Choosing a frame" description="Width, height, and materials — not a ranked kit list." />
       </div>
 
       <h2 className="mt-12 font-serif text-2xl font-semibold">Soil guides</h2>
@@ -49,13 +49,13 @@ export default function RaisedBedsPage() {
         <CardLink href="/guides/how-deep-should-a-raised-bed-be" title="How deep should a raised bed be?" description="Crop-by-crop soil depth, not board marketing height." />
         <CardLink href="/guides/how-much-soil-does-a-raised-bed-need" title="How much soil does a raised bed need?" description="Worked volumes for common US sizes." />
         <CardLink href="/guides/best-soil-mix-for-raised-beds" title="Best soil mix" description="Compost plus mineral soil, matched to climate." />
-        <CardLink href="/guides/best-raised-bed-soil" title="Buying raised bed soil" description="Label and bulk-delivery criteria." />
+        <PublicCardLink href="/guides/best-raised-bed-soil" title="Buying raised bed soil" description="Label and bulk-delivery criteria." />
       </div>
 
       <h2 className="mt-12 font-serif text-2xl font-semibold">Watering & planting</h2>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <CardLink href="/guides/how-often-to-water-raised-beds" title="How often to water" description="Finger test, crop type, and humidity — not a gallon chart." />
-        <CardLink href="/guides/best-drip-irrigation" title="Drip irrigation" description="Emitters, kits, and timers for rectangular beds." />
+        <PublicCardLink href="/guides/best-drip-irrigation" title="Drip irrigation" description="Emitters, kits, and timers for rectangular beds." />
         <CardLink href="/guides/how-far-apart-to-plant-tomatoes" title="Tomato spacing" description="Determinate vs indeterminate in a 4-foot bed." />
         <CardLink href="/guides/how-far-apart-to-plant-peppers" title="Pepper spacing" description="12–18 inches for most types." />
         <CardLink href="/guides/how-to-grow-cucumbers-in-raised-beds" title="Cucumbers in raised beds" description="Trellis, water, and mildew." />

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cardSurfaceClass } from "@/components/content/CardLink";
+import { filterPublicLinks } from "@/data/routes";
 import type { FaqItem, RelatedLink } from "@/data/types";
 
 export function PageHeader({
@@ -33,13 +34,14 @@ export function RelatedLinks({
   title: string;
   items: RelatedLink[];
 }) {
-  if (!items.length) return null;
+  const publicItems = filterPublicLinks(items);
+  if (!publicItems.length) return null;
 
   return (
     <section className="mt-10">
       <h2 className="font-serif text-2xl font-semibold">{title}</h2>
       <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-        {items.map((item) => (
+        {publicItems.map((item) => (
           <li key={item.href}>
             <Link
               href={item.href}

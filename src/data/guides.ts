@@ -32,6 +32,8 @@ export type Guide = {
   relatedGuides: RelatedLink[];
   products?: string[];
   featured?: boolean;
+  /** When false, the route may still exist but is excluded from sitemap and public links. Default true. */
+  published?: boolean;
 };
 
 export const guides: Guide[] = [
@@ -1465,14 +1467,8 @@ export const guides: Guide[] = [
     category: "products",
     updated: "2026-08-26",
     intro:
-      "This page is a buying framework, not a ranked list of tested products. We have not independently lab-tested bagged soils for this guide. Use it to read labels and compare bulk deliveries.",
+      "This page is a buying framework, not a ranked list of brands. We have not independently lab-tested bagged soils. Use it to read labels and compare bulk deliveries.",
     body: [
-      {
-        type: "callout",
-        tone: "info",
-        title: "No product rankings yet",
-        text: "Named products, prices, and star ratings will only appear after independent research. Placeholder cards below show how recommendations will be structured.",
-      },
       {
         type: "h2",
         text: "Bagged mix vs bulk delivery",
@@ -1547,14 +1543,8 @@ export const guides: Guide[] = [
     category: "products",
     updated: "2026-08-26",
     intro:
-      "The best bed is one you can reach across, fill with enough soil, and that will not bow out when wet. This page covers those criteria. It does not rank brands we have not researched.",
+      "The best bed is one you can reach across, fill with enough soil, and that will not bow out when wet. This page covers those criteria. It does not rank brands.",
     body: [
-      {
-        type: "callout",
-        tone: "info",
-        title: "Research pending",
-        text: "Specific kits, lumber SKUs, and prices are not listed as recommendations yet.",
-      },
       {
         type: "h2",
         text: "Dimensions that work",
@@ -1618,14 +1608,8 @@ export const guides: Guide[] = [
     category: "products",
     updated: "2026-08-26",
     intro:
-      "A useful hose reaches the bed without kinking at the spigot and uses fittings that do not leak. Length and diameter matter more than color.",
+      "A useful hose reaches the bed without kinking at the spigot and uses fittings that do not leak. Length and diameter matter more than color. This page is a spec sheet, not a ranked brand list.",
     body: [
-      {
-        type: "callout",
-        tone: "info",
-        title: "No tested picks yet",
-        text: "We are not listing ranked hoses or prices until products are independently researched.",
-      },
       {
         type: "h2",
         text: "Criteria",
@@ -1669,14 +1653,8 @@ export const guides: Guide[] = [
     category: "products",
     updated: "2026-08-26",
     intro:
-      "Soaker hoses wet soil along their length. They work well under mulch in rectangular beds if you match length to available pressure and do not expect perfectly even output on a 100-foot run.",
+      "Soaker hoses wet soil along their length. They work well under mulch in rectangular beds if you match length to available pressure and do not expect perfectly even output on a 100-foot run. This page covers layout and pressure, not brand rankings.",
     body: [
-      {
-        type: "callout",
-        tone: "info",
-        title: "Placeholder recommendations only",
-        text: "Brand comparisons are not included yet.",
-      },
       {
         type: "h2",
         text: "What to look for",
@@ -1721,14 +1699,8 @@ export const guides: Guide[] = [
     category: "products",
     updated: "2026-08-26",
     intro:
-      "Drip irrigation puts water at the soil, under mulch, on a schedule you can run from a hose bib. For raised vegetable beds it is usually a better default than overhead spray. It is not a gallon prescription: you still check moisture with a finger.",
+      "Drip irrigation puts water at the soil, under mulch, on a schedule you can run from a hose bib. For raised vegetable beds it is usually a better default than overhead spray. It is not a gallon prescription: you still check moisture with a finger. This page covers parts, layout, and maintenance — not ranked kits.",
     body: [
-      {
-        type: "callout",
-        tone: "info",
-        title: "No ranked kits yet",
-        text: "Brand names, prices, and “best of” lists are not included until products are independently researched. Retailer and affiliate links stay off until a real URL is added.",
-      },
       {
         type: "h2",
         id: "when-drip-helps",
@@ -1895,14 +1867,8 @@ export const guides: Guide[] = [
     category: "products",
     updated: "2026-08-26",
     intro:
-      "A trellis has to survive wind when it is covered in wet vines. Height and anchoring matter more than decorative woodwork.",
+      "A trellis has to survive wind when it is covered in wet vines. Height and anchoring matter more than decorative woodwork. This page matches structure to the crop; it does not rank models.",
     body: [
-      {
-        type: "callout",
-        tone: "info",
-        title: "No ranked products yet",
-        text: "Use this as a spec sheet until specific models are researched.",
-      },
       {
         type: "h2",
         text: "Match the crop",
@@ -1960,14 +1926,8 @@ export const guides: Guide[] = [
     category: "products",
     updated: "2026-08-26",
     intro:
-      "Bypass pruning shears make clean cuts on live tomato suckers, pepper stems, and herbs. Anvil pruners crush green tissue and are the wrong default for vegetables.",
+      "Bypass pruning shears make clean cuts on live tomato suckers, pepper stems, and herbs. Anvil pruners crush green tissue and are the wrong default for vegetables. This page covers blade type and durability, not brand awards.",
     body: [
-      {
-        type: "callout",
-        tone: "info",
-        title: "Recommendations not yet researched",
-        text: "Placeholder structure only. No prices or awards.",
-      },
       {
         type: "h2",
         text: "What matters",
@@ -2009,18 +1969,26 @@ export function getGuide(slug: string): Guide | undefined {
   return guides.find((guide) => guide.slug === slug);
 }
 
+export function isGuidePublished(guide: Pick<Guide, "published">): boolean {
+  return guide.published !== false;
+}
+
+export function getPublishedGuides(): Guide[] {
+  return guides.filter(isGuidePublished);
+}
+
 export function getGuidesByCategory(category: Guide["category"]): Guide[] {
-  return guides.filter((guide) => guide.category === category);
+  return getPublishedGuides().filter((guide) => guide.category === category);
 }
 
 export function getFeaturedGuides(): Guide[] {
-  return guides.filter((guide) => guide.featured);
+  return getPublishedGuides().filter((guide) => guide.featured);
 }
 
 export function getHowToGuides(): Guide[] {
-  return guides.filter((guide) => guide.type === "guide");
+  return getPublishedGuides().filter((guide) => guide.type === "guide");
 }
 
 export function getProductGuides(): Guide[] {
-  return guides.filter((guide) => guide.type === "product");
+  return getPublishedGuides().filter((guide) => guide.type === "product");
 }

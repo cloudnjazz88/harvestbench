@@ -8,6 +8,7 @@ type PageSeo = {
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
+  indexable?: boolean;
 };
 
 export function pageMetadata({
@@ -17,6 +18,7 @@ export function pageMetadata({
   type = "website",
   publishedTime,
   modifiedTime,
+  indexable = true,
 }: PageSeo): Metadata {
   const url = `${getSiteUrl()}${path}`;
   const fullTitle = `${title} | ${siteConfig.name}`;
@@ -24,6 +26,9 @@ export function pageMetadata({
     title: { absolute: fullTitle },
     description,
     alternates: { canonical: path },
+    robots: indexable
+      ? { index: true, follow: true }
+      : { index: false, follow: false },
     openGraph: {
       title: fullTitle,
       description,

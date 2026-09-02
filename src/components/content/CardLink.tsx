@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { isPublicPath } from "@/data/routes";
 
 export const cardSurfaceClass =
   "rounded-xl border border-accent/25 bg-accent/[0.07] transition-colors hover:border-accent hover:bg-accent/[0.16]";
@@ -23,6 +24,16 @@ export function CardLink({
       <span className="mt-2 text-sm leading-6 text-muted">{description}</span>
     </Link>
   );
+}
+
+export function PublicCardLink(props: {
+  href: string;
+  title: string;
+  description: string;
+  kicker?: string;
+}) {
+  if (!isPublicPath(props.href)) return null;
+  return <CardLink {...props} />;
 }
 
 export function SectionHeading({

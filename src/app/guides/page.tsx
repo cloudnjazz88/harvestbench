@@ -33,18 +33,22 @@ export default function GuidesIndexPage() {
           />
         ))}
       </div>
-      <h2 className="mt-12 font-serif text-2xl font-semibold">Product & buying guides</h2>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        {products.map((guide) => (
-          <CardLink
-            key={guide.slug}
-            href={`/guides/${guide.slug}`}
-            kicker="Buying guide"
-            title={guide.title}
-            description={guide.description}
-          />
-        ))}
-      </div>
+      {products.length ? (
+        <>
+          <h2 className="mt-12 font-serif text-2xl font-semibold">Buying guides</h2>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            {products.map((guide) => (
+              <CardLink
+                key={guide.slug}
+                href={`/guides/${guide.slug}`}
+                kicker="Buying guide"
+                title={guide.title}
+                description={guide.description}
+              />
+            ))}
+          </div>
+        </>
+      ) : null}
     </Container>
   );
 }

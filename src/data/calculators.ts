@@ -346,7 +346,7 @@ const calculatorList: CalculatorMeta[] = [
       {
         question: "Will you recommend a specific brand?",
         answer:
-          "Not until a real product is researched and a retailer URL is added. The product card is a placeholder for later affiliate links. It is not a review.",
+          "No. This calculator points you to a bag type — higher nitrogen, phosphorus, potassium, or balanced. It does not recommend a brand.",
       },
       {
         question: "Can this tell me if I will burn plants?",

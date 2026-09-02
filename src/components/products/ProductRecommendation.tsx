@@ -1,11 +1,12 @@
 import type { ProductRecommendationRecord } from "@/data/products";
+import { isProductReady } from "@/data/products";
 
 const retailerLabel: Record<ProductRecommendationRecord["retailer"], string> = {
   amazon: "Amazon",
   "home-depot": "Home Depot",
   lowes: "Lowe's",
   other: "Retailer",
-  unspecified: "Retailer not set",
+  unspecified: "Retailer",
 };
 
 export function ProductRecommendation({
@@ -13,22 +14,15 @@ export function ProductRecommendation({
 }: {
   product: ProductRecommendationRecord;
 }) {
-  const hasLink = Boolean(product.externalUrl) && product.status === "ready";
+  if (!isProductReady(product)) return null;
 
   return (
     <article className="rounded-xl border border-border bg-card p-5">
-      <div className="flex flex-wrap items-start justify-between gap-2">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-muted">
-            {product.category}
-          </p>
-          <h3 className="mt-1 font-serif text-xl font-semibold">{product.name}</h3>
-        </div>
-        {product.status === "placeholder" ? (
-          <span className="rounded-full border border-border px-2.5 py-1 text-xs font-medium text-muted">
-            Placeholder
-          </span>
-        ) : null}
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wide text-muted">
+          {product.category}
+        </p>
+        <h3 className="mt-1 font-serif text-xl font-semibold">{product.name}</h3>
       </div>
       <p className="mt-3 text-sm leading-6 text-muted">{product.shortDescription}</p>
       <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
@@ -45,28 +39,14 @@ export function ProductRecommendation({
         <List title="Pros" items={product.pros} />
         <List title="Cons" items={product.cons} />
       </div>
-      <p className="mt-4 text-sm text-muted">
-        {retailerLabel[product.retailer]}
-        {product.affiliate ? " · Affiliate-ready when a live URL is added" : ""}
-      </p>
-      {hasLink ? (
-        <a
-          href={product.externalUrl}
-          className="mt-4 inline-flex min-h-11 items-center rounded-md bg-accent px-4 text-sm font-semibold text-white hover:bg-accent-hover"
-          rel={product.affiliate ? "sponsored nofollow noopener" : "noopener noreferrer"}
-          target="_blank"
-        >
-          View at {retailerLabel[product.retailer]}
-        </a>
-      ) : (
-        <p className="mt-4 rounded-md bg-background px-3 py-2 text-sm text-muted">
-          Retailer link disabled until a real product URL is added. Swap
-          {" "}
-          <code className="text-foreground">externalUrl</code>
-          {" "}
-          in the product data to enable it.
-        </p>
-      )}
+      <a
+        href={product.externalUrl}
+        className="mt-4 inline-flex min-h-11 items-center rounded-md bg-accent px-4 text-sm font-semibold text-white hover:bg-accent-hover"
+        rel={product.affiliate ? "sponsored nofollow noopener" : "noopener noreferrer"}
+        target="_blank"
+      >
+        View at {retailerLabel[product.retailer]}
+      </a>
     </article>
   );
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Callout } from "@/components/content/PageSections";
+import { isPublicPath } from "@/data/routes";
 import type { ContentBlock } from "@/data/types";
 
 export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
@@ -115,6 +116,9 @@ export function RichText({ text }: { text: string }) {
               {label}
             </a>
           );
+        }
+        if (!isPublicPath(href.split("#")[0])) {
+          return <span key={index}>{label}</span>;
         }
         return (
           <Link key={index} href={href} className="font-medium text-accent underline-offset-2 hover:underline">

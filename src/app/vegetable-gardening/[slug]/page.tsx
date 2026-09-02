@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { FaqList, RelatedLinks } from "@/components/content/PageSections";
@@ -63,7 +64,6 @@ export default async function CropPage({ params }: Props) {
       <AdSlot position="top" className="mb-8" />
       <p className="text-sm font-semibold uppercase tracking-wide text-accent">
         {cropGroupLabels[crop.group].title}
-        {crop.complete ? " · Full guide" : " · Overview"}
       </p>
       <h1 className="mt-1 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
         How to Grow {crop.name}
@@ -113,8 +113,11 @@ export default async function CropPage({ params }: Props) {
               ))}
             </ul>
             <p className="mt-3 text-sm text-muted">
-              Product links will be added when independently researched. See the{" "}
-              garden tools hub for buying criteria.
+              See the{" "}
+              <Link href="/garden-tools" className="font-medium text-accent hover:underline">
+                garden tools hub
+              </Link>{" "}
+              for how to choose supports and hand tools.
             </p>
           </section>
           {crop.extraSections?.map((section) => (

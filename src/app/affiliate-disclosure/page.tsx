@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Affiliate Disclosure",
-  description: `How ${siteConfig.name} will handle affiliate links if and when they exist.`,
+  description: `${siteConfig.name} does not currently display affiliate links.`,
   path: "/affiliate-disclosure",
 });
 
@@ -16,19 +16,12 @@ export default function AffiliateDisclosurePage() {
       <h1 className="font-serif text-3xl font-semibold">Affiliate disclosure</h1>
       <div className="mt-6 space-y-4 leading-7 text-muted">
         <p>
-          {siteConfig.name} does not currently have active affiliate relationships with Amazon, Home
-          Depot, Lowe’s, or other retailers. Product cards on this site are placeholders until real
-          URLs and independently researched products are added.
+          {siteConfig.name} does not currently display affiliate links or paid relationships with
+          Amazon, Home Depot, Lowe’s, or other retailers.
         </p>
         <p>
-          If affiliate links are added later, this page will remain the disclosure: some links may be
-          affiliate links, and a purchase through those links may earn a commission at no additional
-          cost to you. We will not label ordinary links as affiliate links before that is true.
-        </p>
-        <p>
-          Product pages will not invent prices, star ratings, awards, or “we tested this” claims.
-          When a live retailer URL is added to a product record, the product component can mark it as
-          an affiliate link using a single data field.
+          Buying guides on this site explain how to choose a product category. They are not ranked
+          brand lists, and they do not include retailer checkout links.
         </p>
       </div>
     </Container>

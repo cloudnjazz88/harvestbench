@@ -6,6 +6,7 @@ import { Container } from "@/components/layout/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { calculators, getPopularCalculators } from "@/data/calculators";
 import { getFeaturedGuides, getProductGuides } from "@/data/guides";
+import { filterPublicLinks } from "@/data/routes";
 import { siteConfig } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -165,7 +166,7 @@ export default function HomePage() {
           />
           <HubPanel
             title="Garden tools"
-            body="Pruners, trellis, garden carts, hoses, and drip gear — buying criteria without fake reviews."
+            body="Pruners, trellis, garden carts, hoses, and drip gear — what to look for, not ranked brand lists."
             href="/garden-tools"
             links={[
               { href: "/guides/best-pruning-shears", label: "Pruning shears" },
@@ -203,23 +204,25 @@ export default function HomePage() {
           </ul>
         </section>
 
-        <section className="mt-14">
-          <SectionHeading
-            title="Product guides"
-            description="Buying criteria for later retailer links. No fake reviews, prices, or test claims."
-          />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {productGuides.map((guide) => (
-              <CardLink
-                key={guide.slug}
-                href={`/guides/${guide.slug}`}
-                kicker="Buying guide"
-                title={guide.title.replace(": What to Look For", "").replace(": How to Choose a Frame", "").replace(": Buying Criteria", "")}
-                description={guide.description}
-              />
-            ))}
-          </div>
-        </section>
+        {productGuides.length ? (
+          <section className="mt-14">
+            <SectionHeading
+              title="Buying guides"
+              description="How to choose soil, frames, watering gear, and tools — specs and trade-offs, not ranked brand lists."
+            />
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {productGuides.map((guide) => (
+                <CardLink
+                  key={guide.slug}
+                  href={`/guides/${guide.slug}`}
+                  kicker="Buying guide"
+                  title={guide.title.replace(": What to Look For", "").replace(": How to Choose a Frame", "").replace(": Buying Criteria", "")}
+                  description={guide.description}
+                />
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="mt-14 rounded-xl border border-border bg-card p-6 sm:p-8">
           <h2 className="font-serif text-2xl font-semibold">Why this site exists</h2>
@@ -264,7 +267,7 @@ function HubPanel({
       </h2>
       <p className="mt-2 text-sm leading-6 text-muted">{body}</p>
       <ul className="mt-4 space-y-2">
-        {links.map((link) => (
+        {filterPublicLinks(links).map((link) => (
           <li key={link.href} className="w-fit">
             <Link
               href={link.href}

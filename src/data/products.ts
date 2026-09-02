@@ -244,6 +244,16 @@ export function getProduct(id: string): ProductRecommendationRecord | undefined 
   return products.find((item) => item.id === id);
 }
 
+export function isProductReady(product: ProductRecommendationRecord): boolean {
+  return product.status === "ready" && Boolean(product.externalUrl.trim());
+}
+
+export function getReadyProducts(ids: string[]): ProductRecommendationRecord[] {
+  return ids
+    .map((id) => getProduct(id))
+    .filter((item): item is ProductRecommendationRecord => Boolean(item && isProductReady(item)));
+}
+
 export function getProductsByCategory(category: string): ProductRecommendationRecord[] {
   return products.filter((item) => item.category === category);
 }
@@ -251,5 +261,5 @@ export function getProductsByCategory(category: string): ProductRecommendationRe
 export function pageHasAffiliateLinks(
   items: Pick<ProductRecommendationRecord, "affiliate" | "externalUrl">[],
 ): boolean {
-  return items.some((item) => item.affiliate && Boolean(item.externalUrl));
+  return items.some((item) => item.affiliate && Boolean(item.externalUrl.trim()));
 }

@@ -1,8 +1,12 @@
 import { calculators } from "@/data/calculators";
 import { crops } from "@/data/crops";
-import { guides } from "@/data/guides";
+import { getPublishedGuides, guides } from "@/data/guides";
 
-export function getAllPagePaths(): string[] {
+function unique(paths: string[]): string[] {
+  return [...new Set(paths)];
+}
+
+function corePagePaths(guideSlugs: string[]): string[] {
   return [
     "/",
     "/calculators",
@@ -17,11 +21,30 @@ export function getAllPagePaths(): string[] {
     "/garden-tools",
     "/pest-problems",
     "/guides",
-    ...guides.map((guide) => `/guides/${guide.slug}`),
+    ...guideSlugs.map((slug) => `/guides/${slug}`),
     "/about",
     "/contact",
     "/privacy",
     "/terms",
     "/affiliate-disclosure",
   ];
+}
+
+/** Every reserved static route, including unpublished guide pages. */
+export function getAllPagePaths(): string[] {
+  return unique(corePagePaths(guides.map((guide) => guide.slug)));
+}
+
+/** Public, indexable routes for sitemap and discovery surfaces. */
+export function getIndexablePagePaths(): string[] {
+  return unique(corePagePaths(getPublishedGuides().map((guide) => guide.slug)));
+}
+
+export function isPublicPath(path: string): boolean {
+  const clean = path.split("#")[0].split("?")[0];
+  return getIndexablePagePaths().includes(clean);
+}
+
+export function filterPublicLinks<T extends { href: string }>(items: T[]): T[] {
+  return items.filter((item) => isPublicPath(item.href));
 }

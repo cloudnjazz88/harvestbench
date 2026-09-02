@@ -21,18 +21,14 @@ export default function AboutPage() {
           tools for crops you pick and eat, not lawns or ornamentals first.
         </p>
         <p>
-          The first section of the site focuses on raised beds, containers, and backyard vegetables:
-          how much soil or potting mix to buy, how far apart to plant, and how to think about water
-          without pretending one schedule fits every climate.
+          The site focuses on raised beds, containers, and backyard vegetables: how much soil or
+          potting mix to buy, how far apart to plant, and how to think about water without pretending
+          one schedule fits every climate.
         </p>
         <p>
           We do not claim laboratory testing, professional certifications, or a physical garden center.
           Gardening advice here is general information for US homeowners. It is not a substitute for a
           soil test, a product label, or your county cooperative extension.
-        </p>
-        <p>
-          A lawn section is planned later. It is not built yet on purpose — the raised-bed tools should
-          be solid first.
         </p>
       </div>
     </Container>

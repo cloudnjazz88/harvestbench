@@ -1,4 +1,4 @@
-import { CardLink, SectionHeading } from "@/components/content/CardLink";
+import { CardLink, PublicCardLink, SectionHeading } from "@/components/content/CardLink";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Container } from "@/components/layout/Container";
 import { pageMetadata } from "@/lib/seo";
@@ -40,18 +40,18 @@ export default function WateringPage() {
           title="Mulch calculator"
           description="Two inches of mulch is a watering tool, not decoration."
         />
-        <CardLink
+        <PublicCardLink
           href="/guides/best-drip-irrigation"
           kicker="Buying guide"
           title="Drip irrigation for raised beds"
           description="Tubing, emitters, kits, and timers — still check soil, do not chase gallons."
         />
-        <CardLink
+        <PublicCardLink
           href="/guides/best-soaker-hose"
           title="Soaker hose buying guide"
           description="Length, pressure, and layout for rectangular beds."
         />
-        <CardLink
+        <PublicCardLink
           href="/guides/best-garden-hose"
           title="Garden hose buying guide"
           description="Diameter, fittings, and drinking-water labels."

@@ -9,8 +9,8 @@ import {
   ProductRecommendation,
 } from "@/components/products/ProductRecommendation";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getGuide, guides } from "@/data/guides";
-import { getProduct, pageHasAffiliateLinks } from "@/data/products";
+import { getGuide, guides, isGuidePublished } from "@/data/guides";
+import { getReadyProducts, pageHasAffiliateLinks } from "@/data/products";
 import { absoluteUrl, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: Props) {
     path: `/guides/${guide.slug}`,
     type: "article",
     modifiedTime: guide.updated,
+    indexable: isGuidePublished(guide),
   });
 }
 
@@ -38,9 +39,7 @@ export default async function GuidePage({ params }: Props) {
   if (!guide) notFound();
 
   const path = `/guides/${guide.slug}`;
-  const productRecords = (guide.products ?? [])
-    .map((id) => getProduct(id))
-    .filter((item) => item !== undefined);
+  const productRecords = getReadyProducts(guide.products ?? []);
   const showAffiliate = pageHasAffiliateLinks(productRecords);
 
   return (
@@ -92,7 +91,7 @@ export default async function GuidePage({ params }: Props) {
           <AdSlot position="in-content" className="my-8" />
           {productRecords.length ? (
             <section className="mt-10 space-y-4">
-              <h2 className="font-serif text-2xl font-semibold">Product cards</h2>
+              <h2 className="font-serif text-2xl font-semibold">Product examples</h2>
               <AffiliateNotice enabled={showAffiliate} />
               {productRecords.map((product) => (
                 <ProductRecommendation key={product.id} product={product} />
