@@ -1,6 +1,7 @@
 import { calculators } from "@/data/calculators";
 import { crops } from "@/data/crops";
 import { getPublishedGuides, guides } from "@/data/guides";
+import { pests } from "@/data/pests";
 
 function unique(paths: string[]): string[] {
   return [...new Set(paths)];
@@ -20,6 +21,7 @@ function corePagePaths(guideSlugs: string[]): string[] {
     "/watering",
     "/garden-tools",
     "/pest-problems",
+    ...pests.map((pest) => `/pest-problems/${pest.slug}`),
     "/guides",
     ...guideSlugs.map((slug) => `/guides/${slug}`),
     "/about",

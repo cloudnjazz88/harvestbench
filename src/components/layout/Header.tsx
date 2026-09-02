@@ -10,16 +10,21 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 w-full border-b border-border bg-card/95 backdrop-blur-sm">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:text-white"
       >
         Skip to content
       </a>
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Logo compact />
-        <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
+      <div className="relative mx-auto flex h-16 w-full max-w-7xl items-center px-4 pr-14 sm:px-6 sm:pr-16 xl:px-6 xl:pr-6">
+        <div className="shrink-0">
+          <Logo compact />
+        </div>
+        <nav
+          aria-label="Primary"
+          className="ml-auto hidden items-center justify-end xl:flex"
+        >
           {primaryNav.map((item) => {
             const active =
               item.href === "/"
@@ -29,7 +34,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-md px-2.5 py-2 text-sm font-medium ${
+                className={`shrink-0 whitespace-nowrap rounded-md px-2 py-2 text-sm font-medium ${
                   active
                     ? "bg-accent/10 text-accent"
                     : "text-foreground hover:bg-background"
@@ -40,13 +45,9 @@ export function Header() {
             );
           })}
         </nav>
-        <Link
-          href="/calculators"
-          className="hidden rounded-md bg-cta px-3 py-2 text-sm font-semibold text-white hover:bg-cta-hover lg:inline-flex xl:hidden"
-        >
-          Calculators
-        </Link>
-        <MobileNav key={pathname} />
+        <div className="absolute right-4 top-1/2 z-10 -translate-y-1/2 sm:right-6 xl:hidden">
+          <MobileNav key={pathname} />
+        </div>
       </div>
     </header>
   );
@@ -66,7 +67,7 @@ function MobileNav() {
   }, [open]);
 
   return (
-    <div className="xl:hidden">
+    <div>
       <button
         type="button"
         className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border bg-card"

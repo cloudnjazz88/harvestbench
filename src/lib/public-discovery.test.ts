@@ -18,6 +18,11 @@ import {
 } from "@/data/routes";
 import { footerNav, primaryNav } from "@/data/site";
 import type { ContentBlock } from "@/data/types";
+import {
+  AMAZON_ASSOCIATE_DISCLOSURE,
+  amazonAssociatesEnabled,
+  getAmazonAssociateDisclosure,
+} from "@/data/affiliates";
 
 const UNFINISHED_LANGUAGE =
   /placeholder|research pending|to be researched|not yet researched|coming soon|coming later|retailer not set|retailer link disabled|guide in progress|will be added later|planned later|not published yet|not available yet/i;
@@ -104,6 +109,16 @@ describe("homepage and product guides", () => {
     expect(products.every((product) => product.status === "placeholder")).toBe(true);
     expect(getReadyProducts(products.map((product) => product.id))).toEqual([]);
   });
+
+  test("buying guides with finished selection guidance stay in public discovery", () => {
+    const productGuides = getProductGuides();
+    expect(productGuides.length).toBeGreaterThan(0);
+    for (const guide of productGuides) {
+      expect(isGuidePublished(guide)).toBe(true);
+      expect(getIndexablePagePaths()).toContain(`/guides/${guide.slug}`);
+      expect(guidePublicText(guide)).not.toMatch(UNFINISHED_LANGUAGE);
+    }
+  });
 });
 
 describe("public copy and internal links", () => {
@@ -159,5 +174,19 @@ describe("public copy and internal links", () => {
     for (const href of hrefs) {
       expect(indexable.has(href), href).toBe(true);
     }
+  });
+});
+
+describe("Amazon Associates disclosure", () => {
+  test("exact Amazon sentence does not render while Amazon monetization is disabled", () => {
+    expect(amazonAssociatesEnabled).toBe(false);
+    expect(getAmazonAssociateDisclosure()).toBeNull();
+  });
+
+  test("prepared Amazon disclosure returns the required sentence when enabled", () => {
+    expect(getAmazonAssociateDisclosure(true)).toBe(AMAZON_ASSOCIATE_DISCLOSURE);
+    expect(getAmazonAssociateDisclosure(true)).toBe(
+      "As an Amazon Associate I earn from qualifying purchases.",
+    );
   });
 });

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cardSurfaceClass } from "@/components/content/CardLink";
 import { filterPublicLinks } from "@/data/routes";
-import type { FaqItem, RelatedLink } from "@/data/types";
+import type { FaqItem, RelatedLink, SourceCitation } from "@/data/types";
 
 export function PageHeader({
   eyebrow,
@@ -52,6 +52,37 @@ export function RelatedLinks({
                 <span className="mt-1 block text-sm text-muted">{item.description}</span>
               ) : null}
             </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export function SourcesList({
+  sources,
+  title = "Sources",
+}: {
+  sources?: SourceCitation[];
+  title?: string;
+}) {
+  if (!sources?.length) return null;
+
+  return (
+    <section className="mt-10">
+      <h2 className="font-serif text-2xl font-semibold">{title}</h2>
+      <ul className="mt-4 space-y-2 text-sm leading-6">
+        {sources.map((source) => (
+          <li key={source.url}>
+            <a
+              href={source.url}
+              className="font-medium text-accent underline-offset-2 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {source.title}
+            </a>
+            <span className="text-muted"> — {source.organization}</span>
           </li>
         ))}
       </ul>

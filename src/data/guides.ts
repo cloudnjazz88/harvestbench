@@ -5,7 +5,13 @@ import {
   potMaterials,
 } from "@/data/containers";
 import { topicGuides } from "@/data/guidesTopics";
-import type { ContentBlock, FaqItem, RelatedLink } from "@/data/types";
+import {
+  sourceOsuCompost,
+  sourceOsuRaisedBeds,
+  sourceUgaBudgetBed,
+  sourceUmnRaisedBeds,
+} from "@/data/raisedBedSources";
+import type { ContentBlock, FaqItem, RelatedLink, SourceCitation } from "@/data/types";
 
 export type GuideType = "guide" | "product";
 
@@ -32,6 +38,7 @@ export type Guide = {
   relatedGuides: RelatedLink[];
   products?: string[];
   featured?: boolean;
+  sources?: SourceCitation[];
   /** When false, the route may still exist but is excluded from sitemap and public links. Default true. */
   published?: boolean;
 };
@@ -44,14 +51,14 @@ export const guides: Guide[] = [
       "Practical soil-depth ranges for raised vegetable beds, including tomatoes, carrots, lettuce, and mixed plantings.",
     type: "guide",
     category: "raised-beds",
-    updated: "2026-08-26",
+    updated: "2026-09-02",
     featured: true,
     intro:
-      "Most backyard vegetable beds work well at 10–12 inches of soil. Go deeper for carrots and large fruiting crops, and know that depth is only useful if you actually fill the frame.",
+      "About 8–10 inches of usable rooting depth can be enough for many vegetables. HarvestBench still treats 10–12 inches of filled mix as a practical default for mixed backyard beds — a cost and watering compromise, not a universal scientific requirement. Frame height, fill depth, and total rooting depth are not the same measurement.",
     body: [
       {
         type: "p",
-        text: "Raised bed depth is the soil depth plants can root into, not the height of the boards on the outside. A 24-inch decorative frame that holds 6 inches of mix will still behave like a shallow bed.",
+        text: "Raised bed depth is the soil plants can root into, not the height of the boards on the outside. A 24-inch accessibility frame that holds 8 inches of mix is still an 8-inch growing medium. Beds are often kept near 4 feet wide so you can reach the center without stepping on the soil.",
       },
       {
         type: "h2",
@@ -61,40 +68,58 @@ export const guides: Guide[] = [
       {
         type: "table",
         caption: "Useful starting depths for common backyard crops",
-        headers: ["Situation", "Soil depth", "Why"],
+        headers: ["Situation", "Usable rooting depth", "Why"],
         rows: [
           [
-            "Mixed vegetables (lettuce, peppers, bush beans)",
-            "10–12 in",
-            "Fits most roots and holds moisture better than a 6-inch box",
+            "Many mixed vegetables",
+            "About 8–10 in can be adequate",
+            "Extension publications treat this range as enough for many crops when the soil is usable, not compacted",
           ],
           [
-            "Tomatoes, squash, cucumbers",
-            "12–18 in",
-            "Larger root systems and more water reserve in heat",
+            "HarvestBench mixed-bed default",
+            "10–12 in of fill",
+            "A practical default for moisture buffering and mixed plantings — not a required minimum for every vegetable",
           ],
           [
-            "Carrots, parsnips, potatoes",
-            "12–18 in",
-            "Roots need a loose column without hitting a hard floor too soon",
+            "Lettuce, radishes, spinach, and other shallow-rooted crops",
+            "Less depth can work",
+            "Shallow roots, but a thin bed dries and heats faster",
           ],
           [
-            "Lettuce, radishes, spinach",
-            "6–8 in can work",
-            "Shallow roots, but the bed will dry out faster",
+            "Carrots, parsnips, potatoes, and other deep or long roots",
+            "More loosened space",
+            "Roots need a loose column; a hard floor or dense native soil stops them early",
+          ],
+          [
+            "Tomatoes and other large fruiting crops",
+            "More mix helps",
+            "Extra volume steadies water supply in heat; this is not a single universal inch-mark from the sources below",
           ],
           [
             "Accessibility (less bending)",
-            "18–24 in frame",
-            "The extra height is for you; still fill it with soil, not empty air",
+            "Taller frame, not automatically more mix",
+            "Frame height is for reach. Growing-medium depth can be shallower than the boards, especially in an open-bottom bed",
           ],
         ],
       },
       {
         type: "callout",
         tone: "tip",
-        title: "If you can only pick one depth",
-        text: "Build to 12 inches of actual soil for a mixed raised bed. It is the usual compromise between cost, weight, and crop flexibility.",
+        title: "If you need one practical number",
+        text: "For a mixed raised bed, HarvestBench still uses about 12 inches of actual fill as a default because it is a workable trade-off among cost, weight, and crop flexibility. It is not the only depth that grows food.",
+      },
+      {
+        type: "h2",
+        text: "Frame height, fill depth, and rooting depth",
+      },
+      {
+        type: "ul",
+        items: [
+          "Frame height is the boards or walls you see.",
+          "Fill depth is how much mix you actually put in (the number the [soil calculator](/calculators/raised-bed-soil) uses).",
+          "Total available rooting depth can be fill depth plus loosened native soil under an open-bottom bed.",
+          "Closed-bottom and elevated planters have only the mix inside the container.",
+        ],
       },
       {
         type: "h2",
@@ -102,11 +127,11 @@ export const guides: Guide[] = [
       },
       {
         type: "p",
-        text: "Shallow beds heat and dry faster. In a hot, windy US summer, a 6-inch bed can need water daily even with mulch. A 12-inch bed of the same mix usually gives you more room for error. That matters more than a perfect board height.",
+        text: "Shallow beds heat and dry faster. In a hot, windy US summer, a 6-inch bed can need water daily even with mulch. A deeper bed of the same mix usually gives you more room for error. That matters more than a perfect board height.",
       },
       {
         type: "p",
-        text: "In cool, cloudy spring weather, a shallower bed warms sooner. If you garden in a short-season climate and only grow greens, 8 inches can be enough. If you grow tomatoes through July heat in the South or inland West, extra depth is a moisture buffer.",
+        text: "In cool, cloudy spring weather, a shallower bed warms sooner. If you garden in a short-season climate and only grow greens, less than 10 inches can be enough. If you grow fruiting crops through July heat in the South or inland West, extra fill is mainly a moisture buffer.",
       },
       {
         type: "h2",
@@ -114,7 +139,7 @@ export const guides: Guide[] = [
       },
       {
         type: "p",
-        text: "If the frame sits on decent native soil and is open at the bottom, plant roots can continue downward. In that case, even an 8-inch frame can support tomatoes because the plants are not trapped in a box. Closed bottoms (fabric beds on a patio, beds over a driveway, or heavy landscape fabric that roots cannot pierce) need the full depth in the container itself.",
+        text: "If the frame sits on native soil and is open at the bottom, loosen or break the original surface so roots and water can move into the ground beneath. That extra loosened soil can add to total rooting depth, so the frame does not have to hold every inch the crop will use. Closed bottoms (patio planters, beds over pavement, or barriers roots cannot pierce) need the full usable depth in the container itself.",
       },
       {
         type: "h2",
@@ -125,24 +150,25 @@ export const guides: Guide[] = [
         items: [
           "Do not fill the bottom with rocks or broken pots “for drainage.” That creates a perched water table and wastes depth.",
           "Do not count empty space under a false floor as soil depth.",
-          "Do not assume a 6-inch cedar kit advertised for flowers is sized for carrots.",
+          "Do not assume a 6-inch kit advertised for flowers is sized for long-rooted crops.",
+          "Do not assume a tall accessibility frame must be filled to the rim with premium mix.",
         ],
       },
       {
         type: "p",
-        text: "Once you choose a depth, [calculate the soil volume](/calculators/raised-bed-soil) before you buy bags or schedule a bulk delivery.",
+        text: "Once you choose a fill depth, [calculate the soil volume](/calculators/raised-bed-soil) before you buy bags or schedule a bulk delivery.",
       },
     ],
     faqs: [
       {
         question: "Is a 6-inch raised bed deep enough for vegetables?",
         answer:
-          "It can grow lettuce, radishes, and some herbs if you water carefully. It is a poor default for tomatoes, peppers, and carrots, especially in heat.",
+          "Shallow-rooted greens and radishes can grow in less depth if you water carefully. It is a weak default for long-rooted crops and for large fruiting plants in heat, especially in a closed-bottom box.",
       },
       {
         question: "Do I need 24 inches of soil?",
         answer:
-          "Usually no. Very deep frames cost more to fill if you buy mix all the way down. Use extra height for accessibility, then hugelkultur: wood in the bottom and 10–12 inches of mix on top. A 12-inch bed can still take 2–3 inches of twigs and leaves.",
+          "Usually no. Frame height for accessibility is not the same as required growing-medium depth. Very deep frames cost more if you buy mix all the way down. Use extra height for reach, then fill a practical soil layer — and, if you want, hugelkultur wood under 10–12 inches of mix. A 12-inch bed can still take 2–3 inches of twigs and leaves.",
       },
     ],
     relatedTools: [
@@ -167,6 +193,7 @@ export const guides: Guide[] = [
         label: "How to prepare a raised bed",
       },
     ],
+    sources: [sourceOsuRaisedBeds, sourceOsuCompost, sourceUgaBudgetBed],
   },
   {
     slug: "how-much-soil-does-a-raised-bed-need",
@@ -175,14 +202,14 @@ export const guides: Guide[] = [
       "Worked examples for common US raised bed sizes, plus bag vs bulk buying notes.",
     type: "guide",
     category: "soil",
-    updated: "2026-08-26",
+    updated: "2026-09-02",
     featured: true,
     intro:
-      "Multiply inside length × width × fill height (all in feet) to get cubic feet. Divide by 27 for cubic yards. A 4×8 bed filled 12 inches deep needs 32 cubic feet, about 1.2 yards.",
+      "Use inside measurements. Convert inches to feet, then length × width × fill depth = cubic feet. Divide by 27 for cubic yards. A 4×8 bed filled 12 inches needs 32 cubic feet, about 1.19 cubic yards. Run the [raised bed soil calculator](/calculators/raised-bed-soil) if you do not want to convert units by hand.",
     body: [
       {
         type: "p",
-        text: "Soil is usually the most expensive part of a new raised bed. Getting the volume right matters more than picking a fashionable mix name on a bag.",
+        text: "Soil is usually the most expensive part of a new raised bed. Buy for filled soil depth, not for the outside of the lumber.",
       },
       {
         type: "h2",
@@ -190,16 +217,24 @@ export const guides: Guide[] = [
       },
       {
         type: "p",
-        text: "Convert every measurement to feet. Twelve inches is 1 foot. Six inches is 0.5 feet. Then:",
+        text: "Measure the inside planting area. Frame thickness does not hold soil. Convert every measurement to feet (12 inches = 1 foot; 6 inches = 0.5 feet). Then:",
       },
       {
         type: "example",
         title: "Cubic feet",
-        text: "cubic feet = length (ft) × width (ft) × height (ft) × number of beds",
+        text: "cubic feet = inside length (ft) × inside width (ft) × fill depth (ft) × number of beds",
       },
       {
         type: "p",
-        text: "Cubic yards = cubic feet ÷ 27. Use the [raised bed soil calculator](/calculators/raised-bed-soil) if you do not want to convert units by hand.",
+        text: "Cubic yards = cubic feet ÷ 27. Bag counts divide cubic feet by the bag’s cubic-foot size and round up — stores do not sell a fraction of a bag.",
+      },
+      {
+        type: "h2",
+        text: "Worked example: 4 × 8 ft, 12 inches of fill",
+      },
+      {
+        type: "p",
+        text: "4 × 8 × 1 = 32 cubic feet. 32 ÷ 27 ≈ 1.19 cubic yards before you round any purchase quantity. At 1.5 cubic feet per bag that is 22 bags. Two identical beds are 64 cubic feet.",
       },
       {
         type: "h2",
@@ -218,18 +253,28 @@ export const guides: Guide[] = [
         ],
       },
       {
-        type: "callout",
-        tone: "info",
-        title: "Bags vs bulk",
-        text: "Once you need about 1 cubic yard or more, bulk garden soil or a custom blend is often cheaper than bags. Bags still win for a single small bed, a balcony, or topping off after settling.",
-      },
-      {
         type: "h2",
-        text: "Settling",
+        text: "Frame height is not fill depth",
       },
       {
         type: "p",
-        text: "Fresh mix drops after the first deep watering. Compost-heavy fills can settle 10% or more. Either order a little extra or plan to top off two weeks after filling. Do not compact soil by stomping it; water it in, then add more.",
+        text: "A tall accessibility frame does not automatically need that much mix. Open-bottom beds can use loosened native soil as part of the rooting depth. Closed-bottom and elevated planters depend entirely on the growing medium you put in the box.",
+      },
+      {
+        type: "h2",
+        text: "Bags vs bulk",
+      },
+      {
+        type: "p",
+        text: "For larger volumes, bulk topsoil is generally more economical than the same amount in individual bags. Bags still win for a single small bed, a balcony, or topping off after settling. Compare ingredients, not bag names. This page does not list prices.",
+      },
+      {
+        type: "h2",
+        text: "Settling and headspace",
+      },
+      {
+        type: "p",
+        text: "Fresh mix drops after the first deep watering, and bags are not always filled to the printed volume. Compost-heavy fills often settle more than mineral-heavy ones. There is no single overage percentage that fits every mix. Water the fill in, then top off. Do not compact soil by stomping it.",
       },
       {
         type: "h2",
@@ -237,7 +282,7 @@ export const guides: Guide[] = [
       },
       {
         type: "p",
-        text: "Volume is only half the decision. A 4×8×12-inch bed filled with cheap screened fill dirt will hold plants but drain and feed poorly. See [best soil mix for raised beds](/guides/best-soil-mix-for-raised-beds) for mixing ratios, and the [buying guide for raised bed soil](/guides/best-raised-bed-soil) for what to look for on a bag label.",
+        text: "Do not assume the whole box should be pure compost. A practical raised-bed mixture can be about one-half to two-thirds topsoil and one-third to one-half plant-based compost. Volume is still only half the decision: a 4×8×12-inch bed filled with cheap screened fill dirt will hold plants but drain and feed poorly. See [best soil mix for raised beds](/guides/best-soil-mix-for-raised-beds) for the Backyard and Budget recipes, and the [buying guide for raised bed soil](/guides/best-raised-bed-soil) for what to look for on a bag label.",
       },
     ],
     faqs: [
@@ -272,6 +317,7 @@ export const guides: Guide[] = [
       },
       { href: "/guides/best-raised-bed-soil", label: "Best raised bed soil" },
     ],
+    sources: [sourceUmnRaisedBeds, sourceOsuCompost, sourceUgaBudgetBed],
   },
   {
     slug: "hugelkultur-in-raised-beds",

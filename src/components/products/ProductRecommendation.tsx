@@ -1,5 +1,6 @@
 import type { ProductRecommendationRecord } from "@/data/products";
 import { isProductReady } from "@/data/products";
+import { getAmazonAssociateDisclosure } from "@/data/affiliates";
 
 const retailerLabel: Record<ProductRecommendationRecord["retailer"], string> = {
   amazon: "Amazon",
@@ -67,10 +68,17 @@ function List({ title, items }: { title: string; items: string[] }) {
 export function AffiliateNotice({ enabled }: { enabled: boolean }) {
   if (!enabled) return null;
 
+  const amazonDisclosure = getAmazonAssociateDisclosure();
+
   return (
-    <p className="rounded-md border border-border bg-background px-3 py-2 text-sm text-muted">
-      Some links on this site may be affiliate links. If you purchase through
-      these links, we may earn a commission at no additional cost to you.
-    </p>
+    <div className="space-y-2">
+      <p className="rounded-md border border-border bg-background px-3 py-2 text-sm text-muted">
+        Some links on this site may be affiliate links. If you purchase through
+        these links, we may earn a commission at no additional cost to you.
+      </p>
+      {amazonDisclosure ? (
+        <p className="text-sm text-muted">{amazonDisclosure}</p>
+      ) : null}
+    </div>
   );
 }

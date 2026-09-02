@@ -1,0 +1,330 @@
+[
+  {
+    "slug": "aphids",
+    "file": "aphids.jpg",
+    "artist": "Jules Verne Times Two",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Green_peach_aphid_(Myzus_persicae)_on_a_stem,_Lisbon,_Portugal_(approx._GPS_location)_julesvernex2.jpg",
+    "bytes": 276153
+  },
+  {
+    "slug": "tomato-hornworm",
+    "file": "tomato-hornworm.jpg",
+    "artist": "Whitney Cranshaw, Colorado State University, Bugwood.org",
+    "license": "CC BY 3.0 us",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Manduca_quinquemaculata_larva.jpg",
+    "bytes": 210185
+  },
+  {
+    "slug": "cabbage-worm",
+    "file": "cabbage-worm.jpg",
+    "artist": "Sam Fraser-Smith from Brisbane, Australia",
+    "license": "CC BY 2.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Pieris_rapae_caterpillar_1.jpg",
+    "bytes": 198208
+  },
+  {
+    "slug": "squash-bug",
+    "file": "squash-bug.jpg",
+    "artist": "Ilona Loser",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Anasa_tristis,_adult.jpg",
+    "bytes": 624236
+  },
+  {
+    "slug": "squash-vine-borer",
+    "file": "squash-vine-borer.jpg",
+    "artist": "Mary Foley Benson",
+    "license": "Public domain",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Melittia_cucurbitae.jpg",
+    "bytes": 804945
+  },
+  {
+    "slug": "cucumber-beetle",
+    "file": "cucumber-beetle.jpg",
+    "artist": "Jacy Lucier",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Acalymma_vittatum.jpg",
+    "bytes": 102906
+  },
+  {
+    "slug": "flea-beetle",
+    "file": "flea-beetle.jpg",
+    "artist": "Natasha Wright, Florida Department of Agriculture and Consumer Services, Bugwood.org -",
+    "license": "CC BY 3.0 us",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Tobacco_flea_beetle_-_Epitrix_hirtipennis_UGA5205021.jpg",
+    "bytes": 295218
+  },
+  {
+    "slug": "cutworm",
+    "file": "cutworm.jpg",
+    "artist": "W.M. Hantsbarger, Bugwood.org",
+    "license": "CC BY 3.0 us",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Agrotis_ipsilon_larva.jpg",
+    "bytes": 313437
+  },
+  {
+    "slug": "whitefly",
+    "file": "whitefly.jpg",
+    "artist": "Unknown",
+    "license": "Public domain",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Silverleaf_whitefly.jpg",
+    "bytes": 65436
+  },
+  {
+    "slug": "spider-mite",
+    "file": "spider-mite.jpg",
+    "artist": "Aleksey Gnilenkov from Moscow, Russia",
+    "license": "CC BY 2.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Red_spider_mite_(Tetranychus_urticae).jpg",
+    "bytes": 494545
+  },
+  {
+    "slug": "slug",
+    "file": "slug.jpg",
+    "artist": "Holger Krisp",
+    "license": "CC BY 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Genetzte_Ackerschnecke_Deroceras_reticulatum.jpg",
+    "bytes": 294865
+  },
+  {
+    "slug": "japanese-beetle",
+    "file": "japanese-beetle.jpg",
+    "artist": "Kmtnewsman0",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Japanese_Beetle_(Popillia_japonica)_on_a_lantana.jpg",
+    "bytes": 178483
+  },
+  {
+    "slug": "stink-bug",
+    "file": "stink-bug.jpg",
+    "artist": "Cvetaa...u",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Halyomorpha_halys_1.jpg",
+    "bytes": 152898
+  },
+  {
+    "slug": "leafminer",
+    "file": "leafminer.jpg",
+    "artist": "Unknown",
+    "license": "CC BY 3.0 us",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Spinach_leafminer_(Larvae).jpg",
+    "bytes": 419556
+  },
+  {
+    "slug": "colorado-potato-beetle",
+    "file": "colorado-potato-beetle.jpg",
+    "artist": "Adámozphoto",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Imago_of_Colorado_potato_beetle_on_leaf.jpg",
+    "bytes": 207866
+  },
+  {
+    "slug": "mexican-bean-beetle",
+    "file": "mexican-bean-beetle.jpg",
+    "artist": "Stephen Ausmus",
+    "license": "Public domain",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Epilachna_varivestis.jpg",
+    "bytes": 228764
+  },
+  {
+    "slug": "corn-earworm",
+    "file": "corn-earworm.jpg",
+    "artist": "cyanocorax",
+    "license": "CC BY-SA 2.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Helicoverpa_zea_larva.jpg",
+    "bytes": 310008
+  },
+  {
+    "slug": "thrips",
+    "file": "thrips.jpg",
+    "artist": "Alton N. Sparks, Jr., University of Georgia, Bugwood.org",
+    "license": "CC BY 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Thrips_tabaci.jpg",
+    "bytes": 69618
+  },
+  {
+    "slug": "cabbage-looper",
+    "file": "cabbage-looper.jpg",
+    "artist": "Lua Eva Blue",
+    "license": "CC BY 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Cabbage_looper_caterpillar.jpg",
+    "bytes": 224826
+  },
+  {
+    "slug": "harlequin-bug",
+    "file": "harlequin-bug.jpg",
+    "artist": "Christina Butler from Georgia, United States",
+    "license": "CC BY 2.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Harlequin_Bug_-_Murgantia_histrionica_(48720331102).jpg",
+    "bytes": 365658
+  },
+  {
+    "slug": "tarnished-plant-bug",
+    "file": "tarnished-plant-bug.jpg",
+    "artist": "Judy Gallagher",
+    "license": "CC BY 2.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Tarnished_Plant_Bug_-_Lygus_lineolaris,_near_Leesville,_Louisiana.jpg",
+    "bytes": 367816
+  },
+  {
+    "slug": "earwig",
+    "file": "earwig.jpg",
+    "artist": "Charles J. Sharp",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Earwig_(Forficula_auricularia)_female.jpg",
+    "bytes": 129448
+  },
+  {
+    "slug": "grasshopper",
+    "file": "grasshopper.jpg",
+    "artist": "Peterwchen",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Melanoplus_differentialis-female_gravid.jpg",
+    "bytes": 375867
+  },
+  {
+    "slug": "asparagus-beetle",
+    "file": "asparagus-beetle.jpg",
+    "artist": "No machine-readable author provided. User:Keith Edkins, Cambridge, UK assumed (based on copyright claims).",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Crioceris_asparagi.jpg",
+    "bytes": 35216
+  },
+  {
+    "slug": "diamondback-moth",
+    "file": "diamondback-moth.jpg",
+    "artist": "Merle Shepard, Gerald R.Carner, and P.A.C Ooi, Insects and their Natural Enemies Associated with Vegetables and Soybean in Southeast Asia, Bugwood.org",
+    "license": "CC BY 3.0 us",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Plutella_xylostella_caterpillar_on_cabbage_(20).jpg",
+    "bytes": 312544
+  },
+  {
+    "slug": "fall-armyworm",
+    "file": "fall-armyworm.jpg",
+    "artist": "Wee Hong",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Spodoptera_frugiperda_(200211-0809).jpg",
+    "bytes": 334683
+  },
+  {
+    "slug": "cabbage-maggot",
+    "file": "cabbage-maggot.jpg",
+    "artist": "Schlaghecken Josef",
+    "license": "CC BY 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Kohlrabi_Kohlfliegen-Maden_im_Strunk--Josef_Schlaghecken.jpg",
+    "bytes": 206554
+  },
+  {
+    "slug": "potato-leafhopper",
+    "file": "potato-leafhopper.jpg",
+    "artist": "xpda",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Empoasca_fabae_P1400582a.jpg",
+    "bytes": 184757
+  },
+  {
+    "slug": "pillbug",
+    "file": "pillbug.jpg",
+    "artist": "Franco Folini",
+    "license": "CC BY 2.5",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Armadillidium_vulgare_001.jpg",
+    "bytes": 242575
+  },
+  {
+    "slug": "four-lined-plant-bug",
+    "file": "four-lined-plant-bug.jpg",
+    "artist": "WanderingMogwai",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Four-lined_Plant_Bug_(Poecilocapsus_lineatus).jpg",
+    "bytes": 172130
+  },
+  {
+    "slug": "mealybug",
+    "file": "mealybug.jpg",
+    "artist": "Mikhail Khokhlov",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Planococcus_citri_on_a_plant.jpg",
+    "bytes": 513608
+  },
+  {
+    "slug": "blister-beetle",
+    "file": "blister-beetle.jpg",
+    "artist": "Judy Gallagher",
+    "license": "CC BY 2.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Striped_Blister_Beetle_-_Epicauta_vittata,_Horn_Point_Laboratory,_Cambridge,_Maryland,_September_7,_2018_(52979644591).jpg",
+    "bytes": 222490
+  },
+  {
+    "slug": "bean-leaf-beetle",
+    "file": "bean-leaf-beetle.jpg",
+    "artist": "ALauriston",
+    "license": "CC BY-SA 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Bean_leaf_beetle_(Cerotoma_trifurcata)_on_a_leaf.jpg",
+    "bytes": 685455
+  },
+  {
+    "slug": "cabbage-aphid",
+    "file": "cabbage-aphid.jpg",
+    "artist": "Rasbak",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Melige_koolluis_op_boerenkool_(Brevicoryne_brassicae_on_curley_kale).jpg",
+    "bytes": 88548
+  },
+  {
+    "slug": "european-corn-borer",
+    "file": "european-corn-borer.jpg",
+    "artist": "Unknown",
+    "license": "Attribution",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Ostrinia_nubilalis01.jpg",
+    "bytes": 99397
+  },
+  {
+    "slug": "wireworm",
+    "file": "wireworm.jpg",
+    "artist": "ZATRIPPIT",
+    "license": "CC0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Click_beetle_larvae.jpg",
+    "bytes": 595997
+  },
+  {
+    "slug": "root-knot-nematode",
+    "file": "root-knot-nematode.jpg",
+    "artist": "Plant pests and diseases",
+    "license": "CC0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Tomato_(Solanum_lycopersicum)-_Root_knot_-_27443861719.jpg",
+    "bytes": 478623
+  },
+  {
+    "slug": "onion-maggot",
+    "file": "onion-maggot.jpg",
+    "artist": "Rasbak",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Delia_antiqua_maggots_at_Allium_porrum_,_uienvlieg_maden_op_prei.jpg",
+    "bytes": 177799
+  },
+  {
+    "slug": "carrot-rust-fly",
+    "file": "carrot-rust-fly.jpg",
+    "artist": "Rasbak",
+    "license": "CC BY-SA 3.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Psila_rosae_maggot,_wortelvlieg_made_(1).jpg",
+    "bytes": 421123
+  },
+  {
+    "slug": "spotted-lanternfly",
+    "file": "spotted-lanternfly.jpg",
+    "artist": "USDAgov",
+    "license": "Public domain",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Spotted_Lanternfly_(20180716-ARS-SRA-d4016-05).jpg",
+    "bytes": 318448
+  },
+  {
+    "slug": "leaf-footed-bug",
+    "file": "leaf-footed-bug.jpg",
+    "artist": "Kate Harper",
+    "license": "CC BY 4.0",
+    "commonsUrl": "https://commons.wikimedia.org/wiki/File:Leptoglossus_zonatus_nymph.jpg",
+    "bytes": 478234
+  }
+]

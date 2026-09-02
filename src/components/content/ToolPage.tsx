@@ -1,5 +1,5 @@
 import { AdSlot } from "@/components/ads/AdSlot";
-import { FaqList, PageHeader, RelatedLinks } from "@/components/content/PageSections";
+import { FaqList, PageHeader, RelatedLinks, SourcesList } from "@/components/content/PageSections";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Container } from "@/components/layout/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -58,6 +58,7 @@ export function ToolPage({
         <p className="mt-3 leading-7 text-muted">{calculator.example.body}</p>
       </section>
       <FaqList items={calculator.faqs} />
+      <SourcesList sources={calculator.sources} title="Sources and methodology" />
       <RelatedLinks title="Related tools" items={calculator.relatedCalculators} />
       <RelatedLinks title="Related guides" items={calculator.relatedGuides} />
       <AdSlot position="bottom" className="mt-10" />

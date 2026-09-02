@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { ContentBlocks } from "@/components/content/ContentBlocks";
-import { FaqList, RelatedLinks } from "@/components/content/PageSections";
+import { FaqList, RelatedLinks, SourcesList } from "@/components/content/PageSections";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Container } from "@/components/layout/Container";
 import {
@@ -11,7 +11,12 @@ import {
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getGuide, guides, isGuidePublished } from "@/data/guides";
 import { getReadyProducts, pageHasAffiliateLinks } from "@/data/products";
-import { absoluteUrl, pageMetadata } from "@/lib/seo";
+import {
+  buildGuideArticleJsonLd,
+  guideEditorialByline,
+  pageMetadata,
+  storedGuideDate,
+} from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -23,13 +28,15 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const guide = getGuide(slug);
   if (!guide) return {};
+  const indexable = isGuidePublished(guide);
+  const modifiedTime = storedGuideDate(guide.updated) ?? undefined;
   return pageMetadata({
     title: guide.title,
     description: guide.description,
     path: `/guides/${guide.slug}`,
     type: "article",
-    modifiedTime: guide.updated,
-    indexable: isGuidePublished(guide),
+    modifiedTime,
+    indexable,
   });
 }
 
@@ -39,8 +46,26 @@ export default async function GuidePage({ params }: Props) {
   if (!guide) notFound();
 
   const path = `/guides/${guide.slug}`;
+  const indexable = isGuidePublished(guide);
+  const article = buildGuideArticleJsonLd(guide, path, indexable);
   const productRecords = getReadyProducts(guide.products ?? []);
   const showAffiliate = pageHasAffiliateLinks(productRecords);
+  const jsonLd = [
+    ...(article ? [article] : []),
+    ...(guide.faqs.length
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: guide.faqs.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: { "@type": "Answer", text: item.answer },
+            })),
+          },
+        ]
+      : []),
+  ];
 
   return (
     <Container className="py-10">
@@ -50,31 +75,7 @@ export default async function GuidePage({ params }: Props) {
           { href: path, label: guide.title },
         ]}
       />
-      <JsonLd
-        data={[
-          {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: guide.title,
-            description: guide.description,
-            dateModified: guide.updated,
-            url: absoluteUrl(path),
-          },
-          ...(guide.faqs.length
-            ? [
-                {
-                  "@context": "https://schema.org",
-                  "@type": "FAQPage",
-                  mainEntity: guide.faqs.map((item) => ({
-                    "@type": "Question",
-                    name: item.question,
-                    acceptedAnswer: { "@type": "Answer", text: item.answer },
-                  })),
-                },
-              ]
-            : []),
-        ]}
-      />
+      {jsonLd.length ? <JsonLd data={jsonLd} /> : null}
       <AdSlot position="top" className="mb-8" />
       <p className="text-sm font-semibold uppercase tracking-wide text-accent">
         {guide.type === "product" ? "Buying guide" : "Guide"}
@@ -82,8 +83,8 @@ export default async function GuidePage({ params }: Props) {
       <h1 className="mt-1 max-w-3xl font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
         {guide.title}
       </h1>
+      <p className="mt-2 text-xs leading-5 text-muted">{guideEditorialByline(guide.updated)}</p>
       <p className="mt-3 max-w-3xl text-lg leading-7 text-muted">{guide.intro}</p>
-      <p className="mt-2 text-sm text-muted">Updated {guide.updated}</p>
 
       <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_16rem]">
         <article>
@@ -99,6 +100,7 @@ export default async function GuidePage({ params }: Props) {
             </section>
           ) : null}
           <FaqList items={guide.faqs} />
+          <SourcesList sources={guide.sources} />
         </article>
         <aside className="space-y-6">
           <AdSlot position="sidebar" />

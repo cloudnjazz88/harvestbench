@@ -4,6 +4,12 @@ export type RelatedLink = {
   description?: string;
 };
 
+export type SourceCitation = {
+  title: string;
+  organization: string;
+  url: string;
+};
+
 export type FaqItem = {
   question: string;
   answer: string;

@@ -1,4 +1,9 @@
-import type { CalculatorId, FaqItem, RelatedLink } from "@/data/types";
+import {
+  sourceOsuCompost,
+  sourceUgaBudgetBed,
+  sourceUmnRaisedBeds,
+} from "@/data/raisedBedSources";
+import type { CalculatorId, FaqItem, RelatedLink, SourceCitation } from "@/data/types";
 import { DRY_QUARTS_PER_CU_FT } from "@/lib/units";
 
 export type CalculatorMeta = {
@@ -13,6 +18,7 @@ export type CalculatorMeta = {
   faqs: FaqItem[];
   relatedCalculators: RelatedLink[];
   relatedGuides: RelatedLink[];
+  sources?: SourceCitation[];
   popular?: boolean;
 };
 
@@ -39,12 +45,12 @@ const calculatorList: CalculatorMeta[] = [
     description:
       "Calculate how much soil a raised bed needs in cubic feet, cubic yards, and bags.",
     intro:
-      "Enter the inside length, width, and filled height of your bed. The calculator converts mixed units, multiplies by the number of beds, and estimates bag counts from common bag sizes. Optionally, it splits that volume into compost, coco peat or peat moss, perlite, and other ingredients using common mix ratios. Turn on hugelkultur to replace the bottom with twigs, leaves, or logs — a 12-inch bed can take about 3 inches of packed brush.",
+      "Enter the inside length, width, and filled soil depth — not outside frame dimensions, and not board height if the box is only partly filled. The calculator converts mixed units, multiplies by the number of identical beds, and estimates bag counts (rounded up). Optionally, it splits that volume into compost, coco peat or peat moss, perlite, and other ingredients using common mix ratios. Turn on hugelkultur to replace the bottom with twigs, leaves, or logs — a 12-inch bed can take about 3 inches of packed brush. Open-bottom beds can use loosened native soil as extra rooting depth; closed-bottom planters cannot.",
     formula:
-      "Volume (cu ft) = length (ft) × width (ft) × height (ft) × number of beds. Cubic yards = cubic feet ÷ 27. Bags = cubic feet ÷ bag size, rounded up. Mix recipes multiply that total volume by each ingredient’s share (for example 50% topsoil, 30% compost, 10% coco peat or peat moss, 10% perlite). Hugelkultur soil volume = full volume × (soil on top ÷ bed depth). Bags saved = bags for a full soil fill minus bags for the soil layer. Dollar savings use the bag price you enter.",
+      "Convert every measurement to feet, then volume (cu ft) = inside length × inside width × soil depth × number of beds. Cubic yards = cubic feet ÷ 27. Bags = cubic feet ÷ bag size, rounded up, because a partial bag is not a store unit. Purchased volume can differ from this number because bag fill, settling, compaction, and headspace vary. Frame height is not automatically the fill depth. Mix recipes multiply that total volume by each ingredient’s share (Backyard: 40% topsoil or garden soil, 30% compost, 10% coco peat or peat moss, 10% perlite, 10% vermiculite; Budget: 50% / 35% / 5% / 5% / 5%). Hugelkultur soil volume = full volume × (soil on top ÷ bed depth). Bags saved = bags for a full soil fill minus bags for the soil layer. Dollar savings use the bag price you enter.",
     example: {
       title: "Example: one 4×8 bed, 12 inches deep",
-      body: "4 ft × 8 ft × 1 ft = 32 cubic feet, which is about 1.19 cubic yards. At 1.5 cu ft per bag, that is 22 bags (32 ÷ 1.5, rounded up). Two identical beds would need 64 cubic feet. Using the backyard blend, that 32 cu ft is about 16 cu ft topsoil, 9.6 cu ft compost, 3.2 cu ft coco peat or peat moss, and 3.2 cu ft perlite. With hugelkultur, 3 inches of packed twigs and fallen leaves means 24 cu ft of mix — 16 bags, about $48 less at $8 a bag. The same 4×8 frame 24 inches deep filled only with mix needs 43 bags; 12 inches of wood underneath stays at 22 bags and skips about $168.",
+      body: "Inside 4 ft × 8 ft × 1 ft of fill = 32 cubic feet, which is about 1.19 cubic yards (32 ÷ 27) before you round up any bag count. At 1.5 cu ft per bag, that is 22 bags (32 ÷ 1.5, rounded up). Two identical beds would need 64 cubic feet. Using the Backyard blend, that 32 cu ft is about 12.8 cu ft topsoil, 9.6 cu ft compost, and 3.2 cu ft each of coco peat or peat moss, perlite, and vermiculite. With hugelkultur, 3 inches of packed twigs and fallen leaves means 24 cu ft of mix — 16 bags, about $48 less at $8 a bag. The same 4×8 frame 24 inches deep filled only with mix needs 43 bags; 12 inches of wood underneath stays at 22 bags and skips about $168.",
     },
     popular: true,
     faqs: [
@@ -56,22 +62,22 @@ const calculatorList: CalculatorMeta[] = [
       {
         question: "Should I buy extra soil?",
         answer:
-          "Plan on 5–10% extra. Soil settles after watering, especially mixes with a lot of compost. You can top off later instead of over-ordering bulk soil.",
+          "Fresh mix often settles after watering, especially when it is compost-heavy, and bags are not always filled to the printed volume. There is no one percentage that fits every mix. Top off after the first deep watering instead of treating a single overage as a rule.",
       },
       {
         question: "Is bagged soil the same as bulk soil?",
         answer:
-          "Not always. Bagged “raised bed mix,” garden soil, and topsoil have different textures and compost content. Bulk soil is usually cheaper once you need more than about 1 cubic yard. Compare ingredients, not just the bag name.",
+          "Not always. Bagged “raised bed mix,” garden soil, and topsoil have different textures and compost content. For larger fills, bulk topsoil or a delivered blend is generally more economical than buying the same volume as individual bags. Compare ingredients, not just the bag name. This calculator does not set prices.",
       },
       {
         question: "What soil mix should I use?",
         answer:
-          "There is no single correct blend. A common backyard starting point is about 50% screened topsoil, 30% compost, 10% coco peat (coir) or peat moss, and 10% horticultural perlite. A soilless mix is often equal parts compost, coir, and perlite. Classic Mel’s Mix uses vermiculite instead of perlite and holds more water. The calculator splits your bed volume into those recipes.",
+          "There is no single correct blend. The calculator’s Backyard blend is about 40% screened topsoil or garden soil, 30% compost, 10% coco peat (coir) or peat moss, 10% horticultural perlite, and 10% coarse vermiculite. Budget uses more soil and compost and smaller shares of the amendment bags. Raised beds can include garden soil; pots should stay soilless.",
       },
       {
         question: "Perlite or vermiculite?",
         answer:
-          "Perlite (sometimes misspelled pearlite) is the white, popcorn-like volcanic glass. It adds air and drainage. Vermiculite holds more water. For most backyard raised beds, perlite is the easier hardware-store choice. Do not use playground sand as a substitute.",
+          "Perlite (sometimes misspelled pearlite) is the white, popcorn-like volcanic glass. It adds air and drainage. Vermiculite holds more water between waterings. The Backyard and Budget recipes use both in modest shares. Do not use playground sand as a substitute.",
       },
       {
         question: "Coco peat or peat moss?",
@@ -81,7 +87,12 @@ const calculatorList: CalculatorMeta[] = [
       {
         question: "How deep should I fill the bed?",
         answer:
-          "Most mixed vegetable beds work well at 10–12 inches of soil. Root crops and tomatoes are happier closer to 12–18 inches. See the raised bed depth guide for crop-by-crop notes. Hugelkultur can replace 2–3 inches in a 12-inch box, or a much thicker layer in a taller frame.",
+          "Extension guidance notes that about 8–10 inches of usable rooting depth can be enough for many vegetables, and that a tall accessibility frame is not the same as required soil depth. HarvestBench still uses 10–12 inches of fill as a practical default for mixed beds, not as a universal requirement. Root crops and large fruiting plants usually want more loosened volume and water buffering. Open-bottom beds can add depth if you loosen the native soil underneath. Closed-bottom planters need the full usable depth in the box. See the raised bed depth guide. Hugelkultur can replace 2–3 inches in a 12-inch box, or a thicker layer in a taller frame.",
+      },
+      {
+        question: "Is frame height the same as the soil I should buy?",
+        answer:
+          "No. Buy for the filled soil depth. A 24-inch accessibility frame does not have to be packed with mix to the top. Open-bottom beds can connect to loosened native soil; closed-bottom and elevated planters depend entirely on what you put in the container.",
       },
       {
         question: "What is hugelkultur, and how much money does it save?",
@@ -116,6 +127,7 @@ const calculatorList: CalculatorMeta[] = [
         label: "Best raised bed soil buying guide",
       },
     ],
+    sources: [sourceUmnRaisedBeds, sourceOsuCompost, sourceUgaBudgetBed],
   },
   {
     id: "soil-volume",
