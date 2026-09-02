@@ -1,7 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, test } from "vitest";
-import { amazonAssociatesEnabled } from "@/data/affiliates";
 import { cropImages, getCropImage } from "@/data/cropImages";
 import { crops } from "@/data/crops";
 import {
@@ -168,12 +167,10 @@ describe("image credits page", () => {
     expect(getRuntimePestImageCredits()).toHaveLength(41);
   });
 
-  test("Amazon and AdSense remain inactive in source", () => {
-    expect(amazonAssociatesEnabled).toBe(false);
-    const affiliates = readSrc("src/data/affiliates.ts");
+  test("AdSense remains inactive in source", () => {
     const adsense = readSrc("src/components/ads/AdSenseScript.tsx");
-    expect(affiliates).not.toMatch(/amazon\.com|amzn\.to/i);
     expect(adsense).not.toMatch(/ca-pub-/);
+    expect(readSrc("src/data/affiliates.ts")).not.toMatch(/amzn\.to/i);
     expect(readSrc("src/data/site.ts")).toContain(
       'adsenseClientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || ""',
     );

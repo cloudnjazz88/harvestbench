@@ -9,11 +9,13 @@ export function CardLink({
   title,
   description,
   kicker,
+  cta,
 }: {
   href: string;
   title: string;
   description: string;
   kicker?: string;
+  cta?: string;
 }) {
   return (
     <Link href={href} className={`flex h-full flex-col p-5 ${cardSurfaceClass}`}>
@@ -22,6 +24,9 @@ export function CardLink({
       ) : null}
       <span className="mt-1 font-serif text-xl font-semibold">{title}</span>
       <span className="mt-2 text-sm leading-6 text-muted">{description}</span>
+      {cta ? (
+        <span className="mt-auto pt-4 text-sm font-semibold text-accent">{cta}</span>
+      ) : null}
     </Link>
   );
 }

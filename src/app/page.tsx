@@ -6,6 +6,7 @@ import { Container } from "@/components/layout/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { calculators, getPopularCalculators } from "@/data/calculators";
 import { getFeaturedGuides, getProductGuides } from "@/data/guides";
+import { getFeaturedSeasonalGuideCards } from "@/data/seasonalGuides";
 import { filterPublicLinks } from "@/data/routes";
 import { siteConfig } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
@@ -18,6 +19,7 @@ export const metadata = pageMetadata({
 
 export default function HomePage() {
   const popular = getPopularCalculators();
+  const seasonalGuides = getFeaturedSeasonalGuideCards();
   const featuredGuides = getFeaturedGuides();
   const productGuides = getProductGuides();
 
@@ -100,6 +102,27 @@ export default function HomePage() {
             </Link>
           </p>
         </section>
+
+        {seasonalGuides.length ? (
+          <section className="mt-14">
+            <SectionHeading
+              title="Fall garden projects"
+              description="Clear finished beds, handle seasonal pruning, and move leaves, compost, and soil before the next planting."
+            />
+            <div className="grid gap-4 md:grid-cols-2">
+              {seasonalGuides.map((card) => (
+                <CardLink
+                  key={card.href}
+                  href={card.href}
+                  kicker={card.eyebrow}
+                  title={card.title}
+                  description={card.description}
+                  cta={card.cta}
+                />
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <HubPanel

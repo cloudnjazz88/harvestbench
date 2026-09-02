@@ -1,3 +1,5 @@
+import { amazonProductUrl } from "@/data/affiliates";
+
 export type Retailer = "amazon" | "home-depot" | "lowes" | "other" | "unspecified";
 
 export type ProductRecommendationRecord = {
@@ -8,8 +10,11 @@ export type ProductRecommendationRecord = {
   pros: string[];
   cons: string[];
   idealUse: string;
-  priceRange: string;
+  keySpecification?: string;
+  keepInMind?: string[];
+  priceRange?: string;
   retailer: Retailer;
+  asin?: string;
   /** Empty string means no live product URL yet. */
   externalUrl: string;
   affiliate: boolean;
@@ -209,34 +214,134 @@ export const products: ProductRecommendationRecord[] = [
     status: "placeholder",
   },
   {
-    id: "pruning-shears-placeholder",
-    name: "Bypass pruning shears (research pending)",
-    category: "Hand tools",
+    id: "fiskars-bypass-pruning-shears",
+    name: "Fiskars Bypass Pruning Shears",
+    category: "Pruning shears",
     shortDescription:
-      "Placeholder for bypass pruners used on tomatoes, peppers, and herbs.",
-    pros: ["Clean cuts on live stems", "Essential for tomato suckers and harvest"],
-    cons: ["Anvil pruners crush live stems and are a poor substitute"],
-    idealUse: "Weekly pruning and harvest in a vegetable garden.",
-    priceRange: "To be researched",
-    retailer: "unspecified",
-    externalUrl: "",
-    affiliate: false,
-    status: "placeholder",
+      "A compact bypass pruner for routine vegetable-garden cuts when most stems stay within a 5/8-inch capacity.",
+    pros: [
+      "Bypass blades for live stems",
+      "Capacity suited to lighter vegetable-garden pruning",
+    ],
+    cons: ["The lower cutting capacity is not intended for thick woody branches"],
+    idealUse: "Routine vegetable-garden pruning and lighter live stems",
+    keySpecification: "Bypass design; up to 5/8-inch cutting capacity",
+    keepInMind: ["The lower cutting capacity is not intended for thick woody branches"],
+    retailer: "amazon",
+    asin: "B00002N66H",
+    externalUrl: amazonProductUrl("B00002N66H"),
+    affiliate: true,
+    status: "ready",
   },
   {
-    id: "garden-cart-placeholder",
-    name: "Garden cart or wheelbarrow (research pending)",
-    category: "Hauling",
+    id: "corona-bp-3180d",
+    name: "Corona BP 3180D Forged Classic Bypass Pruner",
+    category: "Pruning shears",
     shortDescription:
-      "Placeholder for a cart or wheelbarrow used to move soil, compost, and mulch.",
-    pros: ["Saves backs when filling beds", "Useful for mulch and debris runs"],
-    cons: ["Cheap trays crack under wet soil weight", "Wide carts may not fit garden gates"],
-    idealUse: "Moving bagged mix, compost, and mulch to raised beds.",
-    priceRange: "To be researched",
-    retailer: "unspecified",
-    externalUrl: "",
-    affiliate: false,
-    status: "placeholder",
+      "A forged bypass pruner when you want more cutting capacity for thicker live stems and small branches.",
+    pros: ["Forged bypass design", "Listed 1-inch cutting capacity"],
+    cons: [
+      "Hand fit and the larger capacity should be considered; it may not suit every hand",
+    ],
+    idealUse:
+      "Gardeners wanting more cutting capacity for thicker live stems and small branches",
+    keySpecification: "Forged bypass pruner; up to 1-inch cutting capacity",
+    keepInMind: [
+      "Hand fit and the larger capacity should be considered; it may not suit every hand",
+    ],
+    retailer: "amazon",
+    asin: "B00004R9YQ",
+    externalUrl: amazonProductUrl("B00004R9YQ"),
+    affiliate: true,
+    status: "ready",
+  },
+  {
+    id: "felco-f2",
+    name: "FELCO F2 Pruning Shears",
+    category: "Pruning shears",
+    shortDescription:
+      "A full-size bypass pruner chosen for replaceable parts and long-term parts availability.",
+    pros: ["Replaceable parts", "Full-size bypass design"],
+    cons: ["It is a full-size model and may not suit smaller hands"],
+    idealUse: "Gardeners who value repairability and long-term parts availability",
+    keySpecification: "Full-size bypass pruner with replaceable parts",
+    keepInMind: ["It is a full-size model and may not suit smaller hands"],
+    retailer: "amazon",
+    asin: "B00023RYS6",
+    externalUrl: amazonProductUrl("B00023RYS6"),
+    affiliate: true,
+    status: "ready",
+  },
+  {
+    id: "macsports-collapsible-wagon",
+    name: "MacSports Collapsible Utility Wagon",
+    category: "Garden carts",
+    shortDescription:
+      "A folding fabric wagon for leaves, tools, and harvested produce when storage space is limited.",
+    pros: [
+      "Collapses for storage",
+      "Useful for leaves, tools, and harvested produce",
+    ],
+    cons: [
+      "It is not a dump cart and is not the best design for unloading loose soil",
+    ],
+    idealUse: "Leaves, tools, harvested produce, and gardeners with limited storage",
+    keySpecification: "Collapsible fabric utility wagon; listed 150-pound capacity",
+    keepInMind: [
+      "It is not a dump cart and is not the best design for unloading loose soil",
+    ],
+    retailer: "amazon",
+    asin: "B00BUUUIGK",
+    externalUrl: amazonProductUrl("B00BUUUIGK"),
+    affiliate: true,
+    status: "ready",
+  },
+  {
+    id: "gorilla-carts-gor4ps",
+    name: "Gorilla Carts GOR4PS 4 cu ft Poly Dump Cart",
+    category: "Garden carts",
+    shortDescription:
+      "A poly dump cart for soil, compost, mulch, and ordinary backyard loads that you want to tip out.",
+    pros: ["Dump bed for unloading", "Poly tray sized for ordinary backyard loads"],
+    cons: [
+      "Pneumatic tires require pressure and maintenance",
+      "Listed capacity is the manufacturer specification, not a working-load target for every trip",
+    ],
+    idealUse: "Moving soil, compost, mulch, and ordinary backyard loads",
+    keySpecification:
+      "4-cubic-foot poly dump cart; listed 600-pound capacity; pneumatic tires",
+    keepInMind: [
+      "Pneumatic tires require pressure and maintenance",
+      "Listed capacity is the manufacturer specification, not a working-load target for every trip",
+    ],
+    retailer: "amazon",
+    asin: "B01BECQAWO",
+    externalUrl: amazonProductUrl("B01BECQAWO"),
+    affiliate: true,
+    status: "ready",
+  },
+  {
+    id: "gorilla-carts-1000-steel",
+    name: "Gorilla Carts 1000 lb Steel Utility Cart",
+    category: "Garden carts",
+    shortDescription:
+      "A larger steel cart when bulky or heavier yard materials make a folding wagon or small dump cart the wrong tool.",
+    pros: ["Steel bed for bulky materials", "High listed capacity for heavier yard loads"],
+    cons: [
+      "It is larger and less convenient to store",
+      "Fine loose material may require a liner depending on the bed construction",
+    ],
+    idealUse: "Bulky or heavier yard materials where a larger steel cart is appropriate",
+    keySpecification: "Steel utility garden cart; listed 1,000-pound capacity",
+    keepInMind: [
+      "It is larger and less convenient to store",
+      "Fine loose material may require a liner depending on the bed construction",
+    ],
+    retailer: "amazon",
+    asin: "B01BECQEA2",
+    externalUrl: amazonProductUrl("B01BECQEA2"),
+    affiliate: true,
+    status: "ready",
   },
 ];
 
@@ -262,4 +367,29 @@ export function pageHasAffiliateLinks(
   items: Pick<ProductRecommendationRecord, "affiliate" | "externalUrl">[],
 ): boolean {
   return items.some((item) => item.affiliate && Boolean(item.externalUrl.trim()));
+}
+
+export function getReadyAmazonProducts(): ProductRecommendationRecord[] {
+  return products.filter(
+    (item) =>
+      isProductReady(item) &&
+      item.affiliate &&
+      item.retailer === "amazon" &&
+      Boolean(item.asin),
+  );
+}
+
+export function productPublicText(product: ProductRecommendationRecord): string {
+  return [
+    product.name,
+    product.category,
+    product.shortDescription,
+    product.idealUse,
+    product.keySpecification,
+    ...(product.keepInMind ?? []),
+    ...product.pros,
+    ...product.cons,
+  ]
+    .filter(Boolean)
+    .join("\n");
 }

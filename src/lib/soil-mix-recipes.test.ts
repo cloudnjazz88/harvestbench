@@ -1,5 +1,4 @@
 import { describe, expect, test } from "vitest";
-import { amazonAssociatesEnabled } from "@/data/affiliates";
 import { getCalculator } from "@/data/calculators";
 import { getGuide } from "@/data/guides";
 import { pottingMixRecipes } from "@/data/pottingMixes";
@@ -151,15 +150,15 @@ describe("source-backed soil mix recipes", () => {
     expect(text).toMatch(/Balanced raised-bed mix \(40% compost\)/);
   });
 
-  test("Amazon and AdSense remain inactive in source", () => {
-    expect(amazonAssociatesEnabled).toBe(false);
-    const affiliates = readFileSync(path.join(process.cwd(), "src/data/affiliates.ts"), "utf8");
+  test("AdSense remains inactive in source", () => {
     const adsense = readFileSync(
       path.join(process.cwd(), "src/components/ads/AdSenseScript.tsx"),
       "utf8",
     );
-    expect(affiliates).not.toMatch(/amazon\.com|amzn\.to/i);
     expect(adsense).not.toMatch(/ca-pub-/);
+    expect(readFileSync(path.join(process.cwd(), "src/data/affiliates.ts"), "utf8")).not.toMatch(
+      /amzn\.to/i,
+    );
   });
 
   test("existing raised-bed volume and bag-count behavior remains correct", () => {

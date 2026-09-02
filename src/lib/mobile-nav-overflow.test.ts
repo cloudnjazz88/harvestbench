@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, test } from "vitest";
-import { amazonAssociatesEnabled } from "@/data/affiliates";
 import { primaryNav } from "@/data/site";
 
 const header = readFileSync(
@@ -44,9 +43,5 @@ describe("mobile navigation overflow", () => {
     expect(openPanel).not.toContain("left-0");
     expect(openPanel).not.toContain("translate-x-full");
     expect(openPanel).not.toContain("-translate-y-1/2");
-  });
-
-  test("Amazon remains inactive", () => {
-    expect(amazonAssociatesEnabled).toBe(false);
   });
 });

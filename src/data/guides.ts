@@ -2013,9 +2013,9 @@ export const guides: Guide[] = [
       "What to look for in bypass pruners for vegetable gardens, without fake ratings or “we tested” claims.",
     type: "product",
     category: "products",
-    updated: "2026-08-26",
+    updated: "2026-09-02",
     intro:
-      "Bypass pruning shears make clean cuts on live tomato suckers, pepper stems, and herbs. Anvil pruners crush green tissue and are the wrong default for vegetables. This page covers blade type and durability, not brand awards.",
+      "Bypass pruning shears make clean cuts on live tomato suckers, pepper stems, and herbs. Anvil pruners crush green tissue and are the wrong default for vegetables. The examples below compare cutting capacity, hand fit, and repairability — not ranked awards.",
     body: [
       {
         type: "h2",
@@ -2034,12 +2034,33 @@ export const guides: Guide[] = [
         type: "p",
         text: "You will use shears more than a full-size pruner in a raised-bed garden. Keep them dry. For tomato pruning context, see [tomato spacing](/guides/how-far-apart-to-plant-tomatoes) and the [tomato page](/vegetable-gardening/tomatoes).",
       },
+      {
+        type: "h2",
+        text: "How these bypass pruners differ",
+      },
+      {
+        type: "p",
+        text: "Match the tool to the stems you actually cut. Listed cutting capacities are manufacturer specifications, not HarvestBench measurements.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Up to 5/8-inch bypass: routine vegetable-garden pruning and lighter live stems",
+          "Up to 1-inch forged bypass: thicker live stems and small branches, if the handle fits your hand",
+          "Full-size replaceable-part bypass: gardeners who want to service the tool instead of replacing it",
+        ],
+      },
     ],
     faqs: [
       {
         question: "Do I need Felco-style shears?",
         answer:
-          "Not to grow food. Comfort, a sharp bypass blade, and the habit of cutting rather than tearing matter more than a brand name we have not evaluated here.",
+          "Not to grow food. Comfort, a sharp bypass blade, and the habit of cutting rather than tearing matter more than a brand name. A full-size repairable model is one option when parts availability matters; it is not required.",
+      },
+      {
+        question: "Are the cutting capacities tested here?",
+        answer:
+          "No. The capacities listed on this page come from the product specifications. Use them to compare models, then confirm the current details on the retailer page.",
       },
     ],
     relatedTools: [
@@ -2049,7 +2070,7 @@ export const guides: Guide[] = [
       { href: "/garden-tools", label: "Garden tools hub" },
       { href: "/vegetable-gardening/tomatoes", label: "Growing tomatoes" },
     ],
-    products: ["pruning-shears-placeholder"],
+    products: ["fiskars-bypass-pruning-shears", "corona-bp-3180d", "felco-f2"],
   },
   ...topicGuides,
 ];

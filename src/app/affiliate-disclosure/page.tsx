@@ -27,9 +27,9 @@ export default function AffiliateDisclosurePage() {
           explain how to choose a product category. They are not ranked brand lists.
         </p>
         <p>
-          {siteConfig.name} does not currently display Amazon Special Links or other paid retailer
-          checkout links. Product availability and retailer details can change; confirm them with
-          the retailer before you buy.
+          Selected buying guides include Amazon Special Links so you can check current price and
+          availability on Amazon. Product availability and retailer details can change; confirm
+          them with the retailer before you buy.
         </p>
         {amazonDisclosure ? <p>{amazonDisclosure}</p> : null}
       </div>

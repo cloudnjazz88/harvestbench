@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, test } from "vitest";
-import { amazonAssociatesEnabled } from "@/data/affiliates";
 import { topicGuides } from "@/data/guidesTopics";
 import { getPest } from "@/data/pests";
 import { getIndexablePagePaths } from "@/data/routes";
@@ -51,9 +50,5 @@ describe("navigation and pest discovery links", () => {
       { href: "/pest-problems/tomato-hornworm", label: "Tomato hornworm pest card" },
       { href: "/pest-problems", label: "Pest & plant problems hub" },
     ]);
-  });
-
-  test("Amazon remains inactive", () => {
-    expect(amazonAssociatesEnabled).toBe(false);
   });
 });

@@ -9,7 +9,7 @@ import {
   isGuidePublished,
   type Guide,
 } from "@/data/guides";
-import { getReadyProducts, products } from "@/data/products";
+import { getReadyAmazonProducts, getReadyProducts, productPublicText, products } from "@/data/products";
 import {
   filterPublicLinks,
   getAllPagePaths,
@@ -106,8 +106,9 @@ describe("homepage and product guides", () => {
   });
 
   test("placeholder products are not treated as ready recommendations", () => {
-    expect(products.every((product) => product.status === "placeholder")).toBe(true);
-    expect(getReadyProducts(products.map((product) => product.id))).toEqual([]);
+    const placeholders = products.filter((product) => product.status === "placeholder");
+    expect(placeholders.length).toBeGreaterThan(0);
+    expect(getReadyProducts(placeholders.map((product) => product.id))).toEqual([]);
   });
 
   test("buying guides with finished selection guidance stay in public discovery", () => {
@@ -125,6 +126,10 @@ describe("public copy and internal links", () => {
   test("published guide and calculator copy does not use unfinished-state language", () => {
     for (const guide of getPublishedGuides()) {
       expect(guidePublicText(guide), guide.slug).not.toMatch(UNFINISHED_LANGUAGE);
+    }
+
+    for (const product of getReadyAmazonProducts()) {
+      expect(productPublicText(product), product.id).not.toMatch(UNFINISHED_LANGUAGE);
     }
 
     for (const calculator of calculators) {
@@ -178,14 +183,10 @@ describe("public copy and internal links", () => {
 });
 
 describe("Amazon Associates disclosure", () => {
-  test("exact Amazon sentence does not render while Amazon monetization is disabled", () => {
-    expect(amazonAssociatesEnabled).toBe(false);
-    expect(getAmazonAssociateDisclosure()).toBeNull();
-  });
-
-  test("prepared Amazon disclosure returns the required sentence when enabled", () => {
-    expect(getAmazonAssociateDisclosure(true)).toBe(AMAZON_ASSOCIATE_DISCLOSURE);
-    expect(getAmazonAssociateDisclosure(true)).toBe(
+  test("exact Amazon sentence renders after Amazon monetization is enabled", () => {
+    expect(amazonAssociatesEnabled).toBe(true);
+    expect(getAmazonAssociateDisclosure()).toBe(AMAZON_ASSOCIATE_DISCLOSURE);
+    expect(getAmazonAssociateDisclosure()).toBe(
       "As an Amazon Associate I earn from qualifying purchases.",
     );
   });

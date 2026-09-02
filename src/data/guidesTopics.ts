@@ -417,9 +417,9 @@ export const topicGuides: Guide[] = [
       "What to look for in a garden cart or wheelbarrow for moving soil, compost, and mulch — without fake product rankings.",
     type: "product",
     category: "products",
-    updated: "2026-08-27",
+    updated: "2026-09-02",
     intro:
-      "A cart earns its keep when you haul bags of mix, compost, or mulch. Capacity, wheel type, and whether you can dump cleanly matter more than color. This page compares carts and wheelbarrows; it does not rank brands.",
+      "A cart earns its keep when you haul bags of mix, compost, or mulch. Capacity, wheel type, and whether you can dump cleanly matter more than color. The examples below compare a folding wagon, a poly dump cart, and a steel utility cart by load type and storage — not a ranked brand list.",
     body: [
       {
         type: "h2",
@@ -443,12 +443,33 @@ export const topicGuides: Guide[] = [
         type: "p",
         text: "Wheelbarrows turn tighter in a crowded yard. Four-wheel carts carry more with less wrist strain on flat ground. For filling a new raised bed, volume math still starts with the [raised bed soil calculator](/calculators/raised-bed-soil) so you know how many loads you are signing up for.",
       },
+      {
+        type: "h2",
+        text: "How these carts differ",
+      },
+      {
+        type: "p",
+        text: "Match the cart to the load and to the storage you have. Listed capacities are manufacturer specifications, not a claim that every trip should reach the maximum.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Collapsible fabric wagon: leaves, tools, harvested produce, and limited storage",
+          "Poly dump cart: soil, compost, mulch, and ordinary backyard loads you want to tip out",
+          "Steel utility cart: bulky or heavier yard materials when a larger bed is appropriate",
+        ],
+      },
     ],
     faqs: [
       {
         question: "Do I need a $400 garden cart?",
         answer:
           "Not for a couple of 4×8 beds. A sturdy barrow or mid-size cart that dumps cleanly is enough. Spend on soil and compost first.",
+      },
+      {
+        question: "Should I treat the listed load rating as a working load?",
+        answer:
+          "No. The figures on this page are manufacturer ratings. Wet soil and compost are heavier than they look, and pneumatic tires also need pressure and maintenance.",
       },
     ],
     relatedTools: [
@@ -462,6 +483,10 @@ export const topicGuides: Guide[] = [
         label: "How much soil does a raised bed need?",
       },
     ],
-    products: ["garden-cart-placeholder"],
+    products: [
+      "macsports-collapsible-wagon",
+      "gorilla-carts-gor4ps",
+      "gorilla-carts-1000-steel",
+    ],
   },
 ];
