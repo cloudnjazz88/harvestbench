@@ -177,11 +177,11 @@ export default function HomePage() {
           />
           <HubPanel
             title="Pest & plant problems"
-            body="Aphids, tomato hornworms, blossom-end rot, and what to try before a yard-wide spray."
+            body="Photos, controls, and product types for common garden pests — plus blossom-end rot."
             href="/pest-problems"
             links={[
-              { href: "/guides/aphids-on-vegetable-plants", label: "Aphids" },
-              { href: "/guides/tomato-hornworms", label: "Tomato hornworms" },
+              { href: "/pest-problems/aphids", label: "Aphids" },
+              { href: "/pest-problems/tomato-hornworm", label: "Tomato hornworms" },
               { href: "/guides/blossom-end-rot", label: "Blossom-end rot" },
             ]}
           />

@@ -271,7 +271,10 @@ export const topicGuides: Guide[] = [
           "They catch some winged adults and help you notice a problem. They do not replace checking leaves.",
       },
     ],
-    relatedTools: [{ href: "/pest-problems", label: "Pest & plant problems hub" }],
+    relatedTools: [
+      { href: "/pest-problems/aphids", label: "Aphids pest card (photo + products)" },
+      { href: "/pest-problems", label: "Pest & plant problems hub" },
+    ],
     relatedGuides: [
       { href: "/guides/tomato-hornworms", label: "Tomato hornworms" },
       { href: "/vegetable-gardening/tomatoes", label: "Growing tomatoes" },
@@ -328,7 +331,10 @@ export const topicGuides: Guide[] = [
           "They prefer leaves but will scar green fruit. Removing worms promptly protects later clusters.",
       },
     ],
-    relatedTools: [{ href: "/pest-problems", label: "Pest & plant problems hub" }],
+    relatedTools: [
+      { href: "/pest-problems/tomato-hornworm", label: "Tomato hornworm pest card" },
+      { href: "/pest-problems", label: "Pest & plant problems hub" },
+    ],
     relatedGuides: [
       { href: "/guides/aphids-on-vegetable-plants", label: "Aphids on vegetables" },
       { href: "/guides/blossom-end-rot", label: "Blossom-end rot" },
