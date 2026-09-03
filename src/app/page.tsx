@@ -43,11 +43,11 @@ export default function HomePage() {
           className="object-cover object-[72%_center] sm:object-[center_42%]"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-r from-background/88 from-[8%] via-background/78 via-[38%] to-background/5"
+          className="absolute inset-0 bg-gradient-to-r from-background/68 from-[8%] via-background/58 via-[38%] to-background/0"
           aria-hidden="true"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/10 to-background/25"
+          className="absolute inset-0 bg-gradient-to-t from-background/65 via-background/5 to-background/5"
           aria-hidden="true"
         />
         <Container width="wide" className="relative py-14 sm:py-20 lg:py-24">
