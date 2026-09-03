@@ -122,7 +122,7 @@ const calculatorList: CalculatorMeta[] = [
       },
       {
         href: "/guides/best-raised-bed-soil",
-        label: "Best raised bed soil buying guide",
+        label: "How to choose raised bed soil",
       },
     ],
     sources: [sourceUmnRaisedBeds, sourceOsuCompost, sourceUgaBudgetBed],

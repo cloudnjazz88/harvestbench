@@ -318,7 +318,7 @@ export const guides: Guide[] = [
         href: "/guides/best-soil-mix-for-raised-beds",
         label: "Best soil mix for raised beds",
       },
-      { href: "/guides/best-raised-bed-soil", label: "Best raised bed soil" },
+      { href: "/guides/best-raised-bed-soil", label: "How to choose raised bed soil" },
     ],
     sources: [sourceUmnRaisedBeds, sourceOsuCompost, sourceUgaBudgetBed],
   },
@@ -744,7 +744,7 @@ export const guides: Guide[] = [
         href: "/guides/best-soil-mix-for-raised-beds",
         label: "Best soil mix for raised beds",
       },
-      { href: "/guides/best-raised-bed-soil", label: "Buying raised bed soil" },
+      { href: "/guides/best-raised-bed-soil", label: "How to choose raised bed soil" },
     ],
     sources: [sourcePsuPottingMedia, sourceUmnContainers, sourceUgaHomeGardenSoil],
   },
@@ -878,7 +878,7 @@ export const guides: Guide[] = [
         href: "/guides/how-much-soil-does-a-raised-bed-need",
         label: "How much soil does a raised bed need?",
       },
-      { href: "/guides/best-raised-bed-soil", label: "Best raised bed soil" },
+      { href: "/guides/best-raised-bed-soil", label: "How to choose raised bed soil" },
       {
         href: "/guides/how-to-prepare-a-raised-bed",
         label: "How to prepare a raised bed",
@@ -986,7 +986,7 @@ export const guides: Guide[] = [
         href: "/guides/how-deep-should-a-raised-bed-be",
         label: "How deep should a raised bed be?",
       },
-      { href: "/guides/best-raised-garden-beds", label: "Best raised garden beds" },
+      { href: "/guides/best-raised-garden-beds", label: "How to choose a raised garden bed" },
     ],
   },
   {
@@ -1094,7 +1094,7 @@ export const guides: Guide[] = [
         href: "/guides/how-deep-should-a-raised-bed-be",
         label: "How deep should a raised bed be?",
       },
-      { href: "/guides/best-raised-garden-beds", label: "Best raised garden beds" },
+      { href: "/guides/best-raised-garden-beds", label: "How to choose a raised garden bed" },
     ],
   },
   {
@@ -1197,8 +1197,8 @@ export const guides: Guide[] = [
     ],
     relatedGuides: [
       { href: "/guides/best-drip-irrigation", label: "Drip irrigation for raised beds" },
-      { href: "/guides/best-soaker-hose", label: "Best soaker hose" },
-      { href: "/guides/best-garden-hose", label: "Best garden hose" },
+      { href: "/guides/best-soaker-hose", label: "How to choose a soaker hose" },
+      { href: "/guides/best-garden-hose", label: "How to choose a garden hose" },
     ],
   },
   {
@@ -1295,7 +1295,7 @@ export const guides: Guide[] = [
         href: "/guides/how-far-apart-to-plant-peppers",
         label: "How far apart to plant peppers",
       },
-      { href: "/guides/best-garden-trellis", label: "Best garden trellis" },
+      { href: "/guides/best-garden-trellis", label: "How to choose a garden trellis" },
     ],
   },
   {
@@ -1457,7 +1457,7 @@ export const guides: Guide[] = [
     ],
     relatedGuides: [
       { href: "/vegetable-gardening/cucumbers", label: "Cucumber growing overview" },
-      { href: "/guides/best-garden-trellis", label: "Best garden trellis" },
+      { href: "/guides/best-garden-trellis", label: "How to choose a garden trellis" },
       {
         href: "/guides/how-often-to-water-raised-beds",
         label: "How often to water raised beds",
@@ -1549,9 +1549,9 @@ export const guides: Guide[] = [
   },
   {
     slug: "best-raised-bed-soil",
-    title: "Best Raised Bed Soil: What to Look For",
+    title: "How to Choose Raised Bed Soil",
     description:
-      "Buying criteria for bagged and bulk raised bed soil, without fake reviews, prices, or test claims.",
+      "How to compare bagged and bulk raised bed soil: label ingredients, texture, cost per cubic foot, and delivery trade-offs.",
     type: "product",
     category: "products",
     updated: "2026-08-26",
@@ -1625,9 +1625,9 @@ export const guides: Guide[] = [
   },
   {
     slug: "best-raised-garden-beds",
-    title: "Best Raised Garden Beds: How to Choose a Frame",
+    title: "How to Choose a Raised Garden Bed",
     description:
-      "How to choose a raised bed kit or build: height, width, materials, and structural strength — without fake product tests.",
+      "How to choose a raised bed kit or build: height, width, materials, and the structural strength a full soil fill needs.",
     type: "product",
     category: "products",
     updated: "2026-08-26",
@@ -1690,9 +1690,9 @@ export const guides: Guide[] = [
   },
   {
     slug: "best-garden-hose",
-    title: "Best Garden Hose: Buying Criteria",
+    title: "How to Choose a Garden Hose",
     description:
-      "What to look for in a backyard garden hose: diameter, fittings, kink resistance, and drinking-water labeling — not fake reviews.",
+      "What to look for in a backyard garden hose: length, diameter, fittings, kink resistance, and drinking-water labeling.",
     type: "product",
     category: "products",
     updated: "2026-08-26",
@@ -1729,15 +1729,15 @@ export const guides: Guide[] = [
     ],
     relatedGuides: [
       { href: "/guides/best-drip-irrigation", label: "Drip irrigation for raised beds" },
-      { href: "/guides/best-soaker-hose", label: "Best soaker hose" },
+      { href: "/guides/best-soaker-hose", label: "How to choose a soaker hose" },
     ],
     products: ["garden-hose-placeholder"],
   },
   {
     slug: "best-soaker-hose",
-    title: "Best Soaker Hose: Buying Criteria",
+    title: "How to Choose a Soaker Hose",
     description:
-      "How to choose a soaker hose for raised vegetable beds, including length, pressure, and layout — without fabricated reviews.",
+      "How to choose a soaker hose for raised vegetable beds: length, working pressure, layout under mulch, and material trade-offs.",
     type: "product",
     category: "products",
     updated: "2026-08-26",
@@ -1775,7 +1775,7 @@ export const guides: Guide[] = [
     ],
     relatedGuides: [
       { href: "/guides/best-drip-irrigation", label: "Drip irrigation for raised beds" },
-      { href: "/guides/best-garden-hose", label: "Best garden hose" },
+      { href: "/guides/best-garden-hose", label: "How to choose a garden hose" },
     ],
     products: ["soaker-hose-placeholder"],
   },
@@ -1942,16 +1942,16 @@ export const guides: Guide[] = [
         href: "/guides/how-often-to-water-raised-beds",
         label: "How often to water raised beds",
       },
-      { href: "/guides/best-soaker-hose", label: "Best soaker hose" },
-      { href: "/guides/best-garden-hose", label: "Best garden hose" },
+      { href: "/guides/best-soaker-hose", label: "How to choose a soaker hose" },
+      { href: "/guides/best-garden-hose", label: "How to choose a garden hose" },
     ],
     products: ["drip-irrigation-kit-placeholder", "drip-timer-placeholder"],
   },
   {
     slug: "best-garden-trellis",
-    title: "Best Garden Trellis: Buying Criteria",
+    title: "How to Choose a Garden Trellis",
     description:
-      "How to choose a trellis for cucumbers, peas, and tomatoes in raised beds, focused on wind, height, and anchoring.",
+      "How to choose a trellis for cucumbers, peas, and tomatoes in raised beds: useful height, anchoring, and wind loads.",
     type: "product",
     category: "products",
     updated: "2026-08-26",

@@ -34,18 +34,52 @@ export default function PrivacyPage() {
         </p>
         <h2 className="pt-2 font-serif text-2xl font-semibold text-foreground">Advertising</h2>
         <p>
-          The site may display Google ads. When ads are shown, Google and its partners may use cookies
-          or similar technologies to serve and measure those ads.
+          The site may use Google AdSense to display advertising when advertising is enabled. When
+          that happens, third-party vendors, including Google, may use cookies to serve ads based on
+          your previous visits to this site or to other websites. Google’s use of advertising cookies
+          enables Google and its partners to serve personalized ads to you.
+        </p>
+        <p>
+          Google and other advertising partners may also use web beacons, IP addresses, and similar
+          identifiers to serve, personalize, and measure advertising.
+        </p>
+        <p>
+          You can manage or opt out of personalized advertising at any time in{" "}
+          <a
+            href="https://adssettings.google.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-foreground"
+          >
+            Google Ads Settings
+          </a>
+          . Google also explains{" "}
+          <a
+            href="https://policies.google.com/technologies/partner-sites"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-foreground"
+          >
+            how it uses data on sites that use its services
+          </a>
+          .
         </p>
         <h2 className="pt-2 font-serif text-2xl font-semibold text-foreground">Affiliate links</h2>
         <p>
-          The site does not currently use affiliate links. Retailer policies do not apply unless you
-          leave this site on your own. See the affiliate disclosure page.
+          Selected buying guides on this site contain affiliate links. HarvestBench may earn a
+          commission when a visitor purchases through one of those links, at no extra cost to you.
+          Not every guide or product on the site uses an affiliate link. The{" "}
+          <a href="/affiliate-disclosure" className="underline hover:text-foreground">
+            Affiliate Disclosure
+          </a>{" "}
+          page has more information.
         </p>
         <h2 className="pt-2 font-serif text-2xl font-semibold text-foreground">Cookies</h2>
         <p>
-          Calculators do not require cookies. Third-party cookies may appear when Analytics or ads are
-          active.
+          Calculators do not require cookies, and the site does not set its own advertising cookies.
+          Third-party cookies may appear when Analytics or advertising is active, as described above.
+          Most browsers let you block or delete cookies in their settings, and personalized Google
+          ads can be turned off in Google Ads Settings.
         </p>
         <h2 className="pt-2 font-serif text-2xl font-semibold text-foreground">Contact</h2>
         <p>
