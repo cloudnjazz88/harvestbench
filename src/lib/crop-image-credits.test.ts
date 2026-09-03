@@ -172,7 +172,7 @@ describe("image credits page", () => {
     expect(adsense).not.toMatch(/ca-pub-/);
     expect(readSrc("src/data/affiliates.ts")).not.toMatch(/amzn\.to/i);
     expect(readSrc("src/data/site.ts")).toContain(
-      'adsenseClientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || ""',
+      'process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-9237217026636557"',
     );
   });
 });

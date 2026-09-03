@@ -46,6 +46,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${sourceSans.variable} ${sourceSerif.variable} h-full antialiased`}
     >
+      <head>
+        <AdSenseScript />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <JsonLd
           data={{
@@ -57,7 +60,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           }}
         />
         <Analytics />
-        <AdSenseScript />
         <Header />
         <main id="main" className="flex-1">
           {children}

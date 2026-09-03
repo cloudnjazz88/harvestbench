@@ -19,7 +19,8 @@ export function getSiteUrl(): string {
 
 export const analytics = {
   gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",
-  adsenseClientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "",
+  adsenseClientId:
+    process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-9237217026636557",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@harvestbench.com",
 };
 
