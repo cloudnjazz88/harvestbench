@@ -192,20 +192,20 @@ export const feedingLevels: FeedingLevel[] = [
   {
     id: "light",
     label: "Light",
-    hint: "Default. Compost-rich bed, or you would rather underfeed than burn",
-    lbNPer1000: 0.15,
+    hint: "Default. Compost-rich bed, first feeding, or you would rather not overdo it",
+    lbNPer1000: 0.225,
   },
   {
     id: "typical",
     label: "Typical",
-    hint: "A modest midseason side-dress if plants look hungry",
-    lbNPer1000: 0.375,
+    hint: "Usual midseason top-dress when plants are growing well but still need a feeding",
+    lbNPer1000: 0.5625,
   },
   {
     id: "stronger",
     label: "Stronger",
-    hint: "Pale leaves on a hungry crop. Still a low rate — not a dump from the bag",
-    lbNPer1000: 0.6,
+    hint: "Use only for hungry, heavy-feeding crops or clear signs of nutrient need. Not the usual starting choice",
+    lbNPer1000: 0.9,
   },
 ];
 

@@ -327,7 +327,7 @@ const calculatorList: CalculatorMeta[] = [
     intro:
       "Most people do not need to know N-P-K by heart. Choose what you are growing. The calculator says which of the three bag numbers should be highest — or if they should be about equal. Amounts are a conservative top-dress for an established bed or container, not fertilizer to mix into new soil or potting mix. Too much fertilizer can burn plants. Compost-rich raised beds often need less than a bag chart implies.",
     formula:
-      "Bags print three numbers in order: nitrogen (N, leaves), phosphorus (P, early roots and flowers), potassium (K, fruit and overall toughness). Amount math is a light surface top-dress for plants that are already growing. Light = 0.15, Typical = 0.375, Stronger = 0.6 lb actual N per 1,000 sq ft — below many bag charts so you are less likely to burn plants, but not the lowest possible scoop. Beds use length × width. Pots use the circular top surface (πr² × number of pots). Bed and pot depth are not used, and the tool does not estimate a mix-in for new soil. Product (lb) = nitrogen needed ÷ (N% ÷ 100). Kitchen spoons assume 1 oz of typical granular fertilizer ≈ 2 Tbsp. Pellet size varies. The product label still wins, especially if it lists a lower rate.",
+      "Bags print three numbers in order: nitrogen (N, leaves), phosphorus (P, early roots and flowers), potassium (K, fruit and overall toughness). Amount math is a conservative surface top-dress for one feeding on plants that are already growing. Light = 0.225, Typical = 0.5625, Stronger = 0.9 lb actual N per 1,000 sq ft. Compost-rich beds should start with Light. Beds use length × width. Pots use the circular top surface (πr² × number of pots). Bed and pot depth are not used, and the tool does not estimate a mix-in for new soil. Product (lb) = nitrogen needed ÷ (N% ÷ 100). Kitchen spoons assume 1 oz of typical granular fertilizer ≈ 2 Tbsp. Pellet size varies. The product label still wins, especially if it lists a lower rate.",
     example: {
       title: "Example: tomatoes in a mixed raised bed",
       body: "Pick tomatoes. The tool points you to a higher-potassium bag — third number biggest, or at least matching nitrogen — such as a 4-6-8 or 5-5-10 style vegetable food. A 20-5-5 lawn fertilizer is the wrong aisle. Enter the bed or pot surface size, the three numbers from the bag, and Light / Typical / Stronger. The amount is a starting top-dress in Tbsp or tsp, not a mix-in for new soil. Follow the bag if it lists its own garden rate.",
@@ -347,7 +347,7 @@ const calculatorList: CalculatorMeta[] = [
       {
         question: "Do I need to know target nitrogen?",
         answer:
-          "No. Enter the three numbers off the label and pick Light, Typical, or Stronger from how the plants look. If the bag prints its own rate for vegetable gardens, use that instead.",
+          "No. Enter the three numbers off the label and pick Light, Typical, or Stronger. Light is the default starting choice. If the bag prints its own rate for vegetable gardens, or a lower rate, use the bag instead.",
       },
       {
         question: "Can I use this when filling a new pot or raised bed?",
@@ -357,7 +357,7 @@ const calculatorList: CalculatorMeta[] = [
       {
         question: "Is a 10-10-10 always the safe choice?",
         answer:
-          "It is a reasonable mixed-bed default. Leafy crops often want a higher first number. Fruiting crops often want the third number to keep up. Compost already in the bed can cover a light feeding.",
+          "It is a reasonable mixed-bed default. Leafy crops often want a higher first number. Fruiting crops often want the third number to keep up. Compost already in the bed can cover a light feeding. Repeated use of a balanced fertilizer also adds phosphorus and potassium.",
       },
       {
         question: "Why is high phosphorus not the default for tomatoes?",
@@ -372,7 +372,7 @@ const calculatorList: CalculatorMeta[] = [
       {
         question: "Can this tell me if I will burn plants?",
         answer:
-          "No calculator can promise that. These rates are deliberately low, and the default is Light. Burn still depends on the product, wet vs dry granules, and whether fertilizer sits on stems. Keep it off the plant, water it in, and stop if leaf edges scorch. The label and a soil test override this tool.",
+          "No calculator can promise that. These amounts are a conservative starting point for one feeding, and the default is Light. Do not repeat more often than the fertilizer label allows. Burn still depends on the product, wet vs dry granules, and whether fertilizer sits on stems. Keep it off the plant, water it in, and stop if leaf edges scorch. The label and a soil test override this tool.",
       },
     ],
     relatedCalculators: [

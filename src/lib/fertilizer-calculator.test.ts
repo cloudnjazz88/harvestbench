@@ -23,6 +23,8 @@ const calculatorSource = readFileSync(
 
 const LIGHT_N = getFeedingLevel("light").lbNPer1000;
 const TYPICAL_N = getFeedingLevel("typical").lbNPer1000;
+const STRONGER_N = getFeedingLevel("stronger").lbNPer1000;
+const PREVIOUS_RATES = { light: 0.15, typical: 0.375, stronger: 0.6 } as const;
 
 function bedInput(overrides: Partial<FertilizerInput> = {}): FertilizerInput {
   return {
@@ -46,20 +48,107 @@ function potInput(overrides: Partial<FertilizerInput> = {}): FertilizerInput {
   return bedInput({ spaceType: "pot", ...overrides });
 }
 
+describe("fertilizer feeding rates", () => {
+  test("locks Light / Typical / Stronger at 1.5× the previous surface rates", () => {
+    expect(LIGHT_N).toBe(0.225);
+    expect(TYPICAL_N).toBe(0.5625);
+    expect(STRONGER_N).toBe(0.9);
+    expect(LIGHT_N).toBeCloseTo(PREVIOUS_RATES.light * 1.5, 12);
+    expect(TYPICAL_N).toBeCloseTo(PREVIOUS_RATES.typical * 1.5, 12);
+    expect(STRONGER_N).toBeCloseTo(PREVIOUS_RATES.stronger * 1.5, 12);
+    expect(TYPICAL_N / LIGHT_N).toBeCloseTo(PREVIOUS_RATES.typical / PREVIOUS_RATES.light, 12);
+    expect(STRONGER_N / LIGHT_N).toBeCloseTo(PREVIOUS_RATES.stronger / PREVIOUS_RATES.light, 12);
+  });
+
+  test("calculation sources no longer use 0.15 / 0.375 / 0.6 lb N per 1,000 sq ft", () => {
+    const profiles = readFileSync(path.join(root, "src/data/fertilizerProfiles.ts"), "utf8");
+    const copy = readFileSync(path.join(root, "src/data/calculators.ts"), "utf8");
+    const calc = readFileSync(path.join(root, "src/lib/calculations.ts"), "utf8");
+    expect(profiles).toMatch(/lbNPer1000:\s*0\.225/);
+    expect(profiles).toMatch(/lbNPer1000:\s*0\.5625/);
+    expect(profiles).toMatch(/lbNPer1000:\s*0\.9/);
+    expect(profiles).not.toMatch(/lbNPer1000:\s*0\.15\b/);
+    expect(profiles).not.toMatch(/lbNPer1000:\s*0\.375\b/);
+    expect(profiles).not.toMatch(/lbNPer1000:\s*0\.6\b/);
+    expect(calc).not.toMatch(/\b0\.15\b/);
+    expect(calc).not.toMatch(/\b0\.375\b/);
+    expect(copy).toContain("Light = 0.225, Typical = 0.5625, Stronger = 0.9");
+    expect(copy).not.toContain("Light = 0.15");
+    expect(copy).not.toContain("Typical = 0.375");
+    expect(copy).not.toContain("Stronger = 0.6");
+  });
+
+  test("feeding hints stay conservative and keep Light as the default choice", () => {
+    expect(getFeedingLevel("light").hint).toMatch(/Default/i);
+    expect(getFeedingLevel("light").hint).toMatch(/Compost-rich/i);
+    expect(getFeedingLevel("typical").hint).toMatch(/midseason top-dress/i);
+    expect(getFeedingLevel("stronger").hint).toContain(
+      "Use only for hungry, heavy-feeding crops or clear signs of nutrient need",
+    );
+    expect(getFeedingLevel("stronger").hint).toMatch(/Not the usual starting choice/i);
+  });
+});
+
 describe("fertilizer surface-area formula (preserved)", () => {
-  test("default 8 × 4 ft Light 10-10-10 uses 32 sq ft and 0.15 lb N / 1,000 sq ft", () => {
+  test("default 8 × 4 ft Light 10-10-10 uses 32 sq ft and 0.225 lb N / 1,000 sq ft", () => {
     const result = calculateFertilizer(bedInput());
     expect(result.areaSqFt).toBe(32);
-    expect(LIGHT_N).toBe(0.15);
-    expect(result.nitrogenLbsNeeded).toBeCloseTo((32 / 1000) * 0.15, 12);
-    expect(result.productLbs).toBeCloseTo(0.048, 12);
-    expect(result.productOz).toBeCloseTo(0.768, 12);
+    expect(LIGHT_N).toBe(0.225);
+    expect(result.nitrogenLbsNeeded).toBeCloseTo((32 / 1000) * 0.225, 12);
+    expect(result.productLbs).toBeCloseTo(0.072, 12);
+    expect(result.productOz).toBeCloseTo(1.152, 12);
 
     const spoons = formatKitchenSpoons(result.productOz);
-    expect(spoons.heroValue).toBe("1");
+    expect(spoons.heroValue).toBe("2");
     expect(spoons.heroUnit).toBe("Tbsp");
-    expect(spoons.detail).toContain("1.5 tsp");
-    expect(spoons.detail).toContain("0.8 oz");
+    expect(spoons.detail).toContain("2 Tbsp + 1 tsp");
+    expect(spoons.detail).toContain("1.2 oz");
+  });
+
+  test("8 × 4 ft 10-10-10 Typical and Stronger keep the same formula at 1.5×", () => {
+    const light = calculateFertilizer(bedInput());
+    const typical = calculateFertilizer(bedInput({ targetNitrogenLbsPer1000: TYPICAL_N }));
+    const stronger = calculateFertilizer(bedInput({ targetNitrogenLbsPer1000: STRONGER_N }));
+
+    expect(typical.productLbs).toBeCloseTo(0.18, 12);
+    expect(typical.productOz).toBeCloseTo(2.88, 12);
+    expect(stronger.productLbs).toBeCloseTo(0.288, 12);
+    expect(stronger.productOz).toBeCloseTo(4.608, 12);
+    expect(typical.productOz).toBeCloseTo(light.productOz * (TYPICAL_N / LIGHT_N), 12);
+    expect(stronger.productOz).toBeCloseTo(light.productOz * (STRONGER_N / LIGHT_N), 12);
+
+    const typicalSpoons = formatKitchenSpoons(typical.productOz);
+    expect(typicalSpoons.heroValue).toBe("5");
+    expect(typicalSpoons.heroUnit).toBe("Tbsp");
+    expect(typicalSpoons.detail).toContain("5 Tbsp + 2.5 tsp");
+    expect(typicalSpoons.detail).toContain("2.9 oz");
+
+    const strongerSpoons = formatKitchenSpoons(stronger.productOz);
+    expect(strongerSpoons.heroValue).toBe("9");
+    expect(strongerSpoons.heroUnit).toBe("Tbsp");
+    expect(strongerSpoons.detail).toContain("9 Tbsp + 0.5 tsp");
+    expect(strongerSpoons.detail).toContain("4.6 oz");
+  });
+
+  test("every result is exactly 1.5× the previous rate on the same surface", () => {
+    const cases: Array<{ space: FertilizerInput; previous: number }> = [
+      { space: bedInput(), previous: PREVIOUS_RATES.light },
+      { space: bedInput({ targetNitrogenLbsPer1000: TYPICAL_N }), previous: PREVIOUS_RATES.typical },
+      { space: bedInput({ targetNitrogenLbsPer1000: STRONGER_N }), previous: PREVIOUS_RATES.stronger },
+      { space: potInput(), previous: PREVIOUS_RATES.light },
+      { space: potInput({ pots: 3 }), previous: PREVIOUS_RATES.light },
+      { space: potInput({ potDiameter: 30.48, potDiameterUnit: "cm" }), previous: PREVIOUS_RATES.light },
+    ];
+    for (const item of cases) {
+      const next = calculateFertilizer(item.space);
+      const prior = calculateFertilizer({
+        ...item.space,
+        targetNitrogenLbsPer1000: item.previous,
+      });
+      expect(next.nitrogenLbsNeeded).toBeCloseTo(prior.nitrogenLbsNeeded * 1.5, 12);
+      expect(next.productLbs).toBeCloseTo(prior.productLbs * 1.5, 12);
+      expect(next.productOz).toBeCloseTo(prior.productOz * 1.5, 12);
+    }
   });
 
   test("omitting spaceType keeps the original raised-bed length × width path", () => {
@@ -74,7 +163,7 @@ describe("fertilizer surface-area formula (preserved)", () => {
       targetNitrogenLbsPer1000: LIGHT_N,
     });
     expect(result.areaSqFt).toBe(32);
-    expect(result.productOz).toBeCloseTo(0.768, 12);
+    expect(result.productOz).toBeCloseTo(1.152, 12);
   });
 
   test("feet/inches conversion matches the same 8 × 4 ft bed", () => {
@@ -94,10 +183,14 @@ describe("pot / container surface area", () => {
 
     const result = calculateFertilizer(potInput());
     expect(result.areaSqFt).toBeCloseTo(area, 12);
-    expect(result.nitrogenLbsNeeded).toBeCloseTo((area / 1000) * 0.15, 12);
+    expect(result.nitrogenLbsNeeded).toBeCloseTo((area / 1000) * LIGHT_N, 12);
     expect(result.productLbs).toBeCloseTo(result.nitrogenLbsNeeded / 0.1, 12);
     expect(result.productOz).toBeCloseTo(result.productLbs * 16, 12);
     expect(result.productOz).toBeGreaterThan(0);
+
+    const previous = calculateFertilizer(potInput({ targetNitrogenLbsPer1000: PREVIOUS_RATES.light }));
+    expect(result.productOz).toBeCloseTo(previous.productOz * 1.5, 12);
+    expect(result.productLbs).toBeCloseTo(previous.productLbs * 1.5, 12);
 
     const spoons = formatKitchenSpoons(result.productOz);
     expect(spoons.heroValue).not.toBe("0");
@@ -290,7 +383,7 @@ describe("fertilizer calculator first render", () => {
     expect(html).toContain("Bag to look for");
     expect(html).toContain("How much to apply");
     expect(html).toContain("Start with about");
-    expect(html).toContain("1");
+    expect(html).toContain("2");
     expect(html).toContain("Tbsp");
     expect(html).toContain("32 sq ft");
   });
@@ -359,8 +452,10 @@ describe("fertilizer calculator UX source", () => {
     const fields = readFileSync(path.join(root, "src/components/calculators/fields.tsx"), "utf8");
     expect(fields).toContain("Copy results");
     expect(fields).toContain("Copy page link");
-    expect(calculatorSource).toContain("Conservative starting amount");
+    expect(calculatorSource).toContain("This is a conservative starting amount for one feeding.");
+    expect(calculatorSource).toContain("Do not repeat more often than the fertilizer label allows.");
     expect(calculatorSource).toContain("If the bag lists a lower rate, use the bag.");
+    expect(calculatorSource).toContain("Compost-rich beds should start with Light.");
     expect(calculatorSource).toContain("If the fertilizer label lists a lower rate, follow the label.");
     expect(calculatorSource).toContain('label="Bed size"');
     expect(calculatorSource).toContain('label="Container size"');
@@ -398,15 +493,22 @@ describe("fertilizer calculator is a surface top-dress tool", () => {
     expect(pageText).toContain("not fertilizer to mix into new soil or potting mix");
     expect(pageText).toContain("Bed and pot depth are not used");
     expect(pageText).toContain("follow the product label");
+    expect(pageText).toContain("Repeated use of a balanced fertilizer also adds phosphorus and potassium.");
+    expect(pageText).toContain("Do not repeat more often than the fertilizer label allows.");
+    expect(pageText).toContain("The label and a soil test override this tool.");
   });
 
   test("raised-bed and pot amounts stay on the existing surface-area formula", () => {
     const bed = calculateFertilizer(bedInput());
     const pot = calculateFertilizer(potInput());
+    const previousPot = calculateFertilizer(potInput({ targetNitrogenLbsPer1000: PREVIOUS_RATES.light }));
     expect(bed.areaSqFt).toBe(32);
-    expect(bed.productOz).toBeCloseTo(0.768, 12);
+    expect(bed.productOz).toBeCloseTo(1.152, 12);
     expect(pot.areaSqFt).toBeCloseTo(Math.PI * 0.25, 12);
-    expect(formatKitchenSpoons(bed.productOz).heroValue).toBe("1");
-    expect(formatKitchenSpoons(pot.productOz).heroValue).toBe("0.1");
+    expect(pot.productOz).toBeCloseTo(previousPot.productOz * 1.5, 12);
+    expect(formatKitchenSpoons(bed.productOz).heroValue).toBe("2");
+    expect(formatKitchenSpoons(pot.productOz).heroValue).toBe(
+      formatKitchenSpoons(previousPot.productOz * 1.5).heroValue,
+    );
   });
 });

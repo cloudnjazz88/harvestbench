@@ -77,7 +77,7 @@ export function FertilizerCalculator() {
       : `${formatNumber(bagResult?.areaSqFt ?? 0)} sq ft`;
   const bagSummary =
     bagResult && spoons
-      ? `Start with about ${spoons.heroValue} ${spoons.heroUnit} (${formatNumber(bagResult.productOz, 1)} oz / ${formatNumber(bagResult.productLbs, 3)} lb) of this product for ${spacePhrase}. Conservative rate — you can feed again later. ${spoons.detail} Follow the label if it disagrees or lists a lower amount.`
+      ? `Start with about ${spoons.heroValue} ${spoons.heroUnit} (${formatNumber(bagResult.productOz, 1)} oz / ${formatNumber(bagResult.productLbs, 3)} lb) of this product for ${spacePhrase}. Conservative starting amount for one feeding. ${spoons.detail} Follow the label if it disagrees or lists a lower amount.`
       : "";
 
   const cropPanel = (
@@ -111,9 +111,7 @@ export function FertilizerCalculator() {
       }}
       footer={
         <p className="mt-4 rounded-lg bg-white/10 px-3 py-2 text-sm leading-6 text-white/85">
-          Conservative starting amount. You can feed again in a couple of weeks if
-          plants still look hungry. Too much fertilizer can burn leaves and roots,
-          and that is hard to undo. If the bag lists a lower rate, use the bag.
+          This is a conservative starting amount for one feeding. Do not repeat more often than the fertilizer label allows. If the bag lists a lower rate, use the bag.
         </p>
       }
     >
@@ -205,8 +203,7 @@ export function FertilizerCalculator() {
           or potting mix.
         </p>
         <p className="text-sm leading-6 text-muted">
-          If the fertilizer label lists a lower rate, follow the label. Keep
-          granules off stems and water them in.
+          Compost-rich beds should start with Light. If the fertilizer label lists a lower rate, follow the label. Keep granules off stems and water them in.
         </p>
         <fieldset>
           <legend className="text-sm font-medium">Where are you growing?</legend>
