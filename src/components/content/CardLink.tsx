@@ -2,7 +2,7 @@ import Link from "next/link";
 import { isPublicPath } from "@/data/routes";
 
 export const cardSurfaceClass =
-  "rounded-xl border border-accent/25 bg-accent/[0.07] transition-colors hover:border-accent hover:bg-accent/[0.16]";
+  "rounded-xl border border-border bg-card transition-colors hover:border-accent/45 hover:bg-[#fffaf0]";
 
 export function CardLink({
   href,

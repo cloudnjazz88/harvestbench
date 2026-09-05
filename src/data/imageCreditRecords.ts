@@ -30,6 +30,18 @@ export const generatedCropCreditRecords: ImageCreditRecord[] = [
   },
 ];
 
+/** Homepage and other non-crop/pest generated visuals. Not listed on /image-credits. */
+export const generatedSiteVisualRecords: ImageCreditRecord[] = [
+  {
+    slug: "homepage-hero",
+    file: "harvestbench-editorial-workbench.webp",
+    artist: "OpenAI image generation for HarvestBench",
+    license: GENERATED_SITE_ASSET_LICENSE,
+    commonsUrl: "",
+    sourceNote: "AI-generated original visual for the HarvestBench homepage hero",
+  },
+];
+
 function emailPattern(): RegExp {
   return /\S+@\S+\.\S+|\S+\s*\[\s*at\s*\]\s*\S+(?:\.\S+)?|\S+\s*\(\s*at\s*\)\s*\S+(?:\.\S+)?/gi;
 }

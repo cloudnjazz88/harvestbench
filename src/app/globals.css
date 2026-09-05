@@ -1,19 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1b2c1e;
-  --card: #ffffff;
-  --muted: #4d614f;
-  --border: #d4e5c8;
-  --accent: #4f8f3e;
-  --accent-hover: #3d7330;
+  --background: #f3ead8;
+  --foreground: #1a2418;
+  --card: #faf6ec;
+  --muted: #4a5344;
+  --border: #d4c7ae;
+  --accent: #2f4a35;
+  --accent-hover: #243a29;
   --cta: #c24e24;
   --cta-hover: #a03f1c;
-  --ring: #4f8f3e;
+  --ring: #2f4a35;
   --result: #245c38;
-  --warning-bg: #f4efe4;
-  --warning-border: #e0c8a4;
+  --warning-bg: #efe4cf;
+  --warning-border: #d3b57a;
+  --forest: #1f3a2b;
+  --sage: #7a8f6e;
+  --ochre: #c4a15a;
+  --hb-canvas: 1440px;
+  --hb-canvas-min: 1024px;
 }
 
 @theme inline {
@@ -28,18 +33,58 @@
   --color-cta-hover: var(--cta-hover);
   --color-ring: var(--ring);
   --color-result: var(--result);
+  --color-forest: var(--forest);
+  --color-sage: var(--sage);
+  --color-ochre: var(--ochre);
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--background);
+  background-image:
+    radial-gradient(rgba(31, 58, 43, 0.045) 0.7px, transparent 0.7px);
+  background-size: 3px 3px;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(rgba(31, 58, 43, 0.045) 0.7px, transparent 0.7px);
+  background-size: 3px 3px;
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+  Homepage desktop editorial canvas.
+  Applies only when .hb-home is present, and only at >= 1024px.
+  Other pages keep normal fluid layout so forms and long articles do not inherit min-width.
+*/
+@media (min-width: 1024px) {
+  body:has(.hb-home) {
+    box-sizing: border-box;
+    width: var(--hb-canvas);
+    min-width: var(--hb-canvas);
+    max-width: var(--hb-canvas);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  body:has(.hb-home) > header,
+  body:has(.hb-home) > main,
+  body:has(.hb-home) > footer {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+  }
+
+  body:has(.hb-home) > header > .relative,
+  body:has(.hb-home) > footer .mx-auto,
+  body:has(.hb-home) .hb-home .mx-auto {
+    max-width: none;
+  }
 }
 
 h1,
@@ -55,7 +100,7 @@ h3,
 }
 
 ::selection {
-  background: #cfe8bc;
+  background: #d7c49a;
 }
 
 input,

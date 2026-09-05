@@ -5,7 +5,7 @@ import { footerNav, siteConfig } from "@/data/site";
 
 export function Footer() {
   return (
-    <footer className="mt-16 border-t border-border bg-[#f3f8ee]">
+    <footer className="mt-16 border-t border-border bg-[#efe4cf]">
       <Container width="wide" className="py-12">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>

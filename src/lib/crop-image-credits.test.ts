@@ -9,6 +9,7 @@ import {
   cropCreditRecords,
   displayCreatorName,
   generatedCropCreditRecords,
+  generatedSiteVisualRecords,
   getCropCreditRecord,
   isGeneratedSiteAssetCredit,
   isReusableImageCredit,
@@ -174,5 +175,25 @@ describe("image credits page", () => {
     expect(readSrc("src/data/site.ts")).toContain(
       'process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-9237217026636557"',
     );
+  });
+});
+
+describe("homepage hero visual", () => {
+  test("uses the generated WebP and does not invent an external license", () => {
+    const hero = generatedSiteVisualRecords.find((item) => item.slug === "homepage-hero");
+    expect(hero).toBeDefined();
+    if (!hero) return;
+    expect(hero.file).toBe("harvestbench-editorial-workbench.webp");
+    expect(hero.license).toBe(GENERATED_SITE_ASSET_LICENSE);
+    expect(hero.commonsUrl).toBe("");
+    expect(isGeneratedSiteAssetCredit(hero)).toBe(true);
+    expect(existsSync(publicFileFromSrc("/images/harvestbench-editorial-workbench.webp"))).toBe(true);
+
+    const source = readSrc("src/components/home/HeroWorkbench.tsx");
+    expect(source).toContain('from "next/image"');
+    expect(source).toContain("/images/harvestbench-editorial-workbench.webp");
+    expect(source).not.toContain("4 × 8 bed");
+    expect(source).not.toContain("rounded-2xl");
+    expect(getRuntimeCropImageCredits().some((item) => item.slug === "homepage-hero")).toBe(false);
   });
 });

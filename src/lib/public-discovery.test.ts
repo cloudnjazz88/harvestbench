@@ -16,7 +16,7 @@ import {
   getIndexablePagePaths,
   isPublicPath,
 } from "@/data/routes";
-import { footerNav, primaryNav } from "@/data/site";
+import { footerNav, headerNav, primaryNav } from "@/data/site";
 import type { ContentBlock } from "@/data/types";
 import {
   AMAZON_ASSOCIATE_DISCLOSURE,
@@ -151,6 +151,7 @@ describe("public copy and internal links", () => {
     const hrefs = new Set<string>();
 
     for (const item of primaryNav) hrefs.add(item.href);
+    for (const item of headerNav) hrefs.add(item.href);
     for (const item of footerNav.tools) hrefs.add(item.href);
     for (const item of footerNav.topics) hrefs.add(item.href);
     for (const item of footerNav.legal) hrefs.add(item.href);

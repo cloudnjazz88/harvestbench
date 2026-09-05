@@ -52,6 +52,15 @@ export const primaryNav: NavItem[] = [
   { href: "/guides", label: "Guides" },
 ];
 
+/** Compact desktop destinations. Full topic list stays in primaryNav and the footer. */
+export const headerNav: NavItem[] = [
+  { href: "/calculators", label: "Calculators" },
+  { href: "/guides", label: "Growing Guides" },
+  { href: "/vegetable-gardening", label: "Crops" },
+  { href: "/pest-problems", label: "Pests" },
+  { href: "/about", label: "About" },
+];
+
 export const footerNav = {
   tools: [
     { href: "/calculators", label: "All calculators" },
