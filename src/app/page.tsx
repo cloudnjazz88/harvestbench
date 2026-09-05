@@ -2,17 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AdSlot } from "@/components/ads/AdSlot";
 import { CardLink, SectionHeading, cardSurfaceClass } from "@/components/content/CardLink";
-import {
-  IconCircleArrow,
-  IconFertilizer,
-  IconLeaf,
-  IconPlanting,
-  IconProblem,
-  IconRaisedBed,
-  IconSoil,
-  IconSpacing,
-  IconVine,
-} from "@/components/home/HomeIcons";
+import { IconCircleArrow, IconLeaf, IconPlanting, IconSoil, IconVine } from "@/components/home/HomeIcons";
 import { HeroWorkbench } from "@/components/home/HeroWorkbench";
 import { Container } from "@/components/layout/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -32,8 +22,8 @@ export const metadata = pageMetadata({
 
 const HOME_GUIDE_SLUGS = [
   "how-deep-should-a-raised-bed-be",
-  "how-often-to-water-raised-beds",
   "how-far-apart-to-plant-tomatoes",
+  "when-to-transplant-seedlings",
 ] as const;
 
 const FEATURED_CALCULATOR_IDS = [
@@ -42,10 +32,60 @@ const FEATURED_CALCULATOR_IDS = [
   "plant-spacing",
 ] as const;
 
+const HOME_OBJECT_BG = "bg-[#f7f3e8]";
+
+const HOME_VISUALS = {
+  planningRaisedBed: {
+    src: "/images/home/planning-raised-bed.webp",
+    width: 314,
+    height: 180,
+  },
+  planningSeedling: {
+    src: "/images/home/planning-seedling.webp",
+    width: 310,
+    height: 180,
+  },
+  planningLeaf: {
+    src: "/images/home/planning-leaf.webp",
+    width: 314,
+    height: 180,
+  },
+  calculatorSoil: {
+    src: "/images/home/calculator-soil.webp",
+    width: 314,
+    height: 156,
+  },
+  calculatorFertilizer: {
+    src: "/images/home/calculator-fertilizer.webp",
+    width: 310,
+    height: 156,
+  },
+  calculatorSpacing: {
+    src: "/images/home/calculator-spacing.webp",
+    width: 314,
+    height: 156,
+  },
+  guideRaisedBedSoil: {
+    src: "/images/home/guide-raised-bed-soil.webp",
+    width: 314,
+    height: 217,
+  },
+  guideTomatoes: {
+    src: "/images/home/guide-tomatoes.webp",
+    width: 310,
+    height: 217,
+  },
+  guideSeedlings: {
+    src: "/images/home/guide-seedlings.webp",
+    width: 314,
+    height: 217,
+  },
+} as const;
+
 const GUIDE_THUMBS = {
-  "how-deep-should-a-raised-bed-be": "lettuce",
-  "how-often-to-water-raised-beds": "kale",
-  "how-far-apart-to-plant-tomatoes": "tomatoes",
+  "how-deep-should-a-raised-bed-be": HOME_VISUALS.guideRaisedBedSoil,
+  "how-far-apart-to-plant-tomatoes": HOME_VISUALS.guideTomatoes,
+  "when-to-transplant-seedlings": HOME_VISUALS.guideSeedlings,
 } as const;
 
 const PLANNING = [
@@ -53,19 +93,19 @@ const PLANNING = [
     href: "/raised-beds",
     title: "Build a Raised Bed",
     description: "Size the frame, estimate soil, and choose a mix before you buy lumber.",
-    icon: IconRaisedBed,
+    image: HOME_VISUALS.planningRaisedBed,
   },
   {
     href: "/vegetable-gardening",
     title: "Plant a Vegetable Garden",
     description: "Match crops to sun, spacing, and harvest timing for a backyard bed.",
-    icon: IconPlanting,
+    image: HOME_VISUALS.planningSeedling,
   },
   {
     href: "/pest-problems",
     title: "Solve a Garden Problem",
     description: "Identify pests, watering issues, and common plant problems with photos.",
-    icon: IconProblem,
+    image: HOME_VISUALS.planningLeaf,
   },
 ] as const;
 
@@ -81,7 +121,11 @@ export default function HomePage() {
     return guide && isGuidePublished(guide) ? [guide] : [];
   });
   const productGuides = getProductGuides();
-  const calculatorIcons = [IconSoil, IconFertilizer, IconSpacing];
+  const calculatorImages = [
+    HOME_VISUALS.calculatorSoil,
+    HOME_VISUALS.calculatorFertilizer,
+    HOME_VISUALS.calculatorSpacing,
+  ];
 
   return (
     <div className="hb-home">
@@ -169,15 +213,23 @@ export default function HomePage() {
           </div>
           <div className="mt-3.5 grid items-stretch gap-3 lg:grid-cols-3">
             {PLANNING.map((item) => {
-              const Icon = item.icon;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   className="group flex h-full min-h-[8.625rem] items-center gap-3 rounded-xl bg-[#f7f1e4] px-3 py-3 text-foreground transition-colors hover:bg-white lg:min-h-[7.75rem] lg:gap-3.5 lg:px-3.5"
                 >
-                  <span className="flex h-[5.75rem] w-[5.75rem] shrink-0 items-center justify-center text-accent lg:h-[6.25rem] lg:w-[6.25rem]">
-                    <Icon className="h-16 w-16 lg:h-[4.25rem] lg:w-[4.25rem]" />
+                  <span
+                    className={`flex h-[5.25rem] w-[5.25rem] shrink-0 items-center justify-center overflow-hidden rounded-lg ${HOME_OBJECT_BG} lg:h-[6.25rem] lg:w-[6.25rem]`}
+                  >
+                    <Image
+                      src={item.image.src}
+                      alt=""
+                      width={item.image.width}
+                      height={item.image.height}
+                      sizes="(min-width: 1024px) 100px, 84px"
+                      className="h-[86%] w-[94%] object-contain"
+                    />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block font-serif text-lg font-semibold leading-snug">{item.title}</span>
@@ -211,15 +263,24 @@ export default function HomePage() {
           </div>
           <div className="grid gap-3 lg:grid-cols-3">
             {featuredCalculators.map((item, index) => {
-              const Icon = calculatorIcons[index] ?? IconSoil;
+              const image = calculatorImages[index] ?? HOME_VISUALS.calculatorSoil;
               return (
                 <Link
                   key={item.id}
                   href={item.href}
                   className="flex items-center gap-3 rounded-xl border border-[#b7c4ae] bg-[#f7f1e4] px-3 py-3 transition-colors hover:bg-white"
                 >
-                  <span className="shrink-0 text-accent">
-                    <Icon className="h-12 w-12" />
+                  <span
+                    className={`flex h-14 w-[4.25rem] shrink-0 items-center justify-center overflow-hidden rounded-lg ${HOME_OBJECT_BG} sm:h-16 sm:w-[5rem]`}
+                  >
+                    <Image
+                      src={image.src}
+                      alt=""
+                      width={image.width}
+                      height={image.height}
+                      sizes="(min-width: 640px) 80px, 68px"
+                      className="h-[78%] w-[90%] object-contain"
+                    />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="text-[0.65rem] font-semibold uppercase tracking-wide text-accent">Tool</span>
@@ -261,8 +322,14 @@ export default function HomePage() {
           </div>
           <div className="grid gap-3 lg:grid-cols-3">
             {latestGuides.map((guide) => {
-              const thumbSlug = GUIDE_THUMBS[guide.slug as keyof typeof GUIDE_THUMBS];
-              const thumb = thumbSlug ? getCropImage(thumbSlug) : undefined;
+              const mapped = GUIDE_THUMBS[guide.slug as keyof typeof GUIDE_THUMBS];
+              const cropThumb = typeof mapped === "string" ? getCropImage(mapped) : undefined;
+              const thumb =
+                mapped && typeof mapped !== "string"
+                  ? mapped
+                  : cropThumb
+                    ? { src: cropThumb.src, width: 96, height: 96 }
+                    : undefined;
               return (
                 <Link
                   key={guide.slug}
@@ -273,9 +340,9 @@ export default function HomePage() {
                     <span className="relative h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden rounded-md bg-[#d7c49a]">
                       <Image
                         src={thumb.src}
-                        alt={thumb.alt}
-                        width={96}
-                        height={96}
+                        alt=""
+                        width={thumb.width}
+                        height={thumb.height}
                         sizes="72px"
                         className="h-full w-full object-cover"
                       />

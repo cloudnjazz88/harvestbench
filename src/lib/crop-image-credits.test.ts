@@ -196,4 +196,48 @@ describe("homepage hero visual", () => {
     expect(source).not.toContain("rounded-2xl");
     expect(getRuntimeCropImageCredits().some((item) => item.slug === "homepage-hero")).toBe(false);
   });
+
+  test("homepage card visuals are generated site assets and not crop credits", () => {
+    const files = [
+      "home/planning-raised-bed.webp",
+      "home/planning-seedling.webp",
+      "home/planning-leaf.webp",
+      "home/calculator-soil.webp",
+      "home/calculator-fertilizer.webp",
+      "home/calculator-spacing.webp",
+      "home/guide-raised-bed-soil.webp",
+      "home/guide-tomatoes.webp",
+      "home/guide-seedlings.webp",
+    ];
+    for (const file of files) {
+      const record = generatedSiteVisualRecords.find((item) => item.file === file);
+      expect(record, file).toBeDefined();
+      if (!record) continue;
+      expect(record.license).toBe(GENERATED_SITE_ASSET_LICENSE);
+      expect(record.commonsUrl).toBe("");
+      expect(isGeneratedSiteAssetCredit(record)).toBe(true);
+      expect(existsSync(publicFileFromSrc(`/images/${file}`))).toBe(true);
+      expect(getRuntimeCropImageCredits().some((item) => item.slug === record.slug)).toBe(false);
+    }
+
+    const homepage = readSrc("src/app/page.tsx");
+    expect(homepage).toContain("/images/home/planning-raised-bed.webp");
+    expect(homepage).toContain("/images/home/planning-seedling.webp");
+    expect(homepage).toContain("/images/home/planning-leaf.webp");
+    expect(homepage).toContain("/images/home/calculator-soil.webp");
+    expect(homepage).toContain("/images/home/calculator-fertilizer.webp");
+    expect(homepage).toContain("/images/home/calculator-spacing.webp");
+    expect(homepage).toContain("/images/home/guide-raised-bed-soil.webp");
+    expect(homepage).toContain("/images/home/guide-tomatoes.webp");
+    expect(homepage).toContain("/images/home/guide-seedlings.webp");
+    const featuredSlugs = homepage.match(/const HOME_GUIDE_SLUGS = \[[^\]]+\]/)?.[0] ?? "";
+    expect(featuredSlugs).toContain("how-deep-should-a-raised-bed-be");
+    expect(featuredSlugs).toContain("how-far-apart-to-plant-tomatoes");
+    expect(featuredSlugs).toContain("when-to-transplant-seedlings");
+    expect(featuredSlugs).not.toContain("how-often-to-water-raised-beds");
+    expect(homepage).not.toContain("IconRaisedBed");
+    expect(homepage).not.toContain("IconProblem");
+    expect(homepage).not.toContain("IconFertilizer");
+    expect(homepage).not.toContain("IconSpacing");
+  });
 });

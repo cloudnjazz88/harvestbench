@@ -1,14 +1,3 @@
-export function IconRaisedBed({ className = "h-8 w-8" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 40 40" className={className} fill="none" aria-hidden="true">
-      <rect x="4" y="22" width="32" height="10" rx="1.4" fill="#c4a07a" stroke="#6d4426" strokeWidth="1.5" />
-      <path d="M6 22V19h4v3M16 22v-5h5v5M30 22v-4h4v4" fill="#8fbf6a" />
-      <path d="M8 19c1.4-2.4 3.6-2.6 5 0M18 17c1.6-2.8 4.2-3 6 0M31 18c1.2-2 3-2.2 4.2 0" stroke="#2f4a35" strokeWidth="1.3" strokeLinecap="round" />
-      <path d="M7 27h26" stroke="#6d4426" strokeWidth="1.1" opacity="0.45" />
-    </svg>
-  );
-}
-
 export function IconPlanting({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <svg viewBox="0 0 40 40" className={className} fill="none" aria-hidden="true">
@@ -16,15 +5,6 @@ export function IconPlanting({ className = "h-8 w-8" }: { className?: string }) 
       <path d="M20 30V16" stroke="#2f4a35" strokeWidth="1.7" strokeLinecap="round" />
       <path d="M20 20c-3.2-4.4-8.4-5.6-11.2-3.6 2.2 4.6 6.4 6.6 11.2 6.6" fill="#6ea35a" stroke="#2f4a35" strokeWidth="1.2" />
       <path d="M20 18c3.4-4.6 8.8-5.6 11.6-3.4-2 4.6-6.4 6.4-11.6 6.4" fill="#8fbf6a" stroke="#2f4a35" strokeWidth="1.2" />
-    </svg>
-  );
-}
-
-export function IconProblem({ className = "h-8 w-8" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 40 40" className={className} fill="none" aria-hidden="true">
-      <path d="M8 28c12-16 22-20 30-22-3 12-9 22-22 28-6 1.4-11-1-8-6Z" fill="#6ea35a" stroke="#2f4a35" strokeWidth="1.4" />
-      <path d="M14 26c7-6 15-12 21-16" stroke="#2f4a35" strokeWidth="1.2" />
     </svg>
   );
 }
@@ -37,32 +17,6 @@ export function IconSoil({ className = "h-10 w-10" }: { className?: string }) {
       <circle cx="16" cy="30" r="1.2" fill="#c4a15a" />
       <circle cx="24" cy="28" r="1" fill="#c4a15a" />
       <circle cx="31" cy="31" r="1.1" fill="#c4a15a" />
-    </svg>
-  );
-}
-
-export function IconFertilizer({ className = "h-10 w-10" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} fill="none" aria-hidden="true">
-      <circle cx="16" cy="28" r="3.2" fill="#d7c49a" stroke="#8a6a3a" strokeWidth="1.1" />
-      <circle cx="25" cy="22" r="2.6" fill="#efe4cf" stroke="#8a6a3a" strokeWidth="1.1" />
-      <circle cx="32" cy="30" r="3" fill="#c4a15a" stroke="#8a6a3a" strokeWidth="1.1" />
-      <circle cx="21" cy="34" r="2.2" fill="#efe4cf" stroke="#8a6a3a" strokeWidth="1.1" />
-      <circle cx="34" cy="20" r="1.8" fill="#d7c49a" stroke="#8a6a3a" strokeWidth="1.1" />
-    </svg>
-  );
-}
-
-export function IconSpacing({ className = "h-10 w-10" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} fill="none" aria-hidden="true">
-      <path d="M6 36c4-6 10-8 18-8s14 2 18 8H6Z" fill="#6d4426" />
-      <path d="M14 28V20" stroke="#2f4a35" strokeWidth="1.6" strokeLinecap="round" />
-      <path d="M24 28V18" stroke="#2f4a35" strokeWidth="1.6" strokeLinecap="round" />
-      <path d="M34 28V21" stroke="#2f4a35" strokeWidth="1.6" strokeLinecap="round" />
-      <path d="M14 21c-2.2-2.8-5.2-3.2-6.8-1.8C8.6 22 11 24 14 24" fill="#6ea35a" />
-      <path d="M24 19c-2.4-3.2-5.8-3.6-7.4-2 1.6 3.2 4.2 5 7.4 5" fill="#8fbf6a" />
-      <path d="M34 22c-2-2.6-4.8-3-6.4-1.6C29.2 23 31.4 25 34 25" fill="#6ea35a" />
     </svg>
   );
 }
