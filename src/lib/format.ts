@@ -30,9 +30,32 @@ export function plural(count: number, singular: string, pluralForm?: string): st
   return count === 1 ? singular : (pluralForm ?? `${singular}s`);
 }
 
+export type FertilizerDiameterUnitLabel = "in" | "cm";
+
+/** Result-card line for pot/container size, e.g. "1 × 12-inch pot". */
+export function formatContainerSize(
+  pots: number,
+  diameter: number,
+  unit: FertilizerDiameterUnitLabel,
+): string {
+  if (!Number.isFinite(pots) || pots <= 0 || !Number.isFinite(diameter) || diameter <= 0) {
+    return "—";
+  }
+  const digits = Math.abs(diameter - Math.round(diameter)) < 1e-9 ? 0 : 1;
+  const size = unit === "cm" ? `${formatNumber(diameter, digits)}-cm` : `${formatNumber(diameter, digits)}-inch`;
+  return `${formatInteger(pots)} × ${size} ${plural(pots, "pot")}`;
+}
+
 /** Kitchen scoop for granular fertilizer: 1 oz ≈ 2 Tbsp. Density varies by product. */
 export const TBSP_PER_OZ_GRANULAR = 2;
 export const TSP_PER_TBSP = 3;
+
+function formatOunceHint(ounces: number): string {
+  if (!Number.isFinite(ounces) || ounces <= 0) return "—";
+  if (ounces < 0.005) return "under 0.01 oz by weight";
+  if (ounces < 0.05) return `${formatNumber(ounces, 2)} oz by weight`;
+  return `${formatNumber(ounces, 1)} oz by weight`;
+}
 
 export type KitchenSpoonMeasure = {
   heroValue: string;
@@ -56,13 +79,20 @@ export function formatKitchenSpoons(ounces: number): KitchenSpoonMeasure {
 
   const cups = Math.floor(tbsp / 16);
   const tbspAfterCups = tbsp - cups * 16;
-  const ozHint = `${formatNumber(ounces, 1)} oz by weight`;
+  const ozHint = formatOunceHint(ounces);
 
   if (tbsp < 1) {
-    const tspLabel = tsp === 1 ? "tsp" : "tsp";
+    const tspFine = roundTo(totalTsp, 1);
+    if (tspFine < 0.1) {
+      return {
+        heroValue: "< 0.1",
+        heroUnit: "tsp",
+        detail: `Less than 0.1 tsp · ${ozHint}. Level spoons; granule size varies.`,
+      };
+    }
     return {
-      heroValue: formatNumber(tsp, 1),
-      heroUnit: tspLabel,
+      heroValue: formatNumber(tspFine, 1),
+      heroUnit: tspFine === 1 ? "tsp" : "tsp",
       detail: `About ${ozHint}. Level teaspoons; granule size varies.`,
     };
   }

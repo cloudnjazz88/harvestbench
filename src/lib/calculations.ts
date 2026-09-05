@@ -357,11 +357,22 @@ export function calculateMulch(input: MulchInput): MulchResult {
   };
 }
 
+export type FertilizerSpaceType = "bed" | "pot";
+export type FertilizerDiameterUnit = "in" | "cm";
+
+export const FERTILIZER_MAX_POTS = 50;
+export const FERTILIZER_MAX_POT_DIAMETER_IN = 60;
+const CM_PER_INCH = 2.54;
+
 export type FertilizerInput = {
+  spaceType?: FertilizerSpaceType;
   length: number;
   lengthUnit: LengthUnit;
   width: number;
   widthUnit: LengthUnit;
+  potDiameter?: number;
+  potDiameterUnit?: FertilizerDiameterUnit;
+  pots?: number;
   nitrogenPercent: number;
   phosphorusPercent: number;
   potassiumPercent: number;
@@ -377,12 +388,25 @@ export type FertilizerResult = {
   potassiumLbs: number;
 };
 
-export function validateFertilizer(input: FertilizerInput): CalcError[] {
-  const errors: CalcError[] = [];
-  const length = dimensionError("length", input.length, input.lengthUnit);
-  const width = dimensionError("width", input.width, input.widthUnit);
-  if (length) errors.push({ field: "length", message: length });
-  if (width) errors.push({ field: "width", message: width });
+export function fertilizerSpaceType(input: Pick<FertilizerInput, "spaceType">): FertilizerSpaceType {
+  return input.spaceType === "pot" ? "pot" : "bed";
+}
+
+export function diameterToFeet(value: number, unit: FertilizerDiameterUnit): number {
+  return unit === "cm" ? value / (12 * CM_PER_INCH) : value / 12;
+}
+
+/** Top-surface area in sq ft. Beds use length × width. Pots use πr² × count. */
+export function fertilizerSurfaceAreaSqFt(input: FertilizerInput): number {
+  if (fertilizerSpaceType(input) === "pot") {
+    const diameterFt = diameterToFeet(input.potDiameter ?? 0, input.potDiameterUnit ?? "in");
+    const radiusFt = diameterFt / 2;
+    return Math.PI * radiusFt * radiusFt * (input.pots ?? 0);
+  }
+  return toFeet(input.length, input.lengthUnit) * toFeet(input.width, input.widthUnit);
+}
+
+function validateFertilizerAnalysis(input: FertilizerInput, errors: CalcError[]) {
   if (!Number.isFinite(input.nitrogenPercent) || input.nitrogenPercent <= 0) {
     errors.push({
       field: "nitrogenPercent",
@@ -416,15 +440,43 @@ export function validateFertilizer(input: FertilizerInput): CalcError[] {
         "That nitrogen rate is unusually high for a home garden. Double-check the product label or a soil-test recommendation.",
     });
   }
+}
+
+export function validateFertilizer(input: FertilizerInput): CalcError[] {
+  const errors: CalcError[] = [];
+  if (fertilizerSpaceType(input) === "pot") {
+    const diameter = input.potDiameter ?? 0;
+    const unit = input.potDiameterUnit ?? "in";
+    if (!isPositive(diameter)) {
+      errors.push({ field: "potDiameter", message: "Enter a pot diameter greater than 0." });
+    } else {
+      const inches = unit === "cm" ? diameter / CM_PER_INCH : diameter;
+      if (inches > FERTILIZER_MAX_POT_DIAMETER_IN) {
+        errors.push({
+          field: "potDiameter",
+          message: `Pot diameter is too large. Use a value under ${FERTILIZER_MAX_POT_DIAMETER_IN} inches.`,
+        });
+      }
+    }
+    const pots = input.pots ?? 0;
+    if (!isPositive(pots) || !Number.isInteger(pots)) {
+      errors.push({ field: "pots", message: "Enter a whole number of pots (1 or more)." });
+    } else if (pots > FERTILIZER_MAX_POTS) {
+      errors.push({ field: "pots", message: `Number of pots must be ${FERTILIZER_MAX_POTS} or fewer.` });
+    }
+  } else {
+    const length = dimensionError("length", input.length, input.lengthUnit);
+    const width = dimensionError("width", input.width, input.widthUnit);
+    if (length) errors.push({ field: "length", message: length });
+    if (width) errors.push({ field: "width", message: width });
+  }
+  validateFertilizerAnalysis(input, errors);
   return errors;
 }
 
 export function calculateFertilizer(input: FertilizerInput): FertilizerResult {
-  const lengthFt = toFeet(input.length, input.lengthUnit);
-  const widthFt = toFeet(input.width, input.widthUnit);
-  const areaSqFt = lengthFt * widthFt;
-  const nitrogenLbsNeeded =
-    (areaSqFt / 1000) * input.targetNitrogenLbsPer1000;
+  const areaSqFt = fertilizerSurfaceAreaSqFt(input);
+  const nitrogenLbsNeeded = (areaSqFt / 1000) * input.targetNitrogenLbsPer1000;
   const productLbs = nitrogenLbsNeeded / (input.nitrogenPercent / 100);
   const phosphorusLbs = productLbs * (input.phosphorusPercent / 100);
   const potassiumLbs = productLbs * (input.potassiumPercent / 100);

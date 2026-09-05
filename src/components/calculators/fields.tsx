@@ -24,11 +24,11 @@ export function NumberField({
   const errorId = `${id}-error`;
 
   return (
-    <div>
+    <div className="min-w-0">
       <label htmlFor={id} className="block text-sm font-medium">
         {label}
       </label>
-      <div className="mt-1 flex">
+      <div className="mt-1 flex min-w-0">
         <input
           id={id}
           type="number"
@@ -39,7 +39,7 @@ export function NumberField({
           onChange={(event) => onChange(event.target.value)}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
-          className="h-12 w-full rounded-md border border-border bg-card px-3 text-base outline-none focus:border-accent"
+          className="h-12 w-full min-w-0 rounded-md border border-border bg-card px-3 text-base outline-none focus:border-accent"
         />
         {suffix ? (
           <span className="ml-2 inline-flex items-center text-sm text-muted">{suffix}</span>
@@ -54,31 +54,37 @@ export function NumberField({
   );
 }
 
-export function UnitField({
+export function UnitField<T extends string = LengthUnit>({
   label,
   value,
   unit,
   onValueChange,
   onUnitChange,
   error,
+  unitOptions,
 }: {
   label: string;
   value: string;
-  unit: LengthUnit;
+  unit: T;
   onValueChange: (value: string) => void;
-  onUnitChange: (unit: LengthUnit) => void;
+  onUnitChange: (unit: T) => void;
   error?: string;
+  unitOptions?: { value: T; label: string }[];
 }) {
   const id = useId();
   const unitId = `${id}-unit`;
   const errorId = `${id}-error`;
+  const options = unitOptions ?? ([
+    { value: "ft", label: "feet" },
+    { value: "in", label: "inches" },
+  ] as { value: T; label: string }[]);
 
   return (
-    <div>
+    <div className="min-w-0">
       <label htmlFor={id} className="block text-sm font-medium">
         {label}
       </label>
-      <div className="mt-1 grid grid-cols-[1fr_5.5rem] gap-2">
+      <div className="mt-1 grid grid-cols-[minmax(0,1fr)_5.5rem] gap-2">
         <input
           id={id}
           type="number"
@@ -89,17 +95,20 @@ export function UnitField({
           onChange={(event) => onValueChange(event.target.value)}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? errorId : undefined}
-          className="h-12 w-full rounded-md border border-border bg-card px-3 text-base outline-none focus:border-accent"
+          className="h-12 w-full min-w-0 rounded-md border border-border bg-card px-3 text-base outline-none focus:border-accent"
         />
         <select
           id={unitId}
           value={unit}
           aria-label={`${label} unit`}
-          onChange={(event) => onUnitChange(event.target.value as LengthUnit)}
-          className="h-12 rounded-md border border-border bg-card px-2 text-base"
+          onChange={(event) => onUnitChange(event.target.value as T)}
+          className="h-12 w-full min-w-0 rounded-md border border-border bg-card px-2 text-base"
         >
-          <option value="ft">feet</option>
-          <option value="in">inches</option>
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
       </div>
       {error ? (

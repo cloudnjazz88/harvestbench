@@ -325,12 +325,12 @@ const calculatorList: CalculatorMeta[] = [
     description:
       "Pick a crop and see whether to shop for higher nitrogen, phosphorus, potassium, or a balanced bag.",
     intro:
-      "Most people do not need to know N-P-K by heart. Choose what you are growing. The calculator says which of the three bag numbers should be highest — or if they should be about equal. Amounts, when you already have a bag, are conservative starting scoops. Too much fertilizer can burn plants. Compost-rich raised beds often need less than a bag chart implies.",
+      "Most people do not need to know N-P-K by heart. Choose what you are growing. The calculator says which of the three bag numbers should be highest — or if they should be about equal. Amounts are a conservative top-dress for an established bed or container, not fertilizer to mix into new soil or potting mix. Too much fertilizer can burn plants. Compost-rich raised beds often need less than a bag chart implies.",
     formula:
-      "Bags print three numbers in order: nitrogen (N, leaves), phosphorus (P, early roots and flowers), potassium (K, fruit and overall toughness). Optional amount math uses Light = 0.15, Typical = 0.375, Stronger = 0.6 lb actual N per 1,000 sq ft — below many bag charts so you are less likely to burn plants, but not the lowest possible scoop. Product (lb) = nitrogen needed ÷ (N% ÷ 100). Kitchen spoons assume 1 oz of typical granular fertilizer ≈ 2 Tbsp. Pellet size varies. The product label still wins, especially if it lists a lower rate.",
+      "Bags print three numbers in order: nitrogen (N, leaves), phosphorus (P, early roots and flowers), potassium (K, fruit and overall toughness). Amount math is a light surface top-dress for plants that are already growing. Light = 0.15, Typical = 0.375, Stronger = 0.6 lb actual N per 1,000 sq ft — below many bag charts so you are less likely to burn plants, but not the lowest possible scoop. Beds use length × width. Pots use the circular top surface (πr² × number of pots). Bed and pot depth are not used, and the tool does not estimate a mix-in for new soil. Product (lb) = nitrogen needed ÷ (N% ÷ 100). Kitchen spoons assume 1 oz of typical granular fertilizer ≈ 2 Tbsp. Pellet size varies. The product label still wins, especially if it lists a lower rate.",
     example: {
       title: "Example: tomatoes in a mixed raised bed",
-      body: "Pick tomatoes. The tool points you to a higher-potassium bag — third number biggest, or at least matching nitrogen — such as a 4-6-8 or 5-5-10 style vegetable food. A 20-5-5 lawn fertilizer is the wrong aisle. If you already own a bag, open “I already have a bag,” enter the three numbers, and choose Light / Typical / Stronger. The amount comes back in Tbsp or tsp, not ounces. Follow the bag if it lists its own garden rate.",
+      body: "Pick tomatoes. The tool points you to a higher-potassium bag — third number biggest, or at least matching nitrogen — such as a 4-6-8 or 5-5-10 style vegetable food. A 20-5-5 lawn fertilizer is the wrong aisle. Enter the bed or pot surface size, the three numbers from the bag, and Light / Typical / Stronger. The amount is a starting top-dress in Tbsp or tsp, not a mix-in for new soil. Follow the bag if it lists its own garden rate.",
     },
     popular: true,
     faqs: [
@@ -347,7 +347,12 @@ const calculatorList: CalculatorMeta[] = [
       {
         question: "Do I need to know target nitrogen?",
         answer:
-          "No. Open “I already have a bag,” type the three numbers off the label, and pick Light, Typical, or Stronger from how the plants look. If the bag prints its own rate for vegetable gardens, use that instead.",
+          "No. Enter the three numbers off the label and pick Light, Typical, or Stronger from how the plants look. If the bag prints its own rate for vegetable gardens, use that instead.",
+      },
+      {
+        question: "Can I use this when filling a new pot or raised bed?",
+        answer:
+          "No. This estimate is for lightly top-dressing plants that are already growing. It does not calculate fertilizer to mix into new soil or potting mix, and it does not use bed or pot depth. For a mix-in rate, follow the product label.",
       },
       {
         question: "Is a 10-10-10 always the safe choice?",
