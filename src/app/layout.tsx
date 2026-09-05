@@ -50,6 +50,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <AdSenseScript />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <Analytics />
         <JsonLd
           data={{
             "@context": "https://schema.org",
@@ -59,7 +60,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             description: siteConfig.tagline,
           }}
         />
-        <Analytics />
         <Header />
         <main id="main" className="flex-1">
           {children}
