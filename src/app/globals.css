@@ -18,7 +18,6 @@
   --sage: #7a8f6e;
   --ochre: #c4a15a;
   --hb-canvas: 1440px;
-  --hb-canvas-min: 1024px;
 }
 
 @theme inline {
@@ -58,15 +57,15 @@ body {
 }
 
 /*
-  Homepage desktop editorial canvas.
+  Homepage fluid editorial canvas, capped at the approved desktop width.
   Applies only when .hb-home is present, and only at >= 1024px.
   Other pages keep normal fluid layout so forms and long articles do not inherit min-width.
 */
 @media (min-width: 1024px) {
   body:has(.hb-home) {
     box-sizing: border-box;
-    width: var(--hb-canvas);
-    min-width: var(--hb-canvas);
+    width: 100%;
+    min-width: 0;
     max-width: var(--hb-canvas);
     margin-left: auto;
     margin-right: auto;

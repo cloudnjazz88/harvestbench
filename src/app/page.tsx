@@ -142,7 +142,7 @@ export default function HomePage() {
         <div className="pointer-events-none absolute left-1 top-10 text-forest/10 lg:left-3" aria-hidden="true">
           <IconLeaf className="h-24 w-24" />
         </div>
-        <div className="relative grid lg:h-[410px] lg:grid-cols-[minmax(0,0.43fr)_minmax(0,0.57fr)]">
+        <div className="relative grid lg:min-h-[410px] lg:grid-cols-[minmax(0,0.43fr)_minmax(0,0.57fr)]">
           <div className="flex flex-col justify-center px-4 py-7 sm:px-6 lg:py-5 lg:pl-6 lg:pr-8">
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-accent">
               Raised beds, pots & harvestable vegetables
@@ -153,7 +153,7 @@ export default function HomePage() {
             <p className="mt-3 max-w-md text-[0.98rem] leading-6 text-foreground/80">
               Simple calculators and practical guides for every step—from filling the bed to harvesting dinner.
             </p>
-            <div className="mt-5 flex flex-col gap-2.5 sm:flex-row">
+            <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
               <Link
                 href="/calculators"
                 className="inline-flex min-h-11 items-center justify-center rounded-md bg-cta px-5 font-semibold text-white hover:bg-cta-hover"
@@ -167,7 +167,7 @@ export default function HomePage() {
                 Explore Growing Guides
               </Link>
             </div>
-            <ul className="mt-5 grid gap-1.5 text-sm text-muted lg:grid-cols-3 lg:gap-3">
+            <ul className="mt-5 grid gap-1.5 text-sm text-muted xl:grid-cols-3 xl:gap-3">
               <li className="flex items-center gap-2">
                 <IconSoil className="h-4 w-4 shrink-0 text-accent" />
                 Practical tools for real gardens
