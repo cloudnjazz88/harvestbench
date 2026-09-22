@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/ads/AdSlot";
-import { RelatedLinks } from "@/components/content/PageSections";
+import { ContentBlocks } from "@/components/content/ContentBlocks";
+import { RelatedLinks, SourcesList } from "@/components/content/PageSections";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Container } from "@/components/layout/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getPest, getPests } from "@/data/pests";
-import { absoluteUrl, pageMetadata } from "@/lib/seo";
+import { absoluteUrl, pageMetadata, guideEditorialByline } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -54,6 +55,7 @@ export default async function PestDetailPage({ params }: Props) {
           description: pest.summary,
           url: absoluteUrl(path),
           image: absoluteUrl(pest.image.src),
+          ...(pest.updated ? { dateModified: pest.updated } : {}),
         }}
       />
       <AdSlot position="top" className="mb-8" />
@@ -92,6 +94,7 @@ export default async function PestDetailPage({ params }: Props) {
           <h1 className="mt-1 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
             {pest.name}
           </h1>
+          {pest.updated ? <p className="mt-2 text-xs text-muted">{guideEditorialByline(pest.updated)}</p> : null}
           {pest.alsoCalled ? (
             <p className="mt-1 text-sm text-muted">Also called: {pest.alsoCalled}</p>
           ) : null}
@@ -154,6 +157,8 @@ export default async function PestDetailPage({ params }: Props) {
             </ul>
           </section>
 
+          {pest.decisionGuide ? <ContentBlocks blocks={pest.decisionGuide} /> : null}
+          <SourcesList sources={pest.sources} />
           <AdSlot position="in-content" />
 
           {pest.relatedGuideHref ? (

@@ -56,7 +56,7 @@ describe("raised-bed cluster sources", () => {
     expect(getCalculator("raised-bed-soil").sources?.length).toBeGreaterThan(0);
     expect(getGuide("how-much-soil-does-a-raised-bed-need")?.sources?.length).toBeGreaterThan(0);
     expect(getGuide("how-deep-should-a-raised-bed-be")?.sources?.length).toBeGreaterThan(0);
-    expect(getCalculator("fertilizer").sources).toBeUndefined();
+    expect(getCalculator("garden-area").sources).toBeUndefined();
     expect(getGuide("hugelkultur-in-raised-beds")?.sources).toBeUndefined();
   });
 

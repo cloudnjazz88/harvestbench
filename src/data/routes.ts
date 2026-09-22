@@ -25,6 +25,7 @@ function corePagePaths(guideSlugs: string[]): string[] {
     "/guides",
     ...guideSlugs.map((slug) => `/guides/${slug}`),
     "/about",
+    "/methodology",
     "/contact",
     "/privacy",
     "/terms",
