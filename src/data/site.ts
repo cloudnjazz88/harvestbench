@@ -13,7 +13,7 @@ export const siteConfig = {
 } as const;
 
 export function getSiteUrl(): string {
-  const url = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const url = process.env.NEXT_PUBLIC_SITE_URL || "https://harvestbench.com";
   return url.replace(/\/$/, "");
 }
 
