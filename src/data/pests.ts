@@ -1,3 +1,4 @@
+import type { ContentBlock, SourceCitation } from "@/data/types";
 export type PestProductTip = {
   name: string;
   when: string;
@@ -22,6 +23,9 @@ export type Pest = {
     commonsUrl: string;
   };
   relatedGuideHref?: string;
+  decisionGuide?: ContentBlock[];
+  sources?: SourceCitation[];
+  updated?: string;
 };
 
 const img = (
@@ -41,6 +45,26 @@ const img = (
 export const pests: Pest[] = [
   {
     slug: "aphids",
+    updated: "2026-09-22",
+    sources: [
+      { title: "Aphids in home yards and gardens", organization: "University of Minnesota Extension", url: "https://extension.umn.edu/garden-and-home/yard-and-garden/yard-and-garden-insects/aphids" },
+      { title: "Aphids: identification and management", organization: "University of California Statewide IPM Program", url: "https://ipm.ucanr.edu/home-and-landscape/aphids/" },
+    ],
+    decisionGuide: [
+      { type: "h2", text: "Do you need to act today?" },
+      { type: "p", text: "Finding aphids does not automatically mean a plant needs spraying. Compare the colony with the condition of the growing tips. Established plants often tolerate small populations; a seedling with distorted new growth deserves closer attention." },
+      { type: "table", caption: "A practical check before choosing a treatment", headers: ["What you see", "Next step"], rows: [
+        ["A small colony; new leaves still growing normally", "Monitor the same shoots. Look for predators before spraying."],
+        ["Colonies spreading across tender tips", "Dislodge aphids with water on sturdy plants; support delicate stems."],
+        ["Curled leaves sheltering dense colonies", "Inspect inside the folds. A spray that misses the insects will do little."],
+        ["Mottling or poor growth continuing after aphids are gone", "Seek local extension help. Killing aphids does not reverse a virus infection."],
+      ] },
+      { type: "h2", text: "Confirm the insect before treating" },
+      { type: "p", text: "Use a hand lens to look for paired tubes near the aphid’s rear. White flecks may be shed skins, so check for live insects before assuming a treatment failed. Lady beetles, lacewing larvae, and parasitic wasps can reduce a colony; their presence is a reason to avoid a broad-spectrum spray." },
+      { type: "h2", text: "Check again after the first action" },
+      { type: "p", text: "Revisit the same tips and leaf undersides, checking at least twice weekly during rapid growth. Compare live colonies and new growth, not just the appearance of previously damaged leaves. If numbers keep rising and growth is suffering, consider a labeled insecticidal soap or horticultural oil. Both need direct contact with the insects." },
+      { type: "callout", title: "Before using a spray", text: "Confirm that the label covers your edible crop and follow its dilution, temperature limits, harvest interval, and repeat-application instructions. Avoid substituting household detergent for a formulated insecticidal soap. Spraying more often is not a substitute for reaching the aphids." },
+    ],
     name: "Aphids",
     alsoCalled: "Plant lice",
     summary: "Soft clusters on tips and leaf undersides that suck sap and leave sticky honeydew.",

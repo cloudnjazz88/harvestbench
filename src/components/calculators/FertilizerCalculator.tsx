@@ -140,8 +140,8 @@ export function FertilizerCalculator() {
       />
       <ResultRow
         label="Also supplies"
-        value={`${formatNumber(bagResult.phosphorusLbs, 3)} lb P`}
-        hint={`${formatNumber(bagResult.potassiumLbs, 3)} lb K`}
+        value={`${formatNumber(bagResult.phosphorusLbs, 3)} lb phosphate (P₂O₅)`}
+        hint={`${formatNumber(bagResult.potassiumLbs, 3)} lb potash (K₂O)`}
       />
     </ResultPanel>
   ) : (

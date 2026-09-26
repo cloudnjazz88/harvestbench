@@ -319,6 +319,7 @@ const calculatorList: CalculatorMeta[] = [
   },
   {
     id: "fertilizer",
+    sources: [{ title: "Interpreting soil tests for fruit and vegetable crops", organization: "University of Minnesota Extension (label analysis and soil-test interpretation; not our preset feeding rates)", url: "https://extension.umn.edu/agriculture/specialty-crops/interpreting-soil-tests-for-fruit-and-vegetable-crops" }],
     href: "/calculators/fertilizer",
     title: "Fertilizer Calculator",
     shortTitle: "Fertilizer",
@@ -327,7 +328,7 @@ const calculatorList: CalculatorMeta[] = [
     intro:
       "Most people do not need to know N-P-K by heart. Choose what you are growing. The calculator says which of the three bag numbers should be highest — or if they should be about equal. Amounts are a conservative top-dress for an established bed or container, not fertilizer to mix into new soil or potting mix. Too much fertilizer can burn plants. Compost-rich raised beds often need less than a bag chart implies.",
     formula:
-      "Bags print three numbers in order: nitrogen (N, leaves), phosphorus (P, early roots and flowers), potassium (K, fruit and overall toughness). Amount math is a conservative surface top-dress for one feeding on plants that are already growing. Light = 0.225, Typical = 0.5625, Stronger = 0.9 lb actual N per 1,000 sq ft. Compost-rich beds should start with Light. Beds use length × width. Pots use the circular top surface (πr² × number of pots). Bed and pot depth are not used, and the tool does not estimate a mix-in for new soil. Product (lb) = nitrogen needed ÷ (N% ÷ 100). Kitchen spoons assume 1 oz of typical granular fertilizer ≈ 2 Tbsp. Pellet size varies. The product label still wins, especially if it lists a lower rate.",
+      "US fertilizer grades report percent nitrogen (N), available phosphate (P₂O₅), and soluble potash (K₂O) by weight. The last two are not elemental P and K. Amount math is a conservative surface top-dress for one feeding on plants that are already growing. Light = 0.225, Typical = 0.5625, Stronger = 0.9 lb actual N per 1,000 sq ft. These are site-selected calculation scenarios, not soil-test recommendations or rates validated for every product. Compost-rich beds should start with Light. Beds use length × width. Pots use the circular top surface (πr² × number of pots). Bed and pot depth are not used, and the tool does not estimate a mix-in for new soil. Product (lb) = nitrogen needed ÷ (N% ÷ 100). Kitchen spoons assume 1 oz of typical granular fertilizer ≈ 2 Tbsp. Pellet size varies. The product label still wins, especially if it lists a lower rate.",
     example: {
       title: "Example: tomatoes in a mixed raised bed",
       body: "Pick tomatoes. The tool points you to a higher-potassium bag — third number biggest, or at least matching nitrogen — such as a 4-6-8 or 5-5-10 style vegetable food. A 20-5-5 lawn fertilizer is the wrong aisle. Enter the bed or pot surface size, the three numbers from the bag, and Light / Typical / Stronger. The amount is a starting top-dress in Tbsp or tsp, not a mix-in for new soil. Follow the bag if it lists its own garden rate.",
